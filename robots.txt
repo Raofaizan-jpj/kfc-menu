@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kfc-menu-git-main-mf-faizan.vercel.app/sitemap.xml
+Sitemap: https://kfc-menu-orpin.vercel.app/sitemap.xml
