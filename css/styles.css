@@ -1704,8 +1704,14 @@ button, input, select, textarea {
 }
 
 /* ==========================================================================
-   Modern Interactive Category Bar & Compact Right-Aligned Search Widget
+   Modern Interactive Category Bar & Compact Search Section
    ========================================================================== */
+.search-category-section {
+  padding: 2.25rem 0 0.5rem 0;
+  position: relative;
+  z-index: 5;
+}
+
 .search-category-bar {
   display: flex;
   align-items: center;
@@ -1716,9 +1722,9 @@ button, input, select, textarea {
   border-radius: var(--radius-lg);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  margin-top: -1.75rem;
+  margin: 0;
   position: relative;
-  z-index: 10;
+  z-index: 5;
 }
 
 .category-nav-scroll {
@@ -1794,7 +1800,7 @@ button, input, select, textarea {
   stroke: var(--primary-red);
 }
 
-/* Compact Search Box (Right-aligned) */
+/* Compact Search Box (Left-aligned) */
 .search-box-compact {
   display: flex;
   align-items: center;
@@ -1868,11 +1874,14 @@ button, input, select, textarea {
 
 /* Responsive Media Queries */
 @media (max-width: 992px) {
+  .search-category-section {
+    padding: 1.25rem 0 0.25rem 0;
+  }
   .search-category-bar {
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: stretch;
     gap: 0.85rem;
-    margin-top: 0.75rem;
+    margin-top: 0;
   }
   .search-box-compact {
     width: 100%;

@@ -241,62 +241,64 @@
     </div>
   </section>
 
-  <!-- Modern Interactive Category Bar & Compact Search Widget -->
-  <div class="container">
-    <div class="search-category-bar">
-      <!-- Left: Scrollable Category Chips with SVG Icons that open separate pages -->
-      <div class="category-nav-scroll">
-        <span class="category-bar-label">Explore:</span>
-        
-        <a href="burgers.html" class="category-chip" title="View Burgers & Sandwiches">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a8 8 0 0 1 16 0"/><rect x="2" y="14" width="20" height="4" rx="2"/><line x1="2" y1="11" x2="22" y2="11"/></svg>
-          Burgers
-        </a>
+  <!-- Separate Modern Search & Interactive Category Bar Section -->
+  <section class="search-category-section">
+    <div class="container">
+      <div class="search-category-bar">
+        <!-- Left: Compact Search Box -->
+        <div class="search-box-compact">
+          <svg class="search-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="menu-search-input" class="search-input-compact" placeholder="Search menu items..." aria-label="Search KFC menu">
+          <button id="search-clear-btn" class="search-clear-compact" aria-label="Clear search input">&times;</button>
+        </div>
 
-        <a href="chicken.html" class="category-chip" title="View Fried Chicken & Tenders">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 3 2 5.5 4 8.5l-3 4.5a1.5 1.5 0 0 0 2.5 1.5l3.5-3.5 3.5 3.5a1.5 1.5 0 0 0 2.5-1.5l-3-4.5c2-3 4-5.5 4-8.5a5 5 0 0 0-5-5z"/></svg>
-          Fried Chicken
-        </a>
+        <!-- Right: Scrollable Category Chips with SVG Icons that open separate pages -->
+        <div class="category-nav-scroll">
+          <span class="category-bar-label">Explore:</span>
+          
+          <a href="burgers.html" class="category-chip" title="View Burgers & Sandwiches">
+            <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a8 8 0 0 1 16 0"/><rect x="2" y="14" width="20" height="4" rx="2"/><line x1="2" y1="11" x2="22" y2="11"/></svg>
+            Burgers
+          </a>
 
-        <a href="combos.html" class="category-chip" title="View Meal Combos">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="10" height="10" rx="2"/><path d="M3 11a5 5 0 0 1 10 0"/><path d="M17 7v14"/><path d="M14 10h6l-1 11h-4z"/></svg>
-          Combos
-        </a>
+          <a href="chicken.html" class="category-chip" title="View Fried Chicken & Tenders">
+            <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5c0 3 2 5.5 4 8.5l-3 4.5a1.5 1.5 0 0 0 2.5 1.5l3.5-3.5 3.5 3.5a1.5 1.5 0 0 0 2.5-1.5l-3-4.5c2-3 4-5.5 4-8.5a5 5 0 0 0-5-5z"/></svg>
+            Fried Chicken
+          </a>
 
-        <a href="signature-boxes.html" class="category-chip" title="View Signature Boxes">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-          Boxes
-        </a>
+          <a href="combos.html" class="category-chip" title="View Meal Combos">
+            <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="10" height="10" rx="2"/><path d="M3 11a5 5 0 0 1 10 0"/><path d="M17 7v14"/><path d="M14 10h6l-1 11h-4z"/></svg>
+            Combos
+          </a>
 
-        <a href="family-deals.html" class="category-chip" title="View Family Deals & Buckets">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          Family Deals
-        </a>
+          <a href="signature-boxes.html" class="category-chip" title="View Signature Boxes">
+            <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            Boxes
+          </a>
 
-        <a href="snacks.html" class="category-chip" title="View Snacks, Sides & Fries">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10V3a1 1 0 0 1 2 0v7"/><path d="M11 10V2a1 1 0 0 1 2 0v8"/><path d="M16 10V4a1 1 0 0 1 2 0v6"/><path d="M4 10h16l-2 11H6z"/></svg>
-          Snacks & Fries
-        </a>
+          <a href="family-deals.html" class="category-chip" title="View Family Deals & Buckets">
+            <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Family Deals
+          </a>
 
-        <a href="beverages.html" class="category-chip" title="View Beverages & Drinks">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12l-1.5 18a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2L6 2z"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="12" y1="2" x2="15" y2="1"/></svg>
-          Drinks
-        </a>
+          <a href="snacks.html" class="category-chip" title="View Snacks, Sides & Fries">
+            <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10V3a1 1 0 0 1 2 0v7"/><path d="M11 10V2a1 1 0 0 1 2 0v8"/><path d="M16 10V4a1 1 0 0 1 2 0v6"/><path d="M4 10h16l-2 11H6z"/></svg>
+            Snacks & Fries
+          </a>
 
-        <a href="deals.html" class="category-chip chip-highlight" title="View Latest Offers & Deals">
-          <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Deals
-        </a>
-      </div>
+          <a href="beverages.html" class="category-chip" title="View Beverages & Drinks">
+            <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12l-1.5 18a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2L6 2z"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="12" y1="2" x2="15" y2="1"/></svg>
+            Drinks
+          </a>
 
-      <!-- Right: Compact Right-Aligned Search Box -->
-      <div class="search-box-compact">
-        <svg class="search-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="menu-search-input" class="search-input-compact" placeholder="Search menu items..." aria-label="Search KFC menu">
-        <button id="search-clear-btn" class="search-clear-compact" aria-label="Clear search input">&times;</button>
+          <a href="deals.html" class="category-chip chip-highlight" title="View Latest Offers & Deals">
+            <svg class="chip-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Deals
+          </a>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Main Content Container -->
   <main class="container">
