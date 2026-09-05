@@ -301,7 +301,16 @@ button, input, select, textarea {
 }
 
 .hero-home {
-  padding: 5.5rem 0 6rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  box-sizing: border-box;
+}
+
+.hero-home > .container {
+  width: 100%;
 }
 
 /* Open, unboxed center content (no card wrapper) */
