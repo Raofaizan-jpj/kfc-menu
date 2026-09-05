@@ -435,7 +435,55 @@ const KFC_MENU_DATA = [
     isDeal: false
   },
 
-  // === 8. FAMILY BUCKETS ===
+  // === 8. FAMILY BUCKETS & FAMILY FESTIVAL DEALS ===
+  {
+    id: "deal-family-festival-1",
+    name: "Family Festival 1",
+    category: "Family Buckets",
+    price: 2690,
+    badge: "Top Family Deal",
+    calories: "2950 kcal",
+    servingSize: "Serves 4-5",
+    description: "The ultimate KFC family feast: 4 signature Zinger Burgers, 4 pieces of world-famous Hot & Crispy fried chicken, 2 fluffy dinner rolls, and 1x 1.5L chilled Pepsi.",
+    itemsIncluded: ["4x Zinger Burgers", "4x Hot & Crispy Chicken Pieces", "2x Dinner Rolls", "1x 1.5L Pepsi"],
+    image: "images/family_bucket.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: true,
+    isDeal: true
+  },
+  {
+    id: "deal-family-festival-2",
+    name: "Family Festival 2",
+    category: "Family Buckets",
+    price: 2450,
+    badge: "Family Feast",
+    calories: "2750 kcal",
+    servingSize: "Serves 4",
+    description: "Crowd favorite combo: 2 Zinger Burgers, 2 Krunch Burgers, 4 pieces of Hot & Crispy fried chicken, 2 dinner rolls, and 1x 1.5L chilled Pepsi bottle.",
+    itemsIncluded: ["2x Zinger Burgers", "2x Krunch Burgers", "4x Fried Chicken Pieces", "2x Dinner Rolls", "1x 1.5L Pepsi"],
+    image: "images/family_bucket.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: true,
+    isDeal: true
+  },
+  {
+    id: "deal-family-festival-3",
+    name: "Family Festival 3",
+    category: "Family Buckets",
+    price: 2190,
+    badge: "Budget Saver",
+    calories: "2400 kcal",
+    servingSize: "Serves 3-4",
+    description: "Affordable family celebration: 4 crunchy Krunch Burgers, 4 pieces of signature Hot & Crispy fried chicken, and 1x 1.5L chilled Pepsi.",
+    itemsIncluded: ["4x Krunch Burgers", "4x Fried Chicken Pieces", "1x 1.5L Pepsi"],
+    image: "images/family_bucket.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: true,
+    isDeal: true
+  },
   {
     id: "bucket-family-9",
     name: "Family Bucket (9 Pcs)",
@@ -469,6 +517,38 @@ const KFC_MENU_DATA = [
     isDeal: false
   },
   {
+    id: "deal-family-mega-feast",
+    name: "Family Mega Feast",
+    category: "Family Buckets",
+    price: 3250,
+    badge: "Grand Party",
+    calories: "3800 kcal",
+    servingSize: "Serves 5-6",
+    description: "4 delicious Zinger Burgers, 6 pieces of Hot & Crispy fried chicken, 1 large golden French fries, and 1x 1.5L chilled Pepsi.",
+    itemsIncluded: ["4x Zinger Burgers", "6x Fried Chicken Pieces", "1x Large Fries", "1x 1.5L Pepsi"],
+    image: "images/family_bucket.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: true,
+    isDeal: true
+  },
+  {
+    id: "deal-xtreme-duo-feast",
+    name: "Xtreme Duo Feast",
+    category: "Family Buckets",
+    price: 1690,
+    badge: "Duo Feast",
+    calories: "1850 kcal",
+    servingSize: "Serves 2-3",
+    description: "2 Zinger Burgers, 2 pieces of Hot & Crispy fried chicken, 1 large French fries, and 2 regular chilled drinks.",
+    itemsIncluded: ["2x Zinger Burgers", "2x Fried Chicken Pieces", "1x Large Fries", "2x Regular Soft Drinks"],
+    image: "images/family_bucket.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: true,
+    isDeal: true
+  },
+  {
     id: "bucket-hot-wings-24",
     name: "Wings Bucket (24 Pcs)",
     category: "Family Buckets",
@@ -483,6 +563,38 @@ const KFC_MENU_DATA = [
     isBestValue: false,
     isFamilyMeal: true,
     isDeal: false
+  },
+  {
+    id: "deal-tenders-gathering-12",
+    name: "Tenders Gathering Bucket (12 Pcs)",
+    category: "Family Buckets",
+    price: 1790,
+    badge: "Boneless Feast",
+    calories: "1650 kcal",
+    servingSize: "Serves 3-4",
+    description: "12 crispy hand-breaded chicken tenders served with 1 large French fries, 2 signature dips (Garlic Mayo & Vietnamese sauce), and 1x 1.5L Pepsi.",
+    itemsIncluded: ["12x Chicken Tenders", "1x Large Fries", "2x Signature Dips", "1x 1.5L Pepsi"],
+    image: "images/chicken_tenders.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: true,
+    isDeal: true
+  },
+  {
+    id: "deal-crispy-duo",
+    name: "Crispy Duo Deal",
+    category: "Family Buckets",
+    price: 1390,
+    badge: "Value Pair",
+    calories: "1500 kcal",
+    servingSize: "Serves 2",
+    description: "2 Krunch Burgers, 2 pieces of Hot & Crispy chicken, and 2 regular chilled soft drinks.",
+    itemsIncluded: ["2x Krunch Burgers", "2x Fried Chicken Pieces", "2x Regular Soft Drinks"],
+    image: "images/family_bucket.jpg",
+    isPopular: false,
+    isBestValue: true,
+    isFamilyMeal: true,
+    isDeal: true
   },
 
   // === 9. COMBOS ===
@@ -1439,7 +1551,10 @@ function initMenuPage(initialCategory = 'All') {
         activeCategory === 'All' ||
         itemCat === targetCat ||
         itemCat.includes(targetCat) ||
-        targetCat.includes(itemCat)
+        targetCat.includes(itemCat) ||
+        (targetCat.includes('family') && (itemCat.includes('family') || itemCat.includes('bucket') || item.isFamilyMeal)) ||
+        (targetCat.includes('bucket') && (itemCat.includes('family') || itemCat.includes('bucket') || item.isFamilyMeal)) ||
+        (targetCat.includes('deal') && (itemCat.includes('deal') || item.isDeal))
       );
 
       // Keyword match
