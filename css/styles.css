@@ -170,15 +170,19 @@ button, input, select, textarea {
 }
 
 .btn-header-deal {
-  background-color: var(--primary-red);
-  color: #FFFFFF !important;
-  padding: 0.5rem 1.25rem;
+  border: 1.5px solid var(--primary-red);
+  color: var(--primary-red) !important;
+  background-color: transparent;
+  padding: 0.4rem 1.1rem;
   border-radius: var(--radius-pill);
   font-weight: 700 !important;
+  transition: var(--transition-fast);
 }
 
-.btn-header-deal:hover {
-  background-color: var(--primary-red-hover);
+.btn-header-deal:hover,
+.btn-header-deal.active {
+  background-color: var(--primary-red);
+  color: #FFFFFF !important;
   transform: translateY(-1px);
 }
 
