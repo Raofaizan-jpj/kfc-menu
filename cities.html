@@ -1,25 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="9Q1q1gPk2qSRM4EOy9Ygh7J5gQvlTC3hn3TO_TI9pf8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KFC Menu & Prices by City in Pakistan – City Directory</title>
-  <meta name="description" content="Check KFC menu items, prices, and deals across major cities in Pakistan including Lahore, Karachi, Islamabad, Rawalpindi, Multan, Faisalabad, Peshawar, Sialkot and Gujranwala.">
+  <title>KFC Menu & Prices Across 20 Pakistan Cities – City Directory 2026</title>
+  <meta name="description"
+    content="Complete directory of KFC menu items, prices in PKR & USD, and outlet branches across 20 Pakistan cities including Lahore, Karachi, Islamabad, Rawalpindi, Multan, Faisalabad, Peshawar, and more.">
+  <meta name="keywords"
+    content="KFC menu Lahore, KFC menu Karachi, KFC menu Islamabad, KFC menu Multan, KFC menu Faisalabad, KFC menu Rawalpindi, KFC Pakistan cities">
   <link rel="canonical" href="https://kfc-menu-orpin.vercel.app/cities.html">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://kfc-menu-orpin.vercel.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Cities",
+        "item": "https://kfc-menu-orpin.vercel.app/cities.html"
+      }
+    ]
+  }
+  </script>
 </head>
+
 <body>
 
+  <!-- Top Disclaimer Bar -->
   <div class="top-disclaimer-bar">
     <div class="container">
-      <strong>Independent Resource:</strong> Not affiliated with or endorsed by KFC. Prices in PKR for reference. <a href="disclaimer.html">Read Disclaimer</a>
+      <strong>Independent Resource:</strong> Not affiliated with or endorsed by KFC. Prices in PKR & USD for consumer reference. <a href="disclaimer.html">Read Disclaimer</a>
     </div>
   </div>
 
+  <!-- Site Header -->
   <header class="site-header">
     <div class="container">
       <div class="header-inner">
@@ -44,11 +74,18 @@
           </ul>
         </nav>
 
-        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Navigation Menu">☰</button>
+        <div class="header-right">
+          <div class="currency-switcher-wrapper" role="group" aria-label="Currency Selector">
+            <button class="currency-toggle-btn active" data-currency="PKR">PKR (Rs)</button>
+            <button class="currency-toggle-btn" data-currency="USD">USD ($)</button>
+          </div>
+          <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Navigation Menu">☰</button>
+        </div>
       </div>
     </div>
   </header>
 
+  <!-- Mobile Drawer -->
   <div class="drawer-overlay" id="drawer-overlay"></div>
   <aside class="mobile-drawer" id="mobile-drawer">
     <div class="drawer-header">
@@ -58,13 +95,12 @@
     <ul class="mobile-nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="menu.html">Full Menu & Prices</a></li>
-      <li><a href="burgers.html">Burgers Menu</a></li>
+      <li><a href="burgers.html">Burgers</a></li>
       <li><a href="chicken.html">Fried Chicken</a></li>
       <li><a href="combos.html">Meal Combos</a></li>
       <li><a href="signature-boxes.html">Signature Boxes</a></li>
       <li><a href="family-deals.html">Family Deals</a></li>
       <li><a href="snacks.html">Snacks & Sides</a></li>
-      <li><a href="beverages.html">Beverages</a></li>
       <li><a href="deals.html">Offers & Deals</a></li>
       <li><a href="cities.html" class="active">City Directories</a></li>
       <li><a href="about.html">About Us</a></li>
@@ -73,102 +109,151 @@
     </ul>
   </aside>
 
-  <section class="hero-section" style="padding: 2.5rem 0;">
+  <!-- Hero Section -->
+  <section class="hero-section" style="padding: 2.75rem 0;">
     <div class="container">
-      <h1 class="hero-title" style="font-size:2.2rem;">KFC Menu & Prices by City</h1>
-      <p class="hero-subtitle" style="margin-bottom:0;">Check KFC menu items, prices, and available deals across major cities in Pakistan.</p>
+      <div class="hero-badge">🗺️ Nationwide Restaurant Directory</div>
+      <h1 class="hero-title" style="font-size:2.4rem;">KFC Menu & Prices by City</h1>
+      <p class="hero-subtitle" style="margin-bottom:0; max-width:720px;">
+        Browse KFC menu items, prices in PKR and USD, branch locations, and delivery hours across 20 Pakistan cities. Select your city below to see localized guides and popular deals.
+      </p>
     </div>
   </section>
 
-  <main class="container" style="margin-top:2rem;">
-    <div class="disclaimer-banner">
+  <!-- Main Content -->
+  <main class="container" style="margin-top:2.5rem;">
+    <div class="disclaimer-banner" style="background:#FFFFFF; border:1px solid rgba(228,0,43,0.2); border-left:4px solid var(--primary-red); border-radius:var(--radius-md);">
       <span class="icon">ℹ️</span>
       <div>
-        <strong>Notice:</strong> Menu pricing in Pakistani Rupees is uniform across most nationwide outlets, though delivery partners or specific venue surcharges may apply.
+        <strong>Notice:</strong> Standard base menu prices in Pakistani Rupees are uniform nationwide. However, airport outlets, highway rest stops, or third-party delivery services may include location-based fees or surcharges.
       </div>
     </div>
 
-    <!-- City List -->
-    <section class="section" style="padding-top:1rem;">
+    <!-- City Search & Filter Bar -->
+    <div class="search-widget" style="margin: 2rem 0;">
+      <div class="search-box-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="city-search-input" class="search-input" placeholder="Search by city name or area (e.g., Lahore, Karachi, Rawalpindi, Gulberg, Clifton)...">
+        <button id="city-search-clear" class="search-clear">&times;</button>
+      </div>
+    </div>
 
-      <div style="display:flex; flex-direction:column; gap:2.5rem;">
-        <!-- Lahore -->
-        <article class="category-card" id="lahore" style="width:100%;">
-          <h2>KFC Menu Lahore</h2>
-          <p>Check KFC menu items, prices and available deals in Lahore. Explore Zinger Burgers, Hot Wings, family festival deals, and boxes across Lahore outlets.</p>
-          <a href="menu.html" class="btn btn-primary" style="font-size:0.85rem; padding:0.5rem 1rem; margin-top:0.5rem;">View Full Lahore Menu Prices</a>
-        </article>
+    <!-- 20-City Grid -->
+    <section class="section" style="padding-top:0;">
+      <div class="city-grid" id="all-cities-grid">
+        <!-- Rendered by JavaScript based on KFC_CITIES_DATA -->
+      </div>
+    </section>
 
-        <!-- Karachi -->
-        <article class="category-card" id="karachi" style="width:100%;">
-          <h2>KFC Menu Karachi</h2>
-          <p>Check KFC menu items, prices and available deals in Karachi. Compare burger combos, fried chicken buckets, and value boxes available across Karachi branches.</p>
-          <a href="menu.html" class="btn btn-primary" style="font-size:0.85rem; padding:0.5rem 1rem; margin-top:0.5rem;">View Full Karachi Menu Prices</a>
-        </article>
-
-        <!-- Islamabad -->
-        <article class="category-card" id="islamabad" style="width:100%;">
-          <h2>KFC Menu Islamabad</h2>
-          <p>Check KFC menu items, prices and available deals in Islamabad. Discover Zinger meals, Hot Wings 10 Pcs, and Midnight Deals in Islamabad.</p>
-          <a href="menu.html" class="btn btn-primary" style="font-size:0.85rem; padding:0.5rem 1rem; margin-top:0.5rem;">View Full Islamabad Menu Prices</a>
-        </article>
-
-        <!-- Rawalpindi -->
-        <article class="category-card" id="rawalpindi" style="width:100%;">
-          <h2>KFC Menu Rawalpindi</h2>
-          <p>Check KFC menu items, prices and available deals in Rawalpindi. Find prices for Zinger Stacker, Mighty Zinger, and Crispy Box meals in Rawalpindi.</p>
-          <a href="menu.html" class="btn btn-primary" style="font-size:0.85rem; padding:0.5rem 1rem; margin-top:0.5rem;">View Full Rawalpindi Menu Prices</a>
-        </article>
-
-        <!-- Multan -->
-        <article class="category-card" id="multan" style="width:100%;">
-          <h2>KFC Menu Multan</h2>
-          <p>Check KFC menu items, prices and available deals in Multan. Browse Krunch burgers, family buckets, and beverage options in Multan.</p>
-          <a href="menu.html" class="btn btn-primary" style="font-size:0.85rem; padding:0.5rem 1rem; margin-top:0.5rem;">View Full Multan Menu Prices</a>
-        </article>
-
-        <!-- Faisalabad -->
-        <article class="category-card" id="faisalabad" style="width:100%;">
-          <h2>KFC Menu Faisalabad</h2>
-          <p>Check KFC menu items, prices and available deals in Faisalabad. Access detailed prices for burgers, chicken strips, and duo box meals in Faisalabad.</p>
-          <a href="menu.html" class="btn btn-primary" style="font-size:0.85rem; padding:0.5rem 1rem; margin-top:0.5rem;">View Full Faisalabad Menu Prices</a>
-        </article>
-
-        <!-- Peshawar -->
-        <article class="category-card" id="peshawar" style="width:100%;">
-          <h2>KFC Menu Peshawar</h2>
-          <p>Check KFC menu items, prices and available deals in Peshawar. Explore popular chicken deals, family buckets, and snacks in Peshawar.</p>
-          <a href="menu.html" class="btn btn-primary" style="font-size:0.85rem; padding:0.5rem 1rem; margin-top:0.5rem;">View Full Peshawar Menu Prices</a>
-        </article>
-
-        <!-- Sialkot -->
-        <article class="category-card" id="sialkot" style="width:100%;">
-          <h2>KFC Menu Sialkot</h2>
-          <p>Check KFC menu items, prices and available deals in Sialkot. Complete guide to Zinger burgers, meal combos, and drinks in Sialkot.</p>
-          <a href="menu.html" class="btn btn-primary" style="font-size:0.85rem; padding:0.5rem 1rem; margin-top:0.5rem;">View Full Sialkot Menu Prices</a>
-        </article>
-
-        <!-- Gujranwala -->
-        <article class="category-card" id="gujranwala" style="width:100%;">
-          <h2>KFC Menu Gujranwala</h2>
-          <p>Check KFC menu items, prices and available deals in Gujranwala. Find prices for all favorite KFC fried chicken items and deals in Gujranwala.</p>
-          <a href="menu.html" class="btn btn-primary" style="font-size:0.85rem; padding:0.5rem 1rem; margin-top:0.5rem;">View Full Gujranwala Menu Prices</a>
-        </article>
+    <!-- General City FAQs -->
+    <section class="section">
+      <div class="section-header" style="text-align: center;">
+        <span class="section-subtitle">Helpful Insights</span>
+        <h2 class="section-title">Frequently Asked Questions — City Menus</h2>
       </div>
 
+      <div class="faq-list">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Which cities in Pakistan have the most KFC branches?
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-body">
+            Karachi and Lahore lead with over 45 and 38 outlets respectively, followed by Islamabad (18+ outlets), Rawalpindi (15+ outlets), and Faisalabad (12+ outlets).
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Does KFC deliver across smaller cities in Pakistan?
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-body">
+            Yes, KFC operates drive-thrus and reliable home delivery services across smaller urban centers including Sialkot, Gujranwala, Sukkur, Rahim Yar Khan, Sargodha, Abbottabad, and Mardan.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Are KFC midnight deals available in all cities?
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-body">
+            Midnight deals are available at most branches offering late-night hours (typically 12:00 AM to 3:00 AM or later), particularly in major metropolises like Lahore, Karachi, and Islamabad.
+          </div>
+        </div>
+      </div>
     </section>
   </main>
+
+  <!-- Modal Container -->
+  <div class="modal-overlay" id="item-modal">
+    <div class="modal-container" id="modal-content-area"></div>
+  </div>
 
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
 
   <footer class="site-footer">
     <div class="container">
       <div class="footer-bottom">
-        <p>&copy; 2026 KFC Menu Pakistan — Independent Informational Guide. Not affiliated with KFC.</p>
+        <p>&copy; 2026 KFC Menu Pakistan — Independent Informational Guide. Not affiliated with KFC or Yum! Brands.</p>
       </div>
     </div>
   </footer>
 
   <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('all-cities-grid');
+      const searchInput = document.getElementById('city-search-input');
+      const searchClear = document.getElementById('city-search-clear');
+
+      function renderCities(list) {
+        if (!container) return;
+        if (list.length === 0) {
+          container.innerHTML = `<div class="no-results-box" style="grid-column:1/-1;"><h3>No cities matched your search</h3><p>Try typing a different city name.</p></div>`;
+          return;
+        }
+        container.innerHTML = list.map(city => `
+          <a href="city.html?city=${city.slug}" class="city-card-item">
+            <div class="city-header-row">
+              <span class="city-badge-province">${city.province}</span>
+              <span class="city-outlets-pill">${city.outlets}</span>
+            </div>
+            <h3>KFC ${city.name}</h3>
+            <p>${city.description.slice(0, 105)}...</p>
+            <div class="city-highlights">
+              <strong>Key Outlets / Areas:</strong> ${city.highlights.split(',').slice(0, 3).join(', ')}
+            </div>
+            <span class="btn-card-details" style="display:inline-block; text-align:center;">View ${city.name} Menu &rarr;</span>
+          </a>
+        `).join('');
+      }
+
+      renderCities(KFC_CITIES_DATA);
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const q = e.target.value.toLowerCase().trim();
+          if (searchClear) searchClear.style.display = q ? 'block' : 'none';
+          const filtered = KFC_CITIES_DATA.filter(c => 
+            c.name.toLowerCase().includes(q) || 
+            c.province.toLowerCase().includes(q) || 
+            c.highlights.toLowerCase().includes(q)
+          );
+          renderCities(filtered);
+        });
+      }
+
+      if (searchClear) {
+        searchClear.addEventListener('click', () => {
+          if (searchInput) searchInput.value = '';
+          searchClear.style.display = 'none';
+          renderCities(KFC_CITIES_DATA);
+        });
+      }
+    });
+  </script>
 </body>
+
 </html>

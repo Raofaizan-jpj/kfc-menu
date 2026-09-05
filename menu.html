@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="9Q1q1gPk2qSRM4EOy9Ygh7J5gQvlTC3hn3TO_TI9pf8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KFC Full Menu & Prices in PKR – KFC Menu Pakistan</title>
-  <meta name="description" content="Complete list of KFC Pakistan menu items and prices in PKR. Filter by burgers, fried chicken, signature boxes, family deals, snacks, drinks and price ranges.">
+  <title>Full KFC Pakistan Menu & Prices 2026 – Dual PKR & USD Directory</title>
+  <meta name="description"
+    content="Complete interactive list of 50+ KFC Pakistan menu items and prices in PKR & USD. Filter burgers, fried chicken, chicken tenders, hot wings, boxes, family buckets, and combos.">
+  <meta name="keywords" content="KFC menu, KFC menu Pakistan, KFC prices PKR, KFC chicken prices, KFC burger prices, KFC family bucket">
   <link rel="canonical" href="https://kfc-menu-orpin.vercel.app/menu.html">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://kfc-menu-orpin.vercel.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Full Menu",
+        "item": "https://kfc-menu-orpin.vercel.app/menu.html"
+      }
+    ]
+  }
+  </script>
 </head>
+
 <body>
 
   <div class="top-disclaimer-bar">
     <div class="container">
-      <strong>Independent Resource:</strong> Not affiliated with or endorsed by KFC. Prices in PKR for informational reference. <a href="disclaimer.html">Read Disclaimer</a>
+      <strong>Independent Resource:</strong> Not affiliated with or endorsed by KFC. Prices in PKR & USD for consumer reference. <a href="disclaimer.html">Read Disclaimer</a>
     </div>
   </div>
 
@@ -44,7 +70,13 @@
           </ul>
         </nav>
 
-        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Navigation Menu">☰</button>
+        <div class="header-right">
+          <div class="currency-switcher-wrapper" role="group" aria-label="Currency Selector">
+            <button class="currency-toggle-btn active" data-currency="PKR">PKR (Rs)</button>
+            <button class="currency-toggle-btn" data-currency="USD">USD ($)</button>
+          </div>
+          <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Navigation Menu">☰</button>
+        </div>
       </div>
     </div>
   </header>
@@ -73,54 +105,94 @@
     </ul>
   </aside>
 
-  <section class="hero-section" style="padding: 2.5rem 0;">
+  <section class="hero-section" style="padding: 2.75rem 0;">
     <div class="container">
-      <h1 class="hero-title" style="font-size:2.2rem;">Full KFC Pakistan Menu & Prices</h1>
-      <p class="hero-subtitle" style="margin-bottom:0;">Browse all items, prices in PKR, descriptions, and meal details in our interactive directory.</p>
+      <h1 class="hero-title" style="font-size:2.35rem;">Full KFC Pakistan Menu & Prices</h1>
+      <p class="hero-subtitle" style="margin-bottom:0; max-width:750px;">
+        Browse the complete 50+ item directory across 15 categories. Compare dual PKR and USD prices, view piece counts, calories, and detailed ingredient breakdowns.
+      </p>
     </div>
   </section>
 
-  <div class="container" style="margin-top:2rem;">
-    <div class="disclaimer-banner">
+  <main class="container" style="margin-top:2rem;">
+    <div class="disclaimer-banner" style="background:#FFFFFF; border:1px solid rgba(228,0,43,0.2); border-left:4px solid var(--primary-red); border-radius:var(--radius-md);">
       <span class="icon">ℹ️</span>
       <div>
-        <strong>Notice:</strong> All listed prices are in Pakistani Rupees (PKR) for informational reference. Prices may change over time or vary by location.
+        <strong>Notice:</strong> All listed prices are in Pakistani Rupees (PKR) with estimated reference USD conversions (1 USD ≈ 280 PKR). Prices may change over time or vary by location.
       </div>
     </div>
 
-    <!-- Search Bar -->
-    <div class="search-widget" style="margin-top:0; margin-bottom:2rem;">
+    <!-- Search Box -->
+    <div class="search-widget" style="margin: 1.75rem 0;">
       <div class="search-box-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="menu-search-input" class="search-input" placeholder="Search full menu by food name, ingredient, or category...">
+        <input type="text" id="menu-search-input" class="search-input" placeholder="Search full menu by item name, ingredient, or category (e.g. Zinger, Tenders, Stacker, Pepsi)...">
         <button id="search-clear-btn" class="search-clear">&times;</button>
       </div>
     </div>
 
-    <!-- Category Filters -->
-    <div class="filter-bar">
-      <button class="filter-btn active" data-category="All">All Items</button>
-      <button class="filter-btn" data-category="Burgers">Burgers</button>
-      <button class="filter-btn" data-category="Chicken">Fried Chicken</button>
-      <button class="filter-btn" data-category="Combos">Combos</button>
-      <button class="filter-btn" data-category="Signature Boxes">Boxes</button>
-      <button class="filter-btn" data-category="Family Deals">Family Deals</button>
-      <button class="filter-btn" data-category="Snacks">Snacks</button>
-      <button class="filter-btn" data-category="Beverages">Beverages</button>
-      <button class="filter-btn" data-category="Deals">Special Deals</button>
+    <!-- Filter Toolbar -->
+    <div class="filter-toolbar">
+      <div class="filter-toolbar-top">
+        <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-dark);">
+          <span id="search-result-count">Loading menu items...</span>
+        </div>
+
+        <div class="filter-controls-group">
+          <label for="price-filter-select" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Price:</label>
+          <select id="price-filter-select" class="filter-select" aria-label="Filter by Price Range">
+            <option value="all">All Prices</option>
+            <option value="under-500">Under Rs. 500</option>
+            <option value="500-1000">Rs. 500 – Rs. 1,000</option>
+            <option value="1000-2000">Rs. 1,000 – Rs. 2,000</option>
+            <option value="over-2000">Over Rs. 2,000</option>
+          </select>
+
+          <label for="menu-sort-select" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Sort By:</label>
+          <select id="menu-sort-select" class="filter-select" aria-label="Sort Menu Items">
+            <option value="popular">Popularity / Recommended</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="name-az">Item Name: A to Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-scroll-wrapper">
+        <div class="filter-bar-scrollable">
+          <button class="filter-btn active" data-category="All">All Items (50+)</button>
+          <button class="filter-btn" data-category="Burgers & Sandwiches">Burgers & Sandwiches</button>
+          <button class="filter-btn" data-category="Fried Chicken">Fried Chicken</button>
+          <button class="filter-btn" data-category="Chicken Tenders">Chicken Tenders</button>
+          <button class="filter-btn" data-category="Hot Wings">Hot Wings</button>
+          <button class="filter-btn" data-category="Nuggets">Nuggets</button>
+          <button class="filter-btn" data-category="Wraps">Wraps</button>
+          <button class="filter-btn" data-category="Signature Boxes">Signature Boxes</button>
+          <button class="filter-btn" data-category="Family Buckets">Family Buckets</button>
+          <button class="filter-btn" data-category="Combos">Combos</button>
+          <button class="filter-btn" data-category="Fries">Fries</button>
+          <button class="filter-btn" data-category="Biscuits">Biscuits</button>
+          <button class="filter-btn" data-category="Snacks & Sides">Snacks & Sides</button>
+          <button class="filter-btn" data-category="Beverages">Beverages</button>
+          <button class="filter-btn" data-category="Desserts">Desserts</button>
+          <button class="filter-btn" data-category="Deals & Offers">Deals & Offers</button>
+        </div>
+      </div>
     </div>
 
     <!-- Menu Grid -->
-    <div id="menu-grid-container" class="menu-grid" style="margin-bottom: 3rem;"></div>
+    <div id="menu-grid-container" class="menu-grid" style="margin-bottom: 3.5rem;"></div>
 
-    <!-- Full Price Table -->
+    <!-- Complete Price Table -->
     <section class="section" style="padding-top:0;">
       <div class="section-header">
-        <h2 class="section-title">Complete Price Table (PKR)</h2>
+        <span class="section-subtitle">Data Table</span>
+        <h2 class="section-title">Complete Price Table (PKR & USD)</h2>
+        <p class="section-desc">Searchable summary table of all menu items, piece servings, calories, and dual currency rates.</p>
       </div>
       <div id="price-table-container" class="price-table-container"></div>
     </section>
-  </div>
+  </main>
 
   <div class="modal-overlay" id="item-modal">
     <div class="modal-container" id="modal-content-area"></div>
@@ -133,7 +205,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h2>KFC Menu Pakistan</h2>
-          <p>Independent informational directory providing KFC menu prices in Pakistani Rupees.</p>
+          <p>Independent informational directory providing KFC menu prices in Pakistani Rupees and US Dollars.</p>
         </div>
         <div class="footer-col">
           <h4>Categories</h4>
@@ -173,4 +245,5 @@
     });
   </script>
 </body>
+
 </html>

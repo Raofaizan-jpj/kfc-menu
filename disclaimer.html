@@ -44,7 +44,13 @@
           </ul>
         </nav>
 
-        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Navigation Menu">☰</button>
+        <div class="header-right">
+          <div class="currency-switcher-wrapper" role="group" aria-label="Currency Selector">
+            <button class="currency-toggle-btn active" data-currency="PKR">PKR (Rs)</button>
+            <button class="currency-toggle-btn" data-currency="USD">USD ($)</button>
+          </div>
+          <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Navigation Menu">☰</button>
+        </div>
       </div>
     </div>
   </header>
@@ -107,8 +113,13 @@
       </p>
 
       <h2 style="margin-bottom:1rem; color:var(--primary-dark);">4. Ordering & Transactions</h2>
-      <p style="color:var(--text-muted);">
+      <p style="color:var(--text-muted); margin-bottom:1.5rem;">
         This website does not sell food, process orders, or accept payments. Users seeking to place orders must navigate directly to official KFC delivery applications, website, or visit official restaurant outlets.
+      </p>
+
+      <h2 style="margin-bottom:1rem; color:var(--primary-dark);">5. Currency Conversion Disclaimer</h2>
+      <p style="color:var(--text-muted);">
+        All USD currency figures displayed on this website are approximate mathematical conversions (calculated at a benchmark reference rate of 1 USD ≈ 280 PKR) designed solely for the convenience of overseas travelers, tourists, and international reference. They do not represent official US KFC restaurant prices or official currency exchange transactions. Actual purchases within Pakistan are billed exclusively in Pakistani Rupees (PKR).
       </p>
 
     </article>

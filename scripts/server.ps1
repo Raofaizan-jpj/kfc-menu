@@ -5,7 +5,6 @@ $listener.Prefixes.Add("http://localhost:$port/")
 $listener.Start()
 
 Write-Host "Live Server successfully started at http://localhost:$port/"
-Start-Process "http://localhost:$port/index.html"
 
 try {
     while ($listener.IsListening) {
@@ -33,6 +32,16 @@ try {
                 $response.ContentType = "application/xml; charset=utf-8"
             } elseif ($filePath.EndsWith(".txt")) {
                 $response.ContentType = "text/plain; charset=utf-8"
+            } elseif ($filePath.EndsWith(".jpg") -or $filePath.EndsWith(".jpeg")) {
+                $response.ContentType = "image/jpeg"
+            } elseif ($filePath.EndsWith(".png")) {
+                $response.ContentType = "image/png"
+            } elseif ($filePath.EndsWith(".webp")) {
+                $response.ContentType = "image/webp"
+            } elseif ($filePath.EndsWith(".svg")) {
+                $response.ContentType = "image/svg+xml"
+            } elseif ($filePath.EndsWith(".json")) {
+                $response.ContentType = "application/json; charset=utf-8"
             }
             
             $response.ContentLength64 = $bytes.Length
