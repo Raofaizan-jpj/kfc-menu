@@ -131,6 +131,18 @@ button, input, select, textarea {
   font-weight: 700;
 }
 
+.brand-official-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.brand-logo:hover .brand-official-logo {
+  transform: scale(1.05);
+}
+
 .brand-tag {
   font-size: 0.75rem;
   color: var(--text-muted);
