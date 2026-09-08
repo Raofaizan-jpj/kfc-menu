@@ -106,7 +106,7 @@ const KFC_MENU_DATA = [
     id: "burger-stacker",
     name: "Zinger Stacker",
     category: "Burgers & Sandwiches",
-    price: 850,
+    price: 660,
     badge: "Spicy Hot",
     calories: "790 kcal",
     servingSize: "1 Burger",
@@ -634,7 +634,7 @@ const KFC_MENU_DATA = [
     id: "combo-stacker",
     name: "Zinger Stacker Combo",
     category: "Combos",
-    price: 1120,
+    price: 950,
     badge: "Spicy Combo",
     calories: "1070 kcal",
     servingSize: "1 Combo Meal",
@@ -1086,7 +1086,8 @@ const KFC_CITIES_DATA = [
     popularCombo: "Crispy Duo Box & Zinger Stacker",
     description: "Serving the capital city across prestigious sectors including F-6, F-7, Blue Area, and Centaurus Mall. Islamabad residents enjoy swift drive-thru access and delivery.",
     faqs: [
-      { q: "Where can I find KFC in Islamabad?", a: "Key branches include F-7 Jinnah Super, F-10 Markaz, Centaurus Mall food court, Blue Area, and G-9 Markaz." },
+      { q: "Where can I find KFC in Islamabad?", a: "Key branches include F-7 Jinnah Super, F-10 Markaz, Centaurus Mall food court, Blue Area, F-6 Super Market, and F-11 Markaz." },
+      { q: "Is there a KFC branch in Sector F-1 Islamabad?", a: "Islamabad does not have a Sector F-1 branch; users searching for F-1 are usually looking for nearby F-10 or F-11 Markaz branches, or the verified Sector F-1 Mirpur (AJK) location on Main Kotli Road." },
       { q: "How much does a KFC Crispy Box cost in Islamabad?", a: "The Crispy Box (Zinger, chicken pc, fries, dinner roll, and drink) costs Rs. 1,020 (≈ $3.64 USD)." }
     ]
   },
@@ -1114,7 +1115,9 @@ const KFC_CITIES_DATA = [
     popularCombo: "Family Festival 1 & Krunch Combo",
     description: "Multan's foodies enjoy KFC at premier hubs on Bosan Road and Gulgasht Colony. Excellent student and family deals make it a top weekend dining destination.",
     faqs: [
-      { q: "What is the cost of KFC Family Festival 1 in Multan?", a: "Family Festival 1 (4 Zingers, 4 Chicken Pcs, 2 Fries, 1.5L Pepsi) costs Rs. 2,450 (≈ $8.75 USD)." }
+      { q: "What is the cost of KFC Family Festival 1 in Multan?", a: "Family Festival 1 (4 Zingers, 4 Chicken Pcs, 2 Fries, 1.5L Pepsi) costs Rs. 2,450 (≈ $8.75 USD)." },
+      { q: "What is the Zinger Stacker price in Multan?", a: "Current Multan listings show the standalone Zinger Stacker Burger around Rs. 660 (≈ $2.36 USD) and the Zinger Stacker Combo around Rs. 950 (≈ $3.39 USD)." },
+      { q: "Where are the main KFC branches in Multan?", a: "Major KFC outlets in Multan operate on Bosan Road (near BZU), Gulgasht Colony Main Commercial, Multan Cantt Mall Road, Abdali Road, and DHA Multan." }
     ]
   },
   {
