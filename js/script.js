@@ -4,6 +4,81 @@
    Live Search, Filters, Sorting, Details Modal & Dynamic City Pages
    ========================================================================== */
 
+// 0. Technical SEO Dynamic Canonical & Robots Engine
+(function initTechnicalSEO() {
+  const CANONICAL_DOMAIN = 'https://kfc-menu-orpin.vercel.app';
+  const DEDICATED_CITIES = {
+    'lahore': '/city-lahore',
+    'karachi': '/city-karachi',
+    'islamabad': '/city-islamabad',
+    'faisalabad': '/city-faisalabad',
+    'multan': '/city-multan'
+  };
+
+  try {
+    const loc = window.location;
+    let path = loc.pathname;
+
+    // 1. Normalize path (remove .html and handle index)
+    if (path === '/index.html' || path === '/index') {
+      path = '/';
+    } else if (path.endsWith('.html')) {
+      path = path.slice(0, -5);
+    }
+
+    // 2. Remove trailing slashes (e.g. /burgers/ -> /burgers)
+    if (path.length > 1 && path.endsWith('/')) {
+      path = path.slice(0, -1);
+    }
+
+    // 3. Handle query parameters (allow 'city' to rank, strip tracking/junk)
+    const currentParams = new URLSearchParams(loc.search);
+    let finalSearch = '';
+
+    if (currentParams.has('city')) {
+      const citySlug = (currentParams.get('city') || '').toLowerCase().trim();
+      if (DEDICATED_CITIES[citySlug]) {
+        path = DEDICATED_CITIES[citySlug];
+      } else if (citySlug) {
+        finalSearch = '?city=' + encodeURIComponent(citySlug);
+      }
+    }
+
+    // 4. Construct the clean canonical URL
+    const cleanCanonicalUrl = CANONICAL_DOMAIN + path + finalSearch;
+
+    // 5. Update or inject <link rel="canonical">
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', cleanCanonicalUrl);
+
+    // 6. Update or inject <meta property="og:url">
+    let ogUrl = document.querySelector('meta[property="og:url"]');
+    if (!ogUrl) {
+      ogUrl = document.createElement('meta');
+      ogUrl.setAttribute('property', 'og:url');
+      document.head.appendChild(ogUrl);
+    }
+    ogUrl.setAttribute('content', cleanCanonicalUrl);
+
+    // 7. Ensure standard index robots tag is present and clean
+    let robotsMeta = document.querySelector('meta[name="robots"]');
+    if (!robotsMeta) {
+      robotsMeta = document.createElement('meta');
+      robotsMeta.setAttribute('name', 'robots');
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.setAttribute('content', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+
+  } catch (err) {
+    console.error('SEO Canonical Engine error:', err);
+  }
+})();
+
 // 1. Central Currency Configuration
 const CURRENCY_CONFIG = {
   activeCurrency: localStorage.getItem('kfc_active_currency') || 'PKR',
@@ -1694,6 +1769,39 @@ function initCityPage() {
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) {
     metaDesc.content = `Check KFC ${city.name} menu items, prices in PKR & USD, Zinger burger price, fried chicken deals, outlet locations, and FAQs across ${city.name}.`;
+  }
+
+  // Sync Canonical & OpenGraph tags for current city
+  const dedicatedCityRoutes = {
+    'lahore': '/city-lahore',
+    'karachi': '/city-karachi',
+    'islamabad': '/city-islamabad',
+    'faisalabad': '/city-faisalabad',
+    'multan': '/city-multan'
+  };
+  const cityPath = dedicatedCityRoutes[city.slug.toLowerCase()] 
+    ? dedicatedCityRoutes[city.slug.toLowerCase()] 
+    : `/city?city=${encodeURIComponent(city.slug.toLowerCase())}`;
+  const cityCanonicalUrl = `https://kfc-menu-orpin.vercel.app${cityPath}`;
+
+  const canonicalLink = document.querySelector('link[rel="canonical"]');
+  if (canonicalLink) {
+    canonicalLink.setAttribute('href', cityCanonicalUrl);
+  }
+
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) {
+    ogUrl.setAttribute('content', cityCanonicalUrl);
+  }
+
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) {
+    ogTitle.setAttribute('content', `KFC Menu & Prices in ${city.name} (PKR & USD)`);
+  }
+
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) {
+    ogDesc.setAttribute('content', `KFC ${city.name} menu prices, deals, and branch directory in PKR & USD.`);
   }
 
   // Update City Hero Content
