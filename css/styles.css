@@ -332,13 +332,21 @@ button, input, select, textarea {
   pointer-events: auto;
 }
 
-/* Hero Section */
+/* Hero Section - Standard 100vh Viewport Height */
 .hero-section {
   position: relative;
   overflow: hidden;
   color: #FFFFFF;
-  padding: 5rem 0 5.5rem;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
   background-color: #0A0A0A;
+  box-sizing: border-box;
 }
 
 /* Clear background image without heavy gradient */
@@ -354,12 +362,45 @@ button, input, select, textarea {
   z-index: 1;
 }
 
+/* Page-specific hero background images */
+.hero-menu::before { background-image: url('../images/fried_chicken.jpg'); }
+.hero-burgers::before { background-image: url('../images/burger_hero_bg.jpg'); }
+.hero-chicken::before { background-image: url('../images/cat_chicken.jpg'); }
+.hero-combos::before { background-image: url('../images/cat_combos.jpg'); }
+.hero-boxes::before { background-image: url('../images/cat_boxes.jpg'); }
+.hero-family::before { background-image: url('../images/cat_family.jpg'); }
+.hero-snacks::before { background-image: url('../images/cat_snacks.jpg'); }
+.hero-beverages::before { background-image: url('../images/crispy_fries.jpg'); }
+.hero-deals::before { background-image: url('../images/family_festival.jpg'); }
+.hero-cities::before { background-image: url('../images/family_bucket.jpg'); }
+.hero-city::before { background-image: url('../images/fried_chicken.jpg'); }
+.hero-about::before { background-image: url('../images/mighty_zinger.jpg'); }
+.hero-contact::before { background-image: url('../images/chicken_tenders.jpg'); }
+.hero-disclaimer::before { background-image: url('../images/crispy_fries.jpg'); }
+
+.hero-section > .container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Burger hero — full screen dramatic image */
+.hero-burgers::before {
+  background-size: cover;
+  background-position: center center;
+}
+
+
+
 .hero-home {
+  height: 100vh;
+  height: 100dvh;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem 0;
+  padding: 3.5rem 0;
   box-sizing: border-box;
 }
 
