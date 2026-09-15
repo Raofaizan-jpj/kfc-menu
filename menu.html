@@ -1,7 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B2TG62G8MW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-B2TG62G8MW');
+  </script>
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="9Q1q1gPk2qSRM4EOy9Ygh7J5gQvlTC3hn3TO_TI9pf8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -256,8 +265,42 @@
       </div>
     </section>
 
+    <!-- Dynamic City Banner Alert -->
+    <div id="selected-city-banner" class="selected-city-banner" style="display:none;"></div>
+
     <!-- Filter Toolbar -->
     <div class="filter-toolbar">
+      <!-- City Selection Selector Bar -->
+      <div class="city-selector-bar">
+        <div class="city-selector-header">
+          <span class="city-selector-label">📍 Select City for Local Deals & Menu:</span>
+          <span class="city-current-badge" id="current-selected-city-badge">🇵🇰 All Pakistan</span>
+        </div>
+        <div class="city-pills-scrollable" id="menu-city-pills">
+          <button class="city-pill active" data-city="all">🇵🇰 All Cities</button>
+          <button class="city-pill" data-city="lahore">Lahore</button>
+          <button class="city-pill" data-city="karachi">Karachi</button>
+          <button class="city-pill" data-city="islamabad">Islamabad</button>
+          <button class="city-pill" data-city="rawalpindi">Rawalpindi</button>
+          <button class="city-pill" data-city="multan">Multan</button>
+          <button class="city-pill" data-city="faisalabad">Faisalabad</button>
+          <button class="city-pill" data-city="peshawar">Peshawar</button>
+          <button class="city-pill" data-city="sialkot">Sialkot</button>
+          <button class="city-pill" data-city="gujranwala">Gujranwala</button>
+          <button class="city-pill" data-city="hyderabad">Hyderabad</button>
+          <button class="city-pill" data-city="quetta">Quetta</button>
+          <button class="city-pill" data-city="bahawalpur">Bahawalpur</button>
+          <button class="city-pill" data-city="sargodha">Sargodha</button>
+          <button class="city-pill" data-city="abbottabad">Abbottabad</button>
+          <button class="city-pill" data-city="sukkur">Sukkur</button>
+          <button class="city-pill" data-city="rahim-yar-khan">Rahim Yar Khan</button>
+          <button class="city-pill" data-city="gujrat">Gujrat</button>
+          <button class="city-pill" data-city="sheikhupura">Sheikhupura</button>
+          <button class="city-pill" data-city="jhelum">Jhelum</button>
+          <button class="city-pill" data-city="mardan">Mardan</button>
+        </div>
+      </div>
+
       <div class="filter-toolbar-top">
         <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-dark);">
           <span id="search-result-count">Loading menu items...</span>

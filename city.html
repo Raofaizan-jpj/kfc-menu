@@ -1,7 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B2TG62G8MW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-B2TG62G8MW');
+  </script>
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="9Q1q1gPk2qSRM4EOy9Ygh7J5gQvlTC3hn3TO_TI9pf8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -158,12 +167,37 @@
       </div>
     </section>
 
-    <!-- Popular Items in this City -->
+    <!-- City Exclusive Deals Spotlight -->
+    <section class="section" id="city-specials-section" style="display:none;">
+      <div class="section-header">
+        <span class="section-subtitle">🔥 City Exclusive Offers</span>
+        <h2 class="section-title">Special KFC Deals in <span class="city-dynamic-name">Lahore</span></h2>
+        <p class="section-desc">Exclusive local combos and promotional offers available in <span class="city-dynamic-name">Lahore</span> branches.</p>
+      </div>
+      <div class="city-specials-grid" id="city-specials-container"></div>
+    </section>
+
+    <!-- Complete Detailed Menu Items in this City -->
     <section class="section">
       <div class="section-header">
-        <span class="section-subtitle">Top Recommendations</span>
-        <h2 class="section-title">Popular KFC Deals in <span class="city-dynamic-name">Lahore</span></h2>
-        <p class="section-desc">Explore the most ordered burgers, family buckets, and combos in <span class="city-dynamic-name">Lahore</span> with dual PKR and USD pricing.</p>
+        <span class="section-subtitle">Detailed Menu Directory</span>
+        <h2 class="section-title">Full KFC Menu & Prices in <span class="city-dynamic-name">Lahore</span></h2>
+        <p class="section-desc">Explore burgers, fried chicken, signature boxes, family buckets, and snacks in <span class="city-dynamic-name">Lahore</span> with dual PKR and USD pricing.</p>
+      </div>
+
+      <!-- City Category Filter Bar -->
+      <div class="filter-scroll-wrapper" style="margin-bottom: 1.5rem;">
+        <div class="filter-bar-scrollable" id="city-category-filters">
+          <button class="filter-btn active" data-category="All">All Items</button>
+          <button class="filter-btn" data-category="Burgers & Sandwiches">Burgers</button>
+          <button class="filter-btn" data-category="Fried Chicken">Fried Chicken</button>
+          <button class="filter-btn" data-category="Combos">Combos</button>
+          <button class="filter-btn" data-category="Signature Boxes">Signature Boxes</button>
+          <button class="filter-btn" data-category="Family Buckets">Family Buckets</button>
+          <button class="filter-btn" data-category="Snacks & Sides">Snacks & Sides</button>
+          <button class="filter-btn" data-category="Beverages">Beverages</button>
+          <button class="filter-btn" data-category="Desserts">Desserts</button>
+        </div>
       </div>
 
       <div class="menu-grid" id="city-items-grid"></div>
