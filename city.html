@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -185,17 +185,25 @@
         <p class="section-desc">Explore burgers, fried chicken, signature boxes, family buckets, and snacks in <span class="city-dynamic-name">Lahore</span> with dual PKR and USD pricing.</p>
       </div>
 
+      <!-- Search & Category Filters in City -->
+      <div style="max-width: 520px; margin: 0 auto 1.25rem auto;">
+        <input type="text" id="city-item-search" class="search-input" placeholder="🔍 Search burgers, chizza, rice, pasta, drinks..." aria-label="Search city menu items" style="width:100%; padding: 0.75rem 1rem; border-radius: 9999px; border: 1.5px solid #e2e8f0; font-size: 0.95rem;">
+      </div>
+
       <!-- City Category Filter Bar -->
       <div class="filter-scroll-wrapper" style="margin-bottom: 1.5rem;">
         <div class="filter-bar-scrollable" id="city-category-filters">
           <button class="filter-btn active" data-category="All">All Items</button>
           <button class="filter-btn" data-category="Burgers & Sandwiches">Burgers</button>
           <button class="filter-btn" data-category="Fried Chicken">Fried Chicken</button>
+          <button class="filter-btn" data-category="Chizza & Pizza Specials">🍕 Chizza & Pizza</button>
+          <button class="filter-btn" data-category="Rice & Bowls">🍚 Rice Bowls</button>
+          <button class="filter-btn" data-category="Pasta & Loaded Bowls">🍝 Pasta & Loaded</button>
           <button class="filter-btn" data-category="Combos">Combos</button>
           <button class="filter-btn" data-category="Signature Boxes">Signature Boxes</button>
           <button class="filter-btn" data-category="Family Buckets">Family Buckets</button>
-          <button class="filter-btn" data-category="Snacks & Sides">Snacks & Sides</button>
-          <button class="filter-btn" data-category="Beverages">Beverages</button>
+          <button class="filter-btn" data-category="Snacks & Sides">Snacks & Fries</button>
+          <button class="filter-btn" data-category="Beverages">🥤 Drinks & Krushers</button>
           <button class="filter-btn" data-category="Desserts">Desserts</button>
         </div>
       </div>

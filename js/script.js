@@ -1037,38 +1037,7 @@ const KFC_MENU_DATA = [
   },
 
   // === 15. DEALS & OFFERS ===
-  {
-    id: "deal-festival-1",
-    name: "Family Festival 1",
-    category: "Deals & Offers",
-    price: 2450,
-    badge: "Mega Saver",
-    calories: "3100 kcal",
-    servingSize: "Serves 4",
-    description: "The nation's top celebration feast: 4x Zinger Burgers, 4x Fried Chicken Pieces, 2x Regular Fries, and 1x 1.5L Pepsi.",
-    itemsIncluded: ["4x Zinger Burgers", "4x Chicken Pcs", "2x Regular Fries", "1x 1.5L Pepsi"],
-    image: "images/cat_family.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: true
-  },
-  {
-    id: "deal-festival-2",
-    name: "Family Festival 2",
-    category: "Deals & Offers",
-    price: 2990,
-    badge: "Feast Deal",
-    calories: "3500 kcal",
-    servingSize: "Serves 4-5",
-    description: "4x Zinger Burgers, 4x Chicken Pieces, 2x Regular Fries, 2x Warm Dinner Rolls, and 1x 1.5L soft drink.",
-    itemsIncluded: ["4x Zinger Burgers", "4x Chicken Pcs", "2x Fries", "2x Dinner Rolls", "1x 1.5L Drink"],
-    image: "images/cat_family.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: true
-  },
+
   {
     id: "deal-midnight-1",
     name: "Midnight Deal 1",
@@ -2152,6 +2121,207 @@ const KFC_MENU_DATA = [
     isBestValue: true,
     isFamilyMeal: false,
     isDeal: false
+  },
+
+  // === 16. CHIZZA & PIZZA SPECIALS ===
+  {
+    id: "chizza-classic",
+    name: "KFC Chizza Classic",
+    category: "Chizza & Pizza Specials",
+    price: 650,
+    badge: "All-Chicken Crust",
+    calories: "590 kcal",
+    servingSize: "1 Chizza Portion",
+    description: "No crust, all chicken! 100% crispy all-chicken fillet base smothered with rich herb pizza sauce, melted mozzarella cheese, crunchy green bell peppers, sliced black olives, and Italian herbs with chili flakes.",
+    itemsIncluded: ["1x Crispy All-Chicken Fillet Crust", "Rich Mozzarella Cheese", "Marinara Pizza Sauce", "Olives & Bell Peppers", "Italian Herbs & Chili Flakes"],
+    image: "images/kfc_chizza.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "chizza-pepperoni-jalapeno",
+    name: "KFC Chizza Pepperoni & Jalapeno",
+    category: "Chizza & Pizza Specials",
+    price: 720,
+    badge: "Spicy Gourmet",
+    calories: "640 kcal",
+    servingSize: "1 Chizza Portion",
+    description: "Extra crispy double chicken fillet base loaded with savory chicken pepperoni slices, fiery pickled jalapenos, double mozzarella cheese blend, and spicy pizza herb seasoning.",
+    itemsIncluded: ["Crispy Chicken Base", "Chicken Pepperoni Slices", "Pickled Jalapenos", "Double Mozzarella Blend", "Pizza Herb Seasoning"],
+    image: "images/kfc_chizza.jpg",
+    isPopular: false,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  // === 17. RICE & BOWLS ===
+  {
+    id: "rice-arabian-crispy",
+    name: "KFC Arabian Rice with Crispy Fillet",
+    category: "Rice & Bowls",
+    price: 430,
+    badge: "Flavorful Bowl",
+    calories: "510 kcal",
+    servingSize: "1 Meal Bowl",
+    description: "Steaming aromatic golden spiced basmati rice topped with hand-sliced crispy fried chicken fillet pieces and rich Vietnamese spiced sauce, garnished with fresh parsley.",
+    itemsIncluded: ["Spiced Basmati Rice Bowl", "Crispy Fried Chicken Fillet Strips", "Vietnamese Spiced Gravy", "Parsley Garnish"],
+    image: "images/kfc_arabian_rice.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "rice-colonel-bowl",
+    name: "KFC Colonel Rice Bowl (Vietnamese Gravy)",
+    category: "Rice & Bowls",
+    price: 480,
+    badge: "Chef Special",
+    calories: "540 kcal",
+    servingSize: "1 Large Bowl",
+    description: "Fragrant yellow spiced rice served with crispy boneless chicken chunks, signature Colonel pepper gravy, and sliced bell peppers for a warm, satisfying hearty meal.",
+    itemsIncluded: ["Fragrant Spiced Rice", "Crispy Chicken Chunks", "Colonel Gravy Drizzle", "Bell Pepper Garnish"],
+    image: "images/kfc_arabian_rice.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "rice-popcorn-bowl",
+    name: "KFC Popcorn Chicken Rice Bowl",
+    category: "Rice & Bowls",
+    price: 460,
+    badge: "Bite-Sized Crunch",
+    calories: "490 kcal",
+    servingSize: "1 Bowl",
+    description: "Golden bite-sized popcorn chicken pieces layered over seasoned spicy yellow basmati rice with savory herb drizzle.",
+    itemsIncluded: ["Popcorn Chicken Bites", "Spiced Basmati Rice", "Savory Herb Drizzle"],
+    image: "images/kfc_arabian_rice.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  // === 18. PASTA & LOADED BOWLS ===
+  {
+    id: "pasta-mac-cheese-chicken",
+    name: "KFC Cheesy Chicken Mac & Cheese",
+    category: "Pasta & Loaded Bowls",
+    price: 520,
+    badge: "Creamy & Cheesy",
+    calories: "580 kcal",
+    servingSize: "1 Pasta Bowl",
+    description: "Elbow macaroni pasta baked in a luscious cheddar and mozzarella cheese sauce, topped with golden crispy fried chicken bites, Italian oregano, and cracked black pepper.",
+    itemsIncluded: ["Elbow Macaroni Pasta", "Cheddar & Mozzarella Cheese Sauce", "Crispy Chicken Bites", "Italian Herb Seasoning"],
+    image: "images/kfc_creamy_pasta.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "pasta-spicy-loaded-bowl",
+    name: "KFC Spicy Loaded Pasta Bowl",
+    category: "Pasta & Loaded Bowls",
+    price: 560,
+    badge: "Spicy Tangy",
+    calories: "620 kcal",
+    servingSize: "1 Large Pasta Bowl",
+    description: "Tender penne pasta tossed in a fiery marinara herb sauce, loaded with crispy chicken fillet chunks, melted mozzarella cheese, and chili flakes.",
+    itemsIncluded: ["Penne Pasta in Spicy Sauce", "Crispy Chicken Fillet Chunks", "Melted Mozzarella", "Crushed Chili Flakes"],
+    image: "images/kfc_creamy_pasta.jpg",
+    isPopular: false,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "loaded-cheesy-fries",
+    name: "KFC Cheesy Loaded Fries",
+    category: "Pasta & Loaded Bowls",
+    price: 490,
+    badge: "Loaded Crunch",
+    calories: "610 kcal",
+    servingSize: "1 Loaded Sharing Basket",
+    description: "Crispy golden french fries smothered with warm melted cheddar cheese sauce, fiery chicken hot shots, fresh scallions, and tangy jalapeno slices.",
+    itemsIncluded: ["Crispy French Fries Basket", "Warm Cheddar Cheese Sauce", "Crispy Chicken Hot Shots", "Sliced Pickled Jalapenos"],
+    image: "images/kfc_loaded_fries.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  // === 19. SPECIALTY DRINKS & KRUSHERS ===
+  {
+    id: "bev-mint-margarita",
+    name: "KFC Mint Margarita Crusher",
+    category: "Beverages",
+    price: 290,
+    badge: "Cooling Refreshment",
+    calories: "140 kcal",
+    servingSize: "1 Regular Cup",
+    description: "Ice-blended sparkling cooler made with freshly crushed mint leaves, lemon juice, sparkling soda, and a touch of black salt for an ultra-refreshing burst.",
+    itemsIncluded: ["1x Ice-Cold Mint Margarita Crusher"],
+    image: "images/kfc_krushers_drinks.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "bev-chocolate-oreo-krusher",
+    name: "KFC Chocolate Oreo Krusher",
+    category: "Beverages",
+    price: 380,
+    badge: "Thick Shake",
+    calories: "360 kcal",
+    servingSize: "1 Large Cup",
+    description: "Rich and thick creamy chocolate milkshake blended with crunchy crushed Oreo cookies, topped with whipped cream and chocolate fudge drizzle.",
+    itemsIncluded: ["1x Chocolate Oreo Milkshake", "Whipped Cream", "Oreo Cookie Crumbs"],
+    image: "images/kfc_krushers_drinks.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "bev-strawberry-sparkler",
+    name: "KFC Strawberry Sparkler",
+    category: "Beverages",
+    price: 280,
+    badge: "Fruity Fizz",
+    calories: "150 kcal",
+    servingSize: "1 Regular Cup",
+    description: "Sparkling fizzy beverage infused with sweet strawberry syrup, crushed berries, lemon slices, and crushed ice.",
+    itemsIncluded: ["1x Strawberry Sparkler Drink"],
+    image: "images/kfc_krushers_drinks.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  {
+    id: "bev-7up-zero-345",
+    name: "7UP Zero (345ml)",
+    category: "Beverages",
+    price: 140,
+    badge: "Zero Sugar",
+    calories: "0 kcal",
+    servingSize: "345 ml",
+    description: "Refreshing lemon-lime sparkle with zero calories and zero sugar.",
+    itemsIncluded: ["1x 345ml 7UP Zero Sugar"],
+    image: "images/family_bucket.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
   }
 ];
 
@@ -2870,12 +3040,8 @@ function initCityPage() {
     `).join('');
   }
 
-  // Render Popular Combos & Family Meals for this city
-  const cityItemsGrid = document.getElementById('city-items-grid');
-  if (cityItemsGrid) {
-    const popularInCity = KFC_MENU_DATA.filter(i => i.isPopular || i.isFamilyMeal).slice(0, 8);
-    cityItemsGrid.innerHTML = popularInCity.map(createCardHTML).join('');
-  }
+  // Setup Interactive Multi-Category Menu Controls & Search for City Page
+  setupCityMenuControls(city);
 
   // Render City FAQs
   const cityFaqList = document.getElementById('city-faq-list');
@@ -2912,6 +3078,112 @@ function initCityPage() {
     });
     document.head.appendChild(schemaScript);
   }
+}
+
+// 10b. City Menu Controller (Filters + Search + Real-Time Rendering)
+function setupCityMenuControls(city) {
+  const cityItemsGrid = document.getElementById('city-items-grid');
+  if (!cityItemsGrid) return;
+
+  const filterBtns = document.querySelectorAll('#city-category-filters .filter-btn');
+  const searchInput = document.getElementById('city-item-search');
+  let activeCategory = 'All';
+  let searchQuery = '';
+
+  function getCityFilteredItems() {
+    return KFC_MENU_DATA.filter(item => {
+      // Category match
+      let matchCat = true;
+      if (activeCategory !== 'All') {
+        if (activeCategory === 'Burgers & Sandwiches') {
+          matchCat = item.category === 'Burgers & Sandwiches';
+        } else if (activeCategory === 'Fried Chicken') {
+          matchCat = item.category === 'Fried Chicken' || item.category === 'Chicken Tenders' || item.category === 'Hot Wings' || item.category === 'Nuggets';
+        } else if (activeCategory === 'Rice & Bowls') {
+          matchCat = item.category === 'Rice & Bowls';
+        } else if (activeCategory === 'Chizza & Pizza Specials') {
+          matchCat = item.category === 'Chizza & Pizza Specials';
+        } else if (activeCategory === 'Pasta & Loaded Bowls') {
+          matchCat = item.category === 'Pasta & Loaded Bowls';
+        } else if (activeCategory === 'Combos') {
+          matchCat = item.category === 'Combos';
+        } else if (activeCategory === 'Signature Boxes') {
+          matchCat = item.category === 'Signature Boxes';
+        } else if (activeCategory === 'Family Buckets') {
+          matchCat = item.category === 'Family Buckets' || item.isFamilyMeal || item.category === 'Deals & Offers';
+        } else if (activeCategory === 'Snacks & Sides') {
+          matchCat = item.category === 'Snacks & Sides' || item.category === 'Fries' || item.category === 'Biscuits' || item.category === 'Wraps';
+        } else if (activeCategory === 'Beverages') {
+          matchCat = item.category === 'Beverages';
+        } else if (activeCategory === 'Desserts') {
+          matchCat = item.category === 'Desserts';
+        } else {
+          matchCat = item.category.toLowerCase().includes(activeCategory.toLowerCase());
+        }
+      }
+
+      // Search query match
+      let matchSearch = true;
+      if (searchQuery) {
+        matchSearch = item.name.toLowerCase().includes(searchQuery) ||
+                      item.description.toLowerCase().includes(searchQuery) ||
+                      item.category.toLowerCase().includes(searchQuery) ||
+                      (item.itemsIncluded && item.itemsIncluded.some(inc => inc.toLowerCase().includes(searchQuery)));
+      }
+
+      return matchCat && matchSearch;
+    });
+  }
+
+  function renderCityGrid() {
+    const items = getCityFilteredItems();
+    if (items.length === 0) {
+      cityItemsGrid.innerHTML = `
+        <div class="no-results-box" style="grid-column: 1/-1;">
+          <div class="no-results-icon">🍗</div>
+          <h3>No matching items found</h3>
+          <p>Try switching categories or searching for a different dish.</p>
+        </div>
+      `;
+      return;
+    }
+    cityItemsGrid.innerHTML = items.map(createCardHTML).join('');
+  }
+
+  // Bind category button click events
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.dataset.category || 'All';
+      renderCityGrid();
+    });
+  });
+
+  // Bind search input events
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      renderCityGrid();
+    });
+  }
+
+  // Initial render
+  renderCityGrid();
+
+  // Attach currency rerender
+  const currentReRender = window.reRenderActiveViews;
+  window.reRenderActiveViews = function() {
+    if (typeof currentReRender === 'function') currentReRender();
+    renderCityGrid();
+  };
+}
+
+// 10c. Controller for Dedicated City Pages (e.g. city-lahore.html, city-multan.html)
+function initDedicatedCityMenu(citySlug) {
+  const city = KFC_CITIES_DATA.find(c => c.slug.toLowerCase() === citySlug.toLowerCase()) || KFC_CITIES_DATA[0];
+  setupCityMenuControls(city);
+  initAccordions();
 }
 
 // 11. Global FAQ Accordion Toggle
