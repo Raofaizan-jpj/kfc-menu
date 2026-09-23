@@ -19,21 +19,53 @@
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png">
   <link rel="shortcut icon" href="images/favicon.png">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <title>KFC Menu & Prices by City (2026) - Local Price Directory</title>
-  <meta name="description" content="Explore updated KFC prices in USD ($), branch locations, delivery hours, family buckets, and local ordering guides for your favorite metropolitan US city.">
-  <link rel="canonical" href="https://kfc-menu-orpin.vercel.app/city">
+  <title>KFC Menu & Prices in New York City, NY (2026 Guide)</title>
+  <meta name="description" content="Check KFC NYC menu items, prices in USD ($), fried chicken buckets, sandwich combos, and late-night delivery branches across Manhattan, Brooklyn & Queens.">
+  <meta name="keywords" content="KFC menu New York, KFC prices NYC, KFC Manhattan deals, KFC chicken sandwich price NYC, KFC Brooklyn branches">
+  <link rel="canonical" href="https://kfc-menu-orpin.vercel.app/city-new-york">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="KFC Menu & Prices by City (2026) - Local Price Directory">
-  <meta property="og:description" content="Explore updated KFC prices in USD ($), branch locations, delivery hours, family buckets, and local ordering guides for your favorite metropolitan US city.">
+  <meta property="og:title" content="KFC Menu & Prices in New York City, NY (2026 Guide)">
+  <meta property="og:description" content="Check KFC NYC menu items, prices in USD ($), fried chicken buckets, sandwich combos, and late-night delivery branches across Manhattan, Brooklyn & Queens.">
   <meta property="og:image" content="https://kfc-menu-orpin.vercel.app/images/zinger_burger.jpg">
 
-  <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the price of a KFC Chicken Sandwich in New York City?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The standalone KFC Chicken Sandwich in NYC is typically priced around $5.99 to $6.49, while the full combo with Secret Recipe Fries and a medium drink averages $9.49 to $9.99."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where are the busiest KFC locations in New York City?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Key flagship branches operate near Times Square Manhattan, Harlem 125th St, Flatbush Ave Brooklyn, Flushing Queens, and Grand Concourse in the Bronx."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is late night KFC delivery available in Manhattan and Brooklyn?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Numerous KFC locations in Manhattan and Brooklyn offer late-night delivery until 2:00 AM via the KFC app, DoorDash, and Uber Eats."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -125,14 +157,14 @@
   <!-- City Hero Section -->
   <section class="hero-section hero-city-detail">
     <div class="container">
-      <h1 class="hero-title" id="city-page-h1">KFC Menu & Prices in <span class="city-dynamic-name">City Name</span></h1>
-      <p class="hero-subtitle" id="city-page-desc" style="max-width:800px; margin-bottom:1.5rem;">
-        Explore updated KFC prices in USD ($), branch locations, delivery hours, and popular combos in <span class="city-dynamic-name">City Name</span>.
+      <h1 class="hero-title">KFC Menu & Prices in New York City, NY</h1>
+      <p class="hero-subtitle" style="max-width:800px; margin-bottom:1.5rem;">
+        Complete directory of KFC items, prices in USD ($), outlet branch locations, and late-night delivery options across Manhattan, Brooklyn, Queens, the Bronx, and Staten Island.
       </p>
 
       <div class="hero-actions" style="margin-top: 1.5rem; margin-bottom: 0;">
-        <a href="#city-menu-interactive" class="btn btn-primary">View City Menu & Prices</a>
-        <a href="cities.html" class="btn btn-secondary">All US Cities</a>
+        <a href="#city-menu-interactive" class="btn btn-primary">View NYC Menu & Prices</a>
+        <a href="menu.html" class="btn btn-secondary">Full KFC USA Menu</a>
       </div>
     </div>
   </section>
@@ -143,27 +175,34 @@
     <!-- Key Neighborhood Locations -->
     <section class="section" style="padding-top:0;">
       <div class="section-header">
-        <span class="section-subtitle">Local Hubs</span>
-        <h2 class="section-title">Major KFC Outlets in <span class="city-dynamic-name">City Name</span></h2>
-        <p class="section-desc">Key outlets, drive-thru lanes, and delivery coverage across <span class="city-dynamic-name">City Name</span> neighborhoods.</p>
+        <span class="section-subtitle">Flagship Outlets</span>
+        <h2 class="section-title">Major KFC Locations in New York City</h2>
+        <p class="section-desc">Key high-traffic branches with walk-up ordering, mobile express pickup shelves, and late-night delivery across the five boroughs.</p>
       </div>
-      <div class="city-locations-grid" id="city-locations-list">
-        <!-- Rendered via JS -->
+      <div class="city-locations-grid">
+        <div class="city-location-badge"><span class="loc-pin">📍</span><span>Times Square (242 W 42nd St, Manhattan)</span></div>
+        <div class="city-location-badge"><span class="loc-pin">📍</span><span>Harlem (215 W 125th St, Manhattan)</span></div>
+        <div class="city-location-badge"><span class="loc-pin">📍</span><span>Downtown Brooklyn (495 Fulton St)</span></div>
+        <div class="city-location-badge"><span class="loc-pin">📍</span><span>Flatbush (1048 Flatbush Ave, Brooklyn)</span></div>
+        <div class="city-location-badge"><span class="loc-pin">📍</span><span>Flushing (40-24 Main St, Queens)</span></div>
+        <div class="city-location-badge"><span class="loc-pin">📍</span><span>Astoria (31-14 Steinway St, Queens)</span></div>
+        <div class="city-location-badge"><span class="loc-pin">📍</span><span>Grand Concourse (2481 Grand Concourse, Bronx)</span></div>
+        <div class="city-location-badge"><span class="loc-pin">📍</span><span>Staten Island Mall (2655 Richmond Ave)</span></div>
       </div>
     </section>
 
-    <!-- Local Ordering & Pricing Guide -->
+    <!-- NYC Dining & Tax Guide -->
     <section class="section" style="padding-top:0;">
       <div class="content-info-card">
-        <div class="last-updated-pill">📍 Local Metro Guide • 2026 Prices</div>
-        <h3>Ordering KFC in <span class="city-dynamic-name">City Name</span>: Pickup, Delivery & Value</h3>
+        <div class="last-updated-pill">🗽 NYC Consumer Guide • 2026 Prices</div>
+        <h3>Ordering KFC in New York City: Taxes, Delivery & Pick-Up</h3>
         <p style="color:var(--text-muted); margin-bottom: 1rem;">
-          Whether you are grabbing a quick lunch near downtown or picking up a family bucket for weekend dinner in <span class="city-dynamic-name">City Name</span>:
+          Dining at KFC in NYC is popular with commuters, students, and tourists. Here are essential tips for ordering across the Five Boroughs:
         </p>
         <ul style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; padding-left:1.5rem;">
-          <li><strong>Quick Pick-Up Shelves:</strong> Order ahead through the KFC App or kfc.com to skip lines and pick up directly from the dedicated express shelf.</li>
-          <li><strong>Doorstep Delivery:</strong> Active delivery partners in this metropolitan area include the official KFC App, DoorDash, Uber Eats, and Grubhub.</li>
-          <li><strong>Local Taxes:</strong> Fast food prices are listed pre-tax; local municipal and state sales taxes will be applied at final checkout.</li>
+          <li><strong>NYC Sales Tax:</strong> Fast food purchases in New York City are subject to the combined <strong>8.875% NYC and NY State sales tax</strong>, calculated at checkout.</li>
+          <li><strong>Quick Pick-Up Shelves:</strong> To skip midtown lunch lines near Times Square or Fulton St, order ahead in the KFC App for express shelf grab-and-go.</li>
+          <li><strong>Late Night Delivery:</strong> Manhattan and Brooklyn branches deliver via DoorDash, Uber Eats, and Grubhub until <strong>2:00 AM</strong> on weekends.</li>
         </ul>
       </div>
     </section>
@@ -172,14 +211,13 @@
     <section class="section" id="city-menu-interactive">
       <div class="section-header">
         <span class="section-subtitle">Browse & Order</span>
-        <h2 class="section-title">KFC <span class="city-dynamic-name">City Name</span> Menu Items & Prices</h2>
-        <p class="section-desc">Search items or filter by category to view detailed portions, calories, and standard USD prices.</p>
+        <h2 class="section-title">KFC New York City Menu Items & Prices</h2>
+        <p class="section-desc">Search items or filter by category to view detailed portions, calories, and standard USD prices in NYC.</p>
       </div>
 
-      <!-- City Search and Filter Bar -->
       <div class="city-menu-toolbar">
         <div class="search-box-compact" style="max-width: 400px; margin-bottom: 1rem;">
-          <input type="text" id="city-item-search" class="search-input-compact" placeholder="Search city menu items..." aria-label="Search city menu">
+          <input type="text" id="city-item-search" class="search-input-compact" placeholder="Search NYC menu items..." aria-label="Search city menu">
         </div>
 
         <div class="filter-bar-scrollable" id="city-category-filters">
@@ -195,19 +233,56 @@
         </div>
       </div>
 
-      <div class="food-grid" id="city-items-grid" style="margin-top: 1.5rem;">
-        <!-- Rendered dynamically -->
-      </div>
+      <div class="food-grid" id="city-items-grid" style="margin-top: 1.5rem;"></div>
     </section>
 
     <!-- City FAQs -->
     <section class="section">
       <div class="section-header">
-        <span class="section-subtitle">Local FAQs</span>
-        <h2 class="section-title">Frequently Asked Questions — <span class="city-dynamic-name">City Name</span> KFC</h2>
+        <span class="section-subtitle">NYC Insights</span>
+        <h2 class="section-title">Frequently Asked Questions — New York City KFC</h2>
       </div>
-      <div class="faq-list" id="city-faq-list">
-        <!-- Rendered dynamically via JS -->
+
+      <div class="faq-list">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            What is the price of a KFC Chicken Sandwich in New York City?
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-body">
+            The standalone KFC Chicken Sandwich in NYC is typically priced around $5.99 to $6.49, while the full combo with Secret Recipe Fries and a medium drink averages $9.49 to $9.99.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Where are the busiest KFC locations in New York City?
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-body">
+            Key flagship branches operate near Times Square Manhattan (42nd St), Harlem (125th St), Flatbush Ave Brooklyn, Flushing Queens, and Grand Concourse in the Bronx.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Is late night KFC delivery available in Manhattan and Brooklyn?
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-body">
+            Yes! Numerous KFC locations in Manhattan and Brooklyn offer late-night delivery until 2:00 AM via the KFC app, DoorDash, and Uber Eats.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            What is the total sales tax on KFC in NYC?
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-body">
+            Fast food orders in NYC are subject to a combined sales tax rate of 8.875% (4.0% NY State + 4.5% NYC + 0.375% MCTD surcharge).
+          </div>
+        </div>
       </div>
     </section>
 
@@ -215,19 +290,15 @@
     <section class="section" style="padding-bottom: 3rem;">
       <div class="section-header">
         <span class="section-subtitle">Explore Other Cities</span>
-        <h2 class="section-title">Browse Other Major US Metropolitan Outlets</h2>
+        <h2 class="section-title">Browse Other Major US Outlets</h2>
       </div>
       <div class="city-quick-switch-pills">
-        <a href="city-new-york.html" class="city-switch-pill">New York City, NY</a>
+        <a href="city-new-york.html" class="city-switch-pill active">New York City, NY</a>
         <a href="city-los-angeles.html" class="city-switch-pill">Los Angeles, CA</a>
         <a href="city-chicago.html" class="city-switch-pill">Chicago, IL</a>
         <a href="city-houston.html" class="city-switch-pill">Houston, TX</a>
         <a href="city-miami.html" class="city-switch-pill">Miami, FL</a>
         <a href="city.html?city=dallas" class="city-switch-pill">Dallas, TX</a>
-        <a href="city.html?city=phoenix" class="city-switch-pill">Phoenix, AZ</a>
-        <a href="city.html?city=atlanta" class="city-switch-pill">Atlanta, GA</a>
-        <a href="city.html?city=seattle" class="city-switch-pill">Seattle, WA</a>
-        <a href="city.html?city=las-vegas" class="city-switch-pill">Las Vegas, NV</a>
         <a href="cities.html" class="city-switch-pill view-all">View All 22+ Cities &rarr;</a>
       </div>
     </section>
@@ -251,7 +322,7 @@
   <script src="js/script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      initCityPage();
+      initDedicatedCityMenu('new-york');
     });
   </script>
 </body>

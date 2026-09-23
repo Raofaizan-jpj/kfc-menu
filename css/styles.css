@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KFC Menu Pakistan — Unified Stylesheet
+   KFC USA Menu & Prices (2026) — Unified Stylesheet
    Design Tokens, Components, Responsive Grid & UI System
    ========================================================================== */
 
@@ -402,10 +402,22 @@ button, input, select, textarea {
   justify-content: center;
   padding: 3.5rem 0;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero-home > .container {
+.hero-home::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: url('../images/hero_bg.jpg') center center / cover no-repeat;
+  opacity: 0.52;
+  z-index: 1;
 }
 
 /* Open, unboxed center content (no card wrapper) */
@@ -702,11 +714,28 @@ button, input, select, textarea {
   max-width: 680px;
 }
 
-/* Menu Grid */
-.menu-grid {
+/* Menu Grid & Food Grid - Clean 3x3 Desktop Grid Layout */
+.menu-grid,
+.food-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.75rem;
+}
+
+@media (max-width: 991px) {
+  .menu-grid,
+  .food-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .menu-grid,
+  .food-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 /* Food Card Component */
@@ -725,18 +754,92 @@ button, input, select, textarea {
 .food-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(228, 0, 43, 0.2);
+  border-color: rgba(228, 0, 43, 0.25);
 }
 
 .card-img-wrapper {
   position: relative;
   width: 100%;
   height: 200px;
-  background-color: #FAFAFA;
+  background-color: #F8FAFC;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.food-card:hover .card-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.card-calorie-pill {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  background: rgba(17, 24, 39, 0.85);
+  color: #F9FAFB;
+  font-size: 0.725rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.card-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.card-serving-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.card-includes-preview {
+  font-size: 0.825rem;
+  color: #475569;
+  background: #F8FAFC;
+  border: 1px dashed #E2E8F0;
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.65rem;
+  margin-bottom: 1.1rem;
+  line-height: 1.4;
+}
+
+.card-includes-preview strong {
+  color: var(--primary-dark);
+}
+
+.card-price-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-primary {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary-red);
+  line-height: 1.1;
+}
+
+.price-secondary {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 .card-badge {
@@ -1105,6 +1208,26 @@ button, input, select, textarea {
   font-size: 0.925rem;
   font-weight: 600;
   color: var(--primary-dark);
+  transition: all var(--transition-fast);
+}
+
+.seo-feature-pill:hover {
+  background-color: var(--pure-white);
+  border-color: var(--kfc-red);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  color: var(--kfc-red);
+}
+
+.seo-feature-pill svg {
+  flex-shrink: 0;
+  color: var(--kfc-red);
+  stroke: var(--kfc-red);
+  transition: transform var(--transition-fast);
+}
+
+.seo-feature-pill:hover svg {
+  transform: scale(1.15);
 }
 
 .seo-feature-pill span.icon {

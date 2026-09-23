@@ -1,6 +1,6 @@
 /* ==========================================================================
-   KFC Menu Pakistan — Unified JavaScript Engine
-   100+ Menu Items, 15 Categories, 20 Cities, Dual PKR/USD Currency,
+   KFC USA Menu & Prices (2026) — Unified JavaScript Engine
+   Full USA Menu Items, Standard USD ($) Pricing, Top 22 US Cities,
    Live Search, Filters, Sorting, Details Modal & Dynamic City Pages
    ========================================================================== */
 
@@ -8,11 +8,12 @@
 (function initTechnicalSEO() {
   const CANONICAL_DOMAIN = 'https://kfc-menu-orpin.vercel.app';
   const DEDICATED_CITIES = {
-    'lahore': '/city-lahore',
-    'karachi': '/city-karachi',
-    'islamabad': '/city-islamabad',
-    'faisalabad': '/city-faisalabad',
-    'multan': '/city-multan'
+    'new-york': '/city-new-york',
+    'los-angeles': '/city-los-angeles',
+    'chicago': '/city-chicago',
+    'houston': '/city-houston',
+    'miami': '/city-miami',
+    'dallas': '/city-dallas'
   };
 
   try {
@@ -79,48 +80,30 @@
   }
 })();
 
-// 1. Central Currency Configuration
+// 1. Central Currency Configuration (USD Default)
 const CURRENCY_CONFIG = {
-  activeCurrency: localStorage.getItem('kfc_active_currency') || 'PKR',
-  usdRate: 280, // 1 USD ≈ 280 PKR (Standard reference conversion)
-  disclaimer: "USD prices are approximate conversions (1 USD ≈ 280 PKR) for international reference only. Official restaurant ordering in Pakistan is processed in Pakistani Rupees (PKR)."
+  activeCurrency: 'USD',
+  disclaimer: "Prices listed are standard estimated retail averages for US KFC outlets. Franchise pricing may vary by US city, state taxes, drive-thru, and delivery platforms (DoorDash, Uber Eats, Grubhub)."
 };
 
-function convertPKRtoUSD(pkr) {
-  return (pkr / CURRENCY_CONFIG.usdRate).toFixed(2);
-}
-
-function formatPriceHTML(pkr) {
-  const usd = convertPKRtoUSD(pkr);
-  if (CURRENCY_CONFIG.activeCurrency === 'USD') {
-    return `
-      <div class="card-price-stack">
-        <span class="price-primary">$${usd} <small>USD</small></span>
-        <span class="price-secondary">≈ Rs. ${pkr.toLocaleString()} PKR</span>
-      </div>
-    `;
-  }
+function formatPriceHTML(price) {
+  const numericPrice = typeof price === 'number' ? price : parseFloat(price);
   return `
     <div class="card-price-stack">
-      <span class="price-primary">Rs. ${pkr.toLocaleString()}</span>
-      <span class="price-secondary">≈ $${usd} USD</span>
+      <span class="price-primary">$${numericPrice.toFixed(2)}</span>
+      <span class="price-secondary">USD Menu Price</span>
     </div>
   `;
 }
 
 function setGlobalCurrency(curr) {
-  CURRENCY_CONFIG.activeCurrency = curr;
-  localStorage.setItem('kfc_active_currency', curr);
+  CURRENCY_CONFIG.activeCurrency = 'USD';
+  localStorage.setItem('kfc_active_currency', 'USD');
 
   // Update all toggle buttons in DOM
   document.querySelectorAll('.currency-toggle-btn').forEach(btn => {
-    if (btn.dataset.currency === curr) {
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
-    } else {
-      btn.classList.remove('active');
-      btn.setAttribute('aria-pressed', 'false');
-    }
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
   });
 
   // Re-render open views
@@ -142,19 +125,19 @@ function setGlobalCurrency(curr) {
   }
 }
 
-// 2. Comprehensive 50+ Menu Items in 15 Realistic KFC Categories
+// 2. Comprehensive 65+ Authentic USA KFC Menu Items
 const KFC_MENU_DATA = [
-  // === 1. BURGERS & SANDWICHES ===
+  // === 1. SANDWICHES & COMBOS ===
   {
-    id: "burger-zinger",
-    name: "Zinger Burger",
+    id: "sandwich-classic",
+    name: "KFC Classic Chicken Sandwich",
     category: "Burgers & Sandwiches",
-    price: 600,
+    price: 5.99,
     badge: "Bestseller",
-    calories: "540 kcal",
-    servingSize: "1 Burger",
-    description: "The crown jewel: 100% whole chicken breast fillet coated in signature spicy crunch, crisp iceberg lettuce, and spicy mayo inside a warm sesame seed bun.",
-    itemsIncluded: ["Crispy Zinger Fillet", "Spicy Pepper Mayo", "Fresh Iceberg Lettuce", "Toasted Sesame Bun"],
+    calories: "650 kcal",
+    servingSize: "1 Sandwich",
+    description: "An extra-crispy double-breaded chicken breast fillet topped with crinkle-cut thick pickles and Colonel's real mayo on a toasted buttery brioche bun.",
+    itemsIncluded: ["Extra Crispy Chicken Breast Fillet", "Thick Crinkle-Cut Pickles", "Colonel's Mayo", "Toasted Brioche Bun"],
     image: "images/zinger_burger.jpg",
     isPopular: true,
     isBestValue: false,
@@ -162,47 +145,79 @@ const KFC_MENU_DATA = [
     isDeal: false
   },
   {
-    id: "burger-mighty",
-    name: "Mighty Zinger",
+    id: "sandwich-spicy",
+    name: "KFC Spicy Chicken Sandwich",
     category: "Burgers & Sandwiches",
-    price: 770,
-    badge: "Most Popular",
-    calories: "820 kcal",
-    servingSize: "1 Double Burger",
-    description: "Built for massive appetites: two crispy Zinger chicken fillets layered with double slices of melted cheddar cheese, shredded lettuce, and spicy signature sauce.",
-    itemsIncluded: ["2x Zinger Chicken Fillets", "2x Cheddar Cheese Slices", "Spicy Signature Sauce", "Crisp Lettuce", "Bakery Bun"],
-    image: "images/mighty_zinger.jpg",
+    price: 5.99,
+    badge: "Fan Favorite",
+    calories: "650 kcal",
+    servingSize: "1 Sandwich",
+    description: "Extra-crispy chicken breast fillet packed with fiery heat, thick crinkle-cut pickles, and spicy sauce on a toasted buttery brioche bun.",
+    itemsIncluded: ["Spicy Extra Crispy Fillet", "Pickles", "Spicy Signature Sauce", "Toasted Brioche Bun"],
+    image: "images/zinger_burger.jpg",
     isPopular: true,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "burger-stacker",
-    name: "Zinger Stacker",
-    category: "Burgers & Sandwiches",
-    price: 660,
-    badge: "Spicy Hot",
-    calories: "790 kcal",
-    servingSize: "1 Burger",
-    description: "Two succulent crunchy fillets, fiery jalapenos, sliced cheese, and special tangy stacker sauce served in a soft toasted sesame bun.",
-    itemsIncluded: ["2x Crispy Fillets", "Pickled Jalapenos", "Cheese Slice", "Stacker Special Sauce", "Sesame Bun"],
-    image: "images/mighty_zinger.jpg",
+    id: "sandwich-classic-combo",
+    name: "KFC Classic Chicken Sandwich Combo",
+    category: "Combos",
+    price: 9.49,
+    badge: "Top Combo",
+    calories: "980 kcal",
+    servingSize: "1 Combo Meal",
+    description: "The classic KFC Chicken Sandwich served with a side of Secret Recipe Fries and a medium refreshing fountain beverage.",
+    itemsIncluded: ["1x Classic Chicken Sandwich", "1x Secret Recipe Fries (Individual)", "1x Medium Drink (20 oz)"],
+    image: "images/cat_combos.jpg",
     isPopular: true,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "burger-krunch",
-    name: "Krunch Burger",
+    id: "sandwich-spicy-combo",
+    name: "KFC Spicy Chicken Sandwich Combo",
+    category: "Combos",
+    price: 9.49,
+    badge: "Spicy Combo",
+    calories: "980 kcal",
+    servingSize: "1 Combo Meal",
+    description: "The fiery Spicy KFC Chicken Sandwich accompanied by Secret Recipe Fries and your choice of medium fountain drink.",
+    itemsIncluded: ["1x Spicy Chicken Sandwich", "1x Secret Recipe Fries", "1x Medium Fountain Drink"],
+    image: "images/cat_combos.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "sandwich-bacon-cheese",
+    name: "KFC Bacon & Cheese Chicken Sandwich",
     category: "Burgers & Sandwiches",
-    price: 330,
+    price: 6.99,
+    badge: "Loaded",
+    calories: "740 kcal",
+    servingSize: "1 Sandwich",
+    description: "Crispy fried chicken breast fillet layered with savory hickory-smoked bacon, melted Monterey Jack cheese, pickles, and mayo on brioche.",
+    itemsIncluded: ["Crispy Fillet", "Smoked Bacon Strips", "Monterey Jack Cheese", "Pickles", "Mayo", "Brioche Bun"],
+    image: "images/mighty_zinger.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "sandwich-chicken-littles",
+    name: "KFC Chicken Little",
+    category: "Burgers & Sandwiches",
+    price: 2.79,
     badge: "Best Value",
-    calories: "410 kcal",
-    servingSize: "1 Burger",
-    description: "Crunchy golden boneless chicken fillet dressed with creamy mayonnaise and shredded lettuce inside a freshly baked bun.",
-    itemsIncluded: ["Golden Krunch Fillet", "Creamy Mayo", "Iceberg Lettuce", "Fresh Bun"],
+    calories: "300 kcal",
+    servingSize: "1 Slider",
+    description: "An Extra Crispy chicken tender topped with pickles and creamy Colonel's mayo served on a warm sesame seed slider bun.",
+    itemsIncluded: ["1x Extra Crispy Tender", "Pickles", "Mayo", "Sesame Seed Slider Bun"],
     image: "images/zinger_burger.jpg",
     isPopular: false,
     isBestValue: true,
@@ -210,49 +225,33 @@ const KFC_MENU_DATA = [
     isDeal: false
   },
   {
-    id: "burger-kentucky",
-    name: "Kentucky Burger",
-    category: "Burgers & Sandwiches",
-    price: 720,
-    badge: "Chef Special",
-    calories: "670 kcal",
-    servingSize: "1 Burger",
-    description: "Original recipe breast fillet infused with smoky BBQ glaze, crispy fried onions, melted cheddar cheese, and creamy herb dressing.",
-    itemsIncluded: ["Original Recipe Fillet", "Smoky BBQ Glaze", "Crispy Onions", "Cheddar Cheese", "Gourmet Bun"],
+    id: "deal-2-chicken-littles",
+    name: "2 Chicken Littles Value Deal",
+    category: "Deals & Offers",
+    price: 5.00,
+    badge: "Value Saver",
+    calories: "600 kcal",
+    servingSize: "2 Sliders",
+    description: "Two crispy Chicken Little sliders served hot and fresh. Perfect snack or quick bite on the go.",
+    itemsIncluded: ["2x Chicken Little Sandwiches"],
     image: "images/zinger_burger.jpg",
-    isPopular: false,
-    isBestValue: false,
+    isPopular: true,
+    isBestValue: true,
     isFamilyMeal: false,
-    isDeal: false
+    isDeal: true
   },
 
-  // === 2. FRIED CHICKEN ===
+  // === 2. FRIED CHICKEN (ORIGINAL RECIPE & EXTRA CRISPY) ===
   {
-    id: "chicken-1pc",
-    name: "1 Pc Fried Chicken",
-    category: "Fried Chicken",
-    price: 320,
-    badge: "Signature",
-    calories: "280 kcal",
-    servingSize: "1 Piece",
-    description: "One succulent piece of world-famous fried chicken cooked with the secret 11 herbs and spices recipe. Choose Original Recipe or Hot & Crispy.",
-    itemsIncluded: ["1x Chicken Piece (Original Recipe or Hot & Crispy)"],
-    image: "images/fried_chicken.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "chicken-3pc",
-    name: "3 Pcs Fried Chicken",
-    category: "Fried Chicken",
-    price: 890,
-    badge: "Classic",
+    id: "chicken-2pc-drum-thigh",
+    name: "2 Pc Drum & Thigh Chicken Combo",
+    category: "Combos",
+    price: 8.99,
+    badge: "Classic Meal",
     calories: "780 kcal",
-    servingSize: "3 Pieces",
-    description: "Three succulent, juicy pieces of bone-in chicken fried to crispy golden brown perfection. Great for chicken purists.",
-    itemsIncluded: ["3x Chicken Pieces (Original or Crispy)"],
+    servingSize: "1 Person",
+    description: "Two pieces of iconic fried chicken (Drumstick & Thigh in Original Recipe or Extra Crispy), 1 individual side, 1 warm buttermilk biscuit, and a medium drink.",
+    itemsIncluded: ["2x Chicken Pieces (Drum & Thigh)", "1x Individual Side", "1x Buttermilk Biscuit", "1x Medium Drink"],
     image: "images/fried_chicken.jpg",
     isPopular: true,
     isBestValue: false,
@@ -260,15 +259,79 @@ const KFC_MENU_DATA = [
     isDeal: false
   },
   {
-    id: "chicken-5pc",
-    name: "5 Pcs Fried Chicken",
+    id: "chicken-3pc-meal",
+    name: "3 Pc Chicken Combo (Breast, Thigh & Drum)",
+    category: "Combos",
+    price: 10.99,
+    badge: "Hearty Meal",
+    calories: "1050 kcal",
+    servingSize: "1 Person",
+    description: "Three pieces of world-famous chicken (variety cut), paired with 1 individual side, 1 warm buttermilk biscuit, and a medium fountain beverage.",
+    itemsIncluded: ["3x Chicken Pieces", "1x Individual Side", "1x Warm Biscuit", "1x Medium Drink"],
+    image: "images/fried_chicken.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "chicken-4pc-meal",
+    name: "4 Pc Half Chicken Combo",
+    category: "Combos",
+    price: 12.99,
+    badge: "Hungry Man",
+    calories: "1350 kcal",
+    servingSize: "1 Person",
+    description: "Four piece fried chicken combo including breast, thigh, drumstick, and wing, plus 1 individual side, 1 buttermilk biscuit, and a medium drink.",
+    itemsIncluded: ["4x Fried Chicken Pieces (Half Bird)", "1x Individual Side", "1x Biscuit", "1x Medium Drink"],
+    image: "images/fried_chicken.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "chicken-1pc-breast",
+    name: "1 Pc Fried Chicken Breast (A La Carte)",
     category: "Fried Chicken",
-    price: 1450,
-    badge: "Sharing",
-    calories: "1250 kcal",
-    servingSize: "5 Pieces",
-    description: "Five tender pieces of freshly prepared fried chicken with irresistible crunch and flavorful aroma.",
-    itemsIncluded: ["5x Chicken Pieces (Original or Crispy)"],
+    price: 3.99,
+    badge: "Signature",
+    calories: "390 kcal",
+    servingSize: "1 Breast Piece",
+    description: "One large juicy fried chicken breast prepared with the secret 11 herbs and spices (Original Recipe) or double-breaded Extra Crispy.",
+    itemsIncluded: ["1x Fried Chicken Breast"],
+    image: "images/fried_chicken.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "chicken-1pc-thigh",
+    name: "1 Pc Fried Chicken Thigh (A La Carte)",
+    category: "Fried Chicken",
+    price: 2.99,
+    badge: "Juicy Dark",
+    calories: "290 kcal",
+    servingSize: "1 Thigh Piece",
+    description: "Succulent, tender dark meat chicken thigh seasoned to perfection.",
+    itemsIncluded: ["1x Fried Chicken Thigh"],
+    image: "images/fried_chicken.jpg",
+    isPopular: false,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "chicken-1pc-drum",
+    name: "1 Pc Fried Chicken Drumstick",
+    category: "Fried Chicken",
+    price: 2.49,
+    badge: "Snack Piece",
+    calories: "130 kcal",
+    servingSize: "1 Drumstick",
+    description: "Classic fried drumstick hand-breaded and cooked fresh.",
+    itemsIncluded: ["1x Chicken Drumstick"],
     image: "images/fried_chicken.jpg",
     isPopular: false,
     isBestValue: true,
@@ -276,759 +339,505 @@ const KFC_MENU_DATA = [
     isDeal: false
   },
 
-  // === 3. CHICKEN TENDERS ===
+  // === 3. TENDERS & SAUCY NUGGETS ===
   {
-    id: "tenders-3pc",
-    name: "3 Pcs Crispy Tenders",
-    category: "Chicken Tenders",
-    price: 460,
-    badge: "100% Breast Meat",
-    calories: "340 kcal",
-    servingSize: "3 Tenders",
-    description: "Marinated 100% tender chicken breast strips seasoned and double-breaded for unmatched crunch, served with tangy honey mustard dip.",
-    itemsIncluded: ["3x Boneless Chicken Tenders", "1x Honey Mustard Dip"],
-    image: "images/chicken_tenders.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "tenders-6pc",
-    name: "6 Pcs Crispy Tenders",
-    category: "Chicken Tenders",
-    price: 860,
-    badge: "Popular Pick",
-    calories: "680 kcal",
-    servingSize: "6 Tenders",
-    description: "Six long, succulent boneless chicken strips fried to deep golden brown. Includes two choice dipping sauces.",
-    itemsIncluded: ["6x Boneless Chicken Tenders", "2x Dip Sauces"],
-    image: "images/chicken_tenders.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === 4. HOT WINGS ===
-  {
-    id: "wings-6pc",
-    name: "Hot Wings (6 Pcs)",
-    category: "Hot Wings",
-    price: 490,
-    badge: "Spicy",
-    calories: "420 kcal",
-    servingSize: "6 Wings",
-    description: "Six fiery chicken wings coated in a zesty, seasoned chili breading and fried to juicy, spicy perfection.",
-    itemsIncluded: ["6x Fiery Hot Wings"],
-    image: "images/hot_wings.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "wings-10pc",
-    name: "Hot Wings (10 Pcs)",
-    category: "Hot Wings",
-    price: 750,
+    id: "tenders-3pc-combo",
+    name: "3 Pc Hand-Breaded Tenders Combo",
+    category: "Combos",
+    price: 8.99,
     badge: "Top Seller",
-    calories: "700 kcal",
-    servingSize: "10 Wings",
-    description: "A ten-piece platter of KFC's beloved Hot Wings. Crispy on the outside, succulent on the inside with authentic chili kick.",
-    itemsIncluded: ["10x Fiery Hot Wings"],
-    image: "images/hot_wings.jpg",
+    calories: "840 kcal",
+    servingSize: "1 Person",
+    description: "Three extra crispy 100% white meat chicken tenders, 1 dipping sauce of choice, Secret Recipe Fries, 1 biscuit, and a medium drink.",
+    itemsIncluded: ["3x Extra Crispy Tenders", "1x Dipping Sauce", "1x Secret Recipe Fries", "1x Biscuit", "1x Medium Drink"],
+    image: "images/chicken_tenders.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "tenders-5pc-combo",
+    name: "5 Pc Hand-Breaded Tenders Combo",
+    category: "Combos",
+    price: 11.49,
+    badge: "Big Eater",
+    calories: "1120 kcal",
+    servingSize: "1 Person",
+    description: "Five extra-crispy chicken tenders, 2 dipping sauces, individual side, warm buttermilk biscuit, and a medium drink.",
+    itemsIncluded: ["5x Extra Crispy Tenders", "2x Dipping Sauces", "1x Secret Recipe Fries", "1x Biscuit", "1x Medium Drink"],
+    image: "images/chicken_tenders.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "tenders-4pc-box",
+    name: "4 Pc Tenders Big Box Meal",
+    category: "Signature Boxes",
+    price: 12.49,
+    badge: "Big Box",
+    calories: "1280 kcal",
+    servingSize: "1 Person",
+    description: "Four crispy tenders, 2 dipping sauces, 2 individual sides (e.g. Mashed Potatoes & Fries), 1 biscuit, and a medium drink.",
+    itemsIncluded: ["4x Crispy Tenders", "2x Dipping Sauces", "2x Individual Sides", "1x Biscuit", "1x Medium Drink"],
+    image: "images/signature_box.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "box-sandwich-meal",
+    name: "KFC Chicken Sandwich Big Box Meal",
+    category: "Signature Boxes",
+    price: 12.99,
+    badge: "Loaded Box",
+    calories: "1350 kcal",
+    servingSize: "1 Person",
+    description: "KFC Classic or Spicy Chicken Sandwich, 1 Extra Crispy Tender, 1 dipping sauce, individual fries, warm buttermilk biscuit, and a medium fountain drink.",
+    itemsIncluded: ["1x KFC Chicken Sandwich", "1x Extra Crispy Tender", "1x Secret Recipe Fries", "1x Biscuit", "1x Medium Drink"],
+    image: "images/signature_box.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "box-2pc-chicken-meal",
+    name: "2 Pc Drum & Thigh Big Box Meal",
+    category: "Signature Boxes",
+    price: 11.99,
+    badge: "Variety Box",
+    calories: "1220 kcal",
+    servingSize: "1 Person",
+    description: "Two pieces of fried chicken (Drumstick & Thigh), 1 Extra Crispy Tender, individual mashed potatoes with gravy, 1 biscuit, and a medium drink.",
+    itemsIncluded: ["2x Fried Chicken (Drum & Thigh)", "1x Crispy Tender", "1x Mashed Potatoes & Gravy", "1x Biscuit", "1x Medium Drink"],
+    image: "images/signature_box.jpg",
     isPopular: true,
     isBestValue: true,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "wings-20pc",
-    name: "Hot Wings Party (20 Pcs)",
-    category: "Hot Wings",
-    price: 1390,
-    badge: "Party Pack",
-    calories: "1400 kcal",
-    servingSize: "20 Wings",
-    description: "Twenty crunchy hot wings for wing enthusiasts and game-night snacking with friends.",
-    itemsIncluded: ["20x Fiery Hot Wings"],
-    image: "images/hot_wings.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: true,
-    isDeal: false
-  },
-
-  // === 5. NUGGETS ===
-  {
-    id: "nuggets-6pc",
-    name: "Crispy Nuggets (6 Pcs)",
-    category: "Nuggets",
-    price: 420,
-    badge: "Kids Favorite",
-    calories: "310 kcal",
-    servingSize: "6 Pieces",
-    description: "Six tender, bite-sized chicken nuggets fried to golden crunch, served with sweet & sour or BBQ dipping sauce.",
-    itemsIncluded: ["6x Golden Nuggets", "1x Dip Sauce"],
+    id: "nuggets-8pc",
+    name: "8 Pc 100% White Meat Nuggets",
+    category: "Fried Chicken",
+    price: 5.49,
+    badge: "100% White Meat",
+    calories: "280 kcal",
+    servingSize: "8 Nuggets",
+    description: "Eight hand-breaded 100% white meat nuggets seasoned with the Colonel's 11 herbs & spices. Includes 1 dipping sauce.",
+    itemsIncluded: ["8x Hand-Breaded Nuggets", "1x Dipping Sauce"],
     image: "images/chicken_nuggets.jpg",
-    isPopular: false,
-    isBestValue: false,
+    isPopular: true,
+    isBestValue: true,
     isFamilyMeal: false,
     isDeal: false
   },
   {
     id: "nuggets-12pc",
-    name: "Crispy Nuggets (12 Pcs)",
-    category: "Nuggets",
-    price: 780,
-    badge: "Snack Box",
-    calories: "620 kcal",
-    servingSize: "12 Pieces",
-    description: "Twelve golden, juicy chicken nuggets with your choice of two gourmet dipping sauces.",
-    itemsIncluded: ["12x Golden Nuggets", "2x Dip Sauces"],
+    name: "12 Pc 100% White Meat Nuggets",
+    category: "Fried Chicken",
+    price: 7.99,
+    badge: "Great Value",
+    calories: "420 kcal",
+    servingSize: "12 Nuggets",
+    description: "Twelve hand-breaded chicken nuggets served with your choice of 2 signature dipping sauces.",
+    itemsIncluded: ["12x Hand-Breaded Nuggets", "2x Dipping Sauces"],
     image: "images/chicken_nuggets.jpg",
     isPopular: true,
     isBestValue: true,
     isFamilyMeal: false,
     isDeal: false
   },
-
-  // === 6. WRAPS ===
   {
-    id: "wrap-twister",
-    name: "Twister Wrap",
-    category: "Wraps",
-    price: 490,
-    badge: "Classic",
-    calories: "520 kcal",
-    servingSize: "1 Wrap",
-    description: "Two crispy chicken strips rolled in a warm, toasted tortilla with diced tomatoes, crisp lettuce, and signature pepper mayo sauce.",
-    itemsIncluded: ["2x Crispy Tenders", "Toasted Tortilla", "Diced Tomatoes", "Iceberg Lettuce", "Pepper Mayo"],
-    image: "images/chicken_wrap.jpg",
+    id: "saucy-nuggets-honey-bbq",
+    name: "10 Pc Honey BBQ Saucy Nuggets",
+    category: "Fried Chicken",
+    price: 6.99,
+    badge: "Sweet & Smoky",
+    calories: "490 kcal",
+    servingSize: "10 Sauced Nuggets",
+    description: "Ten crispy white-meat nuggets tossed in sweet, tangy Honey BBQ sauce with hints of brown sugar and smoke.",
+    itemsIncluded: ["10x Saucy Nuggets in Honey BBQ"],
+    image: "images/kfc_saucy_nuggets.jpg",
     isPopular: true,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "wrap-zingeratha",
-    name: "Zingeratha Wrap",
-    category: "Wraps",
-    price: 540,
-    badge: "Desi Twist",
-    calories: "590 kcal",
-    servingSize: "1 Paratha Wrap",
-    description: "Crispy Zinger strips wrapped inside a golden flaky Paratha with desi mint chutney, pickled onions, and garlic sauce.",
-    itemsIncluded: ["Zinger Strips", "Flaky Paratha", "Mint Chutney", "Pickled Onions", "Garlic Mayo"],
-    image: "images/chicken_wrap.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === 7. SIGNATURE BOXES ===
-  {
-    id: "box-crispy",
-    name: "Crispy Box",
-    category: "Signature Boxes",
-    price: 1020,
-    badge: "Complete Meal",
-    calories: "980 kcal",
-    servingSize: "1 Person Full Box",
-    description: "The complete fast food feast: 1x Zinger Burger, 1 Pc Hot & Crispy Chicken, 1x Regular Fries, 1x Dinner Roll, and 1x 345ml Pepsi.",
-    itemsIncluded: ["1x Zinger Burger", "1x Chicken Piece", "1x Regular Fries", "1x Warm Dinner Roll", "1x 345ml Soft Drink"],
-    image: "images/signature_box.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "box-boneless",
-    name: "Boneless Box",
-    category: "Signature Boxes",
-    price: 1150,
-    badge: "100% Boneless",
-    calories: "940 kcal",
-    servingSize: "1 Person Full Box",
-    description: "Designed for boneless lovers: 1x Zinger Burger, 3 Pcs Crispy Tenders, 1x Regular Fries, 1x Dipping Sauce, and 1x 345ml soft drink.",
-    itemsIncluded: ["1x Zinger Burger", "3x Crispy Tenders", "1x Regular Fries", "1x Sauce Dip", "1x 345ml Drink"],
-    image: "images/box_boneless.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "box-wow",
-    name: "Wow Box",
-    category: "Signature Boxes",
-    price: 1290,
-    badge: "Mega Meal",
-    calories: "1160 kcal",
-    servingSize: "1 Heavy Meal",
-    description: "1x Zinger Burger, 1 Pc Fried Chicken, 3x Hot Wings, Regular Fries, Dinner Roll, and chilled 345ml beverage.",
-    itemsIncluded: ["1x Zinger Burger", "1x Chicken Pc", "3x Hot Wings", "1x Fries", "1x Dinner Roll", "1x 345ml Drink"],
-    image: "images/box_wow.jpg",
+    id: "saucy-nuggets-korean-bbq",
+    name: "10 Pc Korean BBQ Saucy Nuggets",
+    category: "Fried Chicken",
+    price: 6.99,
+    badge: "Umami Sweet",
+    calories: "510 kcal",
+    servingSize: "10 Sauced Nuggets",
+    description: "Ten hand-breaded nuggets glazed in savory Korean BBQ sauce with soy, garlic, sesame, and chili kick.",
+    itemsIncluded: ["10x Saucy Nuggets in Korean BBQ"],
+    image: "images/kfc_saucy_nuggets.jpg",
     isPopular: false,
-    isBestValue: true,
+    isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "box-crispy-duo",
-    name: "Crispy Duo Box",
-    category: "Signature Boxes",
-    price: 1650,
-    badge: "Perfect for 2",
-    calories: "1640 kcal",
-    servingSize: "Serves 2",
-    description: "Share the happiness: 2x Zinger Burgers, 2x Chicken Pieces, 2x Regular Fries, and 2x 345ml soft drinks.",
-    itemsIncluded: ["2x Zinger Burgers", "2x Chicken Pieces", "2x Regular Fries", "2x 345ml Drinks"],
-    image: "images/box_duo.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "box-xtreme-duo",
-    name: "Xtreme Duo Box",
-    category: "Signature Boxes",
-    price: 1890,
-    badge: "Super Feast",
-    calories: "1880 kcal",
-    servingSize: "Serves 2-3",
-    description: "2x Zinger Burgers, 2x Fried Chicken Pieces, 6x Hot Wings, 2x Fries, and 2x Drinks.",
-    itemsIncluded: ["2x Zinger Burgers", "2x Chicken Pieces", "6x Hot Wings", "2x Fries", "2x Drinks"],
-    image: "images/box_duo.jpg",
+    id: "saucy-nuggets-mango-habanero",
+    name: "10 Pc Mango Habanero Saucy Nuggets",
+    category: "Fried Chicken",
+    price: 6.99,
+    badge: "Sweet Heat",
+    calories: "500 kcal",
+    servingSize: "10 Sauced Nuggets",
+    description: "Ten crispy nuggets generously tossed in fiery habanero pepper and tropical mango glaze.",
+    itemsIncluded: ["10x Saucy Nuggets in Mango Habanero"],
+    image: "images/kfc_saucy_nuggets.jpg",
     isPopular: false,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
 
-  // === 8. FAMILY BUCKETS & FAMILY FESTIVAL DEALS ===
+  // === 4. POT PIES & FAMOUS BOWLS ===
   {
-    id: "deal-family-festival-1",
-    name: "Family Festival 1",
-    category: "Family Buckets",
-    price: 2690,
-    badge: "Top Family Deal",
-    calories: "2950 kcal",
-    servingSize: "Serves 4-5",
-    description: "The ultimate KFC family feast: 4 signature Zinger Burgers, 4 pieces of world-famous Hot & Crispy fried chicken, 2 fluffy dinner rolls, and 1x 1.5L chilled Pepsi.",
-    itemsIncluded: ["4x Zinger Burgers", "4x Hot & Crispy Chicken Pieces", "2x Dinner Rolls", "1x 1.5L Pepsi"],
-    image: "images/family_festival.jpg",
+    id: "bowl-famous",
+    name: "KFC Famous Bowl",
+    category: "Combos",
+    price: 6.99,
+    badge: "All-Time Icon",
+    calories: "720 kcal",
+    servingSize: "1 Bowl",
+    description: "Creamy mashed potatoes layered with sweet corn, crispy bite-sized nuggets, roasted brown gravy, and a shredded three-cheese blend.",
+    itemsIncluded: ["Mashed Potatoes", "Sweet Corn", "Crispy Chicken Nuggets", "Brown Gravy", "3-Cheese Blend"],
+    image: "images/kfc_famous_bowl.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "bowl-spicy-famous",
+    name: "KFC Spicy Famous Bowl",
+    category: "Combos",
+    price: 7.29,
+    badge: "Spicy Twist",
+    calories: "750 kcal",
+    servingSize: "1 Bowl",
+    description: "The Famous Bowl kicked up a notch with fiery Nashville Hot sauce drizzled over crispy nuggets and mashed potatoes.",
+    itemsIncluded: ["Mashed Potatoes", "Sweet Corn", "Crispy Nuggets", "Spicy Drizzle", "Gravy", "Cheese"],
+    image: "images/kfc_famous_bowl.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "pot-pie-classic",
+    name: "KFC Chunky Chicken Pot Pie",
+    category: "Combos",
+    price: 6.99,
+    badge: "Comfort Food",
+    calories: "720 kcal",
+    servingSize: "1 Pot Pie",
+    description: "Tender shredded chicken, diced potatoes, green peas, and carrots in a rich savory cream sauce under a golden flaky crust.",
+    itemsIncluded: ["Flaky Golden Crust", "Shredded Chicken", "Diced Vegetables", "Creamy Veloute Sauce"],
+    image: "images/kfc_pot_pie.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  // === 5. FAMILY MEALS & BUCKETS ===
+  {
+    id: "family-8pc-meal",
+    name: "8 Pc Family Chicken Meal",
+    category: "Family Deals",
+    price: 24.99,
+    badge: "Family Classic",
+    calories: "2850 kcal",
+    servingSize: "3-4 People",
+    description: "8 pieces of world-famous chicken (Original Recipe or Extra Crispy), 2 large homestyle sides of choice, and 4 warm buttermilk biscuits.",
+    itemsIncluded: ["8x Chicken Pieces (2 Breasts, 2 Thighs, 2 Drums, 2 Wings)", "2x Large Sides", "4x Buttermilk Biscuits"],
+    image: "images/family_bucket.jpg",
     isPopular: true,
     isBestValue: true,
     isFamilyMeal: true,
-    isDeal: true
+    isDeal: false
   },
   {
-    id: "deal-family-festival-2",
-    name: "Family Festival 2",
-    category: "Family Buckets",
-    price: 2450,
-    badge: "Family Feast",
-    calories: "2750 kcal",
-    servingSize: "Serves 4",
-    description: "Crowd favorite combo: 2 Zinger Burgers, 2 Krunch Burgers, 4 pieces of Hot & Crispy fried chicken, 2 dinner rolls, and 1x 1.5L chilled Pepsi bottle.",
-    itemsIncluded: ["2x Zinger Burgers", "2x Krunch Burgers", "4x Fried Chicken Pieces", "2x Dinner Rolls", "1x 1.5L Pepsi"],
-    image: "images/family_festival.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: true
-  },
-  {
-    id: "deal-family-festival-3",
-    name: "Family Festival 3",
-    category: "Family Buckets",
-    price: 2190,
-    badge: "Budget Saver",
-    calories: "2400 kcal",
-    servingSize: "Serves 3-4",
-    description: "Affordable family celebration: 4 crunchy Krunch Burgers, 4 pieces of signature Hot & Crispy fried chicken, and 1x 1.5L chilled Pepsi.",
-    itemsIncluded: ["4x Krunch Burgers", "4x Fried Chicken Pieces", "1x 1.5L Pepsi"],
-    image: "images/family_festival.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: true
-  },
-  {
-    id: "bucket-family-9",
-    name: "Family Bucket (9 Pcs)",
-    category: "Family Buckets",
-    price: 2290,
-    badge: "Family Favorite",
-    calories: "2200 kcal",
-    servingSize: "Serves 3-4",
-    description: "Nine pieces of world-famous Hot & Crispy or Original Recipe fried chicken packed in the iconic bucket with 1x chilled 1.5L Pepsi.",
-    itemsIncluded: ["9x Fried Chicken Pieces", "1x 1.5L Pepsi Bottle"],
+    id: "family-8pc-bucket-only",
+    name: "8 Pc Chicken Bucket (Chicken Only)",
+    category: "Family Deals",
+    price: 18.99,
+    badge: "Bucket Deal",
+    calories: "2100 kcal",
+    servingSize: "3-4 People",
+    description: "8 pieces of fresh, hand-breaded chicken cooked in the secret 11 herbs & spices recipe or Extra Crispy.",
+    itemsIncluded: ["8x Freshly Fried Chicken Pieces"],
     image: "images/bucket_pieces.jpg",
     isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: false
-  },
-  {
-    id: "bucket-value-15",
-    name: "Value Bucket (15 Pcs)",
-    category: "Family Buckets",
-    price: 3450,
-    badge: "Big Gathering",
-    calories: "3600 kcal",
-    servingSize: "Serves 5-7",
-    description: "Fifteen pieces of freshly hand-breaded crispy fried chicken served alongside a large 1.5L Pepsi bottle.",
-    itemsIncluded: ["15x Fried Chicken Pieces", "1x 1.5L Pepsi Bottle"],
-    image: "images/bucket_pieces.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: false
-  },
-  {
-    id: "deal-family-mega-feast",
-    name: "Family Mega Feast",
-    category: "Family Buckets",
-    price: 3250,
-    badge: "Grand Party",
-    calories: "3800 kcal",
-    servingSize: "Serves 5-6",
-    description: "4 delicious Zinger Burgers, 6 pieces of Hot & Crispy fried chicken, 1 large golden French fries, and 1x 1.5L chilled Pepsi.",
-    itemsIncluded: ["4x Zinger Burgers", "6x Fried Chicken Pieces", "1x Large Fries", "1x 1.5L Pepsi"],
-    image: "images/family_festival.jpg",
-    isPopular: true,
     isBestValue: false,
     isFamilyMeal: true,
-    isDeal: true
+    isDeal: false
   },
   {
-    id: "deal-xtreme-duo-feast",
-    name: "Xtreme Duo Feast",
-    category: "Family Buckets",
-    price: 1690,
-    badge: "Duo Feast",
-    calories: "1850 kcal",
-    servingSize: "Serves 2-3",
-    description: "2 Zinger Burgers, 2 pieces of Hot & Crispy fried chicken, 1 large French fries, and 2 regular chilled drinks.",
-    itemsIncluded: ["2x Zinger Burgers", "2x Fried Chicken Pieces", "1x Large Fries", "2x Regular Soft Drinks"],
-    image: "images/box_duo.jpg",
+    id: "family-12pc-meal",
+    name: "12 Pc Family Feast Meal",
+    category: "Family Deals",
+    price: 33.99,
+    badge: "Feast Saver",
+    calories: "4200 kcal",
+    servingSize: "5-6 People",
+    description: "12 pieces of fried chicken, 3 large homestyle sides, and 6 warm buttermilk biscuits. Perfect for family dinner nights.",
+    itemsIncluded: ["12x Fried Chicken Pieces", "3x Large Sides", "6x Warm Buttermilk Biscuits"],
+    image: "images/family_festival.jpg",
     isPopular: true,
     isBestValue: true,
     isFamilyMeal: true,
-    isDeal: true
+    isDeal: false
   },
   {
-    id: "bucket-hot-wings-24",
-    name: "Wings Bucket (24 Pcs)",
-    category: "Family Buckets",
-    price: 1690,
-    badge: "Wings Bonanza",
-    calories: "1800 kcal",
-    servingSize: "Serves 3-4",
-    description: "Twenty-four fiery Hot Wings packed in a party bucket with 2x dipping sauces and 1.5L soft drink.",
-    itemsIncluded: ["24x Hot Wings", "2x Dip Sauces", "1x 1.5L Pepsi"],
-    image: "images/hot_wings.jpg",
+    id: "family-12pc-bucket-only",
+    name: "12 Pc Chicken Bucket (Chicken Only)",
+    category: "Family Deals",
+    price: 25.99,
+    badge: "Crowd Favorite",
+    calories: "3150 kcal",
+    servingSize: "5-6 People",
+    description: "12 pieces of crispy, juicy fried chicken in a classic KFC bucket.",
+    itemsIncluded: ["12x Fried Chicken Pieces"],
+    image: "images/bucket_pieces.jpg",
     isPopular: false,
     isBestValue: false,
     isFamilyMeal: true,
     isDeal: false
   },
   {
-    id: "deal-tenders-gathering-12",
-    name: "Tenders Gathering Bucket (12 Pcs)",
-    category: "Family Buckets",
-    price: 1790,
-    badge: "Boneless Feast",
-    calories: "1650 kcal",
-    servingSize: "Serves 3-4",
-    description: "12 crispy hand-breaded chicken tenders served with 1 large French fries, 2 signature dips (Garlic Mayo & Vietnamese sauce), and 1x 1.5L Pepsi.",
-    itemsIncluded: ["12x Chicken Tenders", "1x Large Fries", "2x Signature Dips", "1x 1.5L Pepsi"],
+    id: "family-16pc-meal",
+    name: "16 Pc Mega Family Feast",
+    category: "Family Deals",
+    price: 41.99,
+    badge: "Mega Party",
+    calories: "5600 kcal",
+    servingSize: "7-8 People",
+    description: "16 pieces of crispy chicken, 4 large homestyle sides, and 8 warm buttermilk biscuits. Feeds the entire crew.",
+    itemsIncluded: ["16x Fried Chicken Pieces", "4x Large Homestyle Sides", "8x Warm Buttermilk Biscuits"],
+    image: "images/family_festival.jpg",
+    isPopular: false,
+    isBestValue: true,
+    isFamilyMeal: true,
+    isDeal: false
+  },
+  {
+    id: "family-12pc-tenders-meal",
+    name: "12 Pc Extra Crispy Tenders Family Meal",
+    category: "Family Deals",
+    price: 28.99,
+    badge: "Tenders Feast",
+    calories: "3400 kcal",
+    servingSize: "4-5 People",
+    description: "12 hand-breaded crispy tenders, 4 dipping sauces, 2 large sides, and 4 warm biscuits.",
+    itemsIncluded: ["12x Crispy Tenders", "4x Dipping Sauces", "2x Large Sides", "4x Biscuits"],
     image: "images/chicken_tenders.jpg",
     isPopular: true,
-    isBestValue: true,
+    isBestValue: false,
     isFamilyMeal: true,
-    isDeal: true
+    isDeal: false
   },
   {
-    id: "deal-crispy-duo",
-    name: "Crispy Duo Deal",
-    category: "Family Buckets",
-    price: 1390,
-    badge: "Value Pair",
-    calories: "1500 kcal",
-    servingSize: "Serves 2",
-    description: "2 Krunch Burgers, 2 pieces of Hot & Crispy chicken, and 2 regular chilled soft drinks.",
-    itemsIncluded: ["2x Krunch Burgers", "2x Fried Chicken Pieces", "2x Regular Soft Drinks"],
-    image: "images/family_bucket.jpg",
-    isPopular: false,
+    id: "deal-taste-of-kfc-20",
+    name: "$20 Taste of KFC Meal Deal",
+    category: "Deals & Offers",
+    price: 20.00,
+    badge: "$20 Value Deal",
+    calories: "2700 kcal",
+    servingSize: "4 People",
+    description: "6 pieces of chicken (2 drums, 2 thighs, 1 breast, 1 wing), 4 individual sides, and 4 warm biscuits for just $20.",
+    itemsIncluded: ["6x Fried Chicken Pieces", "4x Individual Sides", "4x Buttermilk Biscuits"],
+    image: "images/box_duo.jpg",
+    isPopular: true,
     isBestValue: true,
     isFamilyMeal: true,
     isDeal: true
   },
 
-  // === 9. COMBOS ===
+  // === 6. SIDES & EXTRAS ===
   {
-    id: "combo-zinger",
-    name: "Zinger Combo",
-    category: "Combos",
-    price: 910,
-    badge: "Top Seller",
-    calories: "820 kcal",
-    servingSize: "1 Combo Meal",
-    description: "Our signature Zinger Burger paired with hot golden regular french fries and a refreshing 345ml soft drink.",
-    itemsIncluded: ["1x Zinger Burger", "1x Regular Fries", "1x 345ml Soft Drink"],
-    image: "images/cat_combos.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "combo-mighty",
-    name: "Mighty Zinger Combo",
-    category: "Combos",
-    price: 1050,
-    badge: "Heavy Meal",
-    calories: "1100 kcal",
-    servingSize: "1 Combo Meal",
-    description: "Double fillet Mighty Zinger Burger accompanied by crisp salted regular fries and a 345ml Pepsi.",
-    itemsIncluded: ["1x Mighty Zinger Burger", "1x Regular Fries", "1x 345ml Drink"],
-    image: "images/cat_combos.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "combo-stacker",
-    name: "Zinger Stacker Combo",
-    category: "Combos",
-    price: 950,
-    badge: "Spicy Combo",
-    calories: "1070 kcal",
-    servingSize: "1 Combo Meal",
-    description: "Zinger Stacker burger layered with jalapenos and cheese, served with fries and cold beverage.",
-    itemsIncluded: ["1x Zinger Stacker", "1x Regular Fries", "1x 345ml Drink"],
-    image: "images/cat_combos.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "combo-krunch",
-    name: "Krunch Combo",
-    category: "Combos",
-    price: 590,
-    badge: "Best Value",
-    calories: "690 kcal",
-    servingSize: "1 Combo Meal",
-    description: "Crispy Krunch Burger, standard salted fries, and an icy cold 345ml beverage at an unbeatable price.",
-    itemsIncluded: ["1x Krunch Burger", "1x Regular Fries", "1x 345ml Drink"],
-    image: "images/cat_combos.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "combo-twister",
-    name: "Twister Combo",
-    category: "Combos",
-    price: 780,
-    badge: "Wrap Meal",
-    calories: "790 kcal",
-    servingSize: "1 Combo Meal",
-    description: "Toasted Twister Wrap with fresh veggies and pepper mayo, regular fries, and 345ml soft drink.",
-    itemsIncluded: ["1x Twister Wrap", "1x Regular Fries", "1x 345ml Drink"],
-    image: "images/cat_combos.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === 10. SNACKS & SIDES ===
-  {
-    id: "snack-hot-shots",
-    name: "Hot Shots (9 Pcs)",
+    id: "side-secret-fries",
+    name: "Secret Recipe Fries",
     category: "Snacks & Sides",
-    price: 490,
-    badge: "Spicy Nibbles",
-    calories: "350 kcal",
-    servingSize: "9 Chunks",
-    description: "Nine bite-sized tender chicken breast poppers seasoned with blazing KFC chili spices.",
-    itemsIncluded: ["9x Hot Shots Chicken Bites"],
-    image: "images/hot_wings.jpg",
+    price: 3.29,
+    badge: "Signature Side",
+    calories: "320 kcal",
+    servingSize: "Individual / Regular",
+    description: "Crispy cut potatoes seasoned with a signature blend of herbs and spices for an unmatched flavor and crunch.",
+    itemsIncluded: ["Individual Portion Seasoned Fries"],
+    image: "images/crispy_fries.jpg",
     isPopular: true,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "snack-dinner-roll",
-    name: "Dinner Roll",
+    id: "side-mashed-potatoes-gravy",
+    name: "Mashed Potatoes with Brown Gravy",
     category: "Snacks & Sides",
-    price: 60,
-    badge: "Side",
-    calories: "120 kcal",
-    servingSize: "1 Roll",
-    description: "Warm, lightly sweet, freshly baked bakery dinner bun.",
-    itemsIncluded: ["1x Fresh Dinner Roll"],
-    image: "images/signature_box.jpg",
-    isPopular: false,
-    isBestValue: true,
+    price: 3.29,
+    badge: "Iconic",
+    calories: "130 kcal",
+    servingSize: "Individual Bowl",
+    description: "Smooth, buttery whipped mashed potatoes drenched in the Colonel's famous roasted savory brown gravy.",
+    itemsIncluded: ["1x Creamy Mashed Potatoes with Gravy"],
+    image: "images/kfc_mashed_potatoes.jpg",
+    isPopular: true,
+    isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "snack-coleslaw",
+    id: "side-coleslaw",
     name: "Creamy Coleslaw",
     category: "Snacks & Sides",
-    price: 180,
-    badge: "Fresh Side",
-    calories: "160 kcal",
-    servingSize: "1 Cup",
-    description: "Crisp shredded cabbage, carrots, and sweet creamy signature dressing.",
-    itemsIncluded: ["1x Cup Traditional Coleslaw"],
-    image: "images/cat_snacks.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "snack-garlic-dip",
-    name: "Garlic Mayo Dip",
-    category: "Snacks & Sides",
-    price: 80,
-    badge: "Sauce",
-    calories: "90 kcal",
-    servingSize: "1 Dip Cup",
-    description: "Rich, creamy mayonnaise infused with aromatic garlic cloves.",
-    itemsIncluded: ["1x Garlic Mayo Dip Cup"],
-    image: "images/cat_snacks.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "snack-vietnamese-sauce",
-    name: "Vietnamese Chili Sauce",
-    category: "Snacks & Sides",
-    price: 80,
-    badge: "Hot Sauce",
-    calories: "45 kcal",
-    servingSize: "1 Dip Cup",
-    description: "Sweet, tangy, and spicy chili sauce crafted to complement fried chicken.",
-    itemsIncluded: ["1x Vietnamese Dip Cup"],
-    image: "images/cat_snacks.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === 11. FRIES ===
-  {
-    id: "fries-regular",
-    name: "French Fries (Regular)",
-    category: "Fries",
-    price: 270,
-    badge: "Crispy",
-    calories: "290 kcal",
-    servingSize: "1 Regular Bag",
-    description: "Thin-cut, golden french fries fried to a crunchy exterior and soft potato center, sprinkled with fine salt.",
-    itemsIncluded: ["1x Portion Regular Fries"],
-    image: "images/crispy_fries.jpg",
+    price: 3.19,
+    badge: "Fresh & Crisp",
+    calories: "170 kcal",
+    servingSize: "Individual Cup",
+    description: "Fresh, crisp shredded cabbage and diced carrots tossed in KFC's signature creamy sweet dressing.",
+    itemsIncluded: ["1x Cup Fresh Creamy Coleslaw"],
+    image: "images/kfc_coleslaw.jpg",
     isPopular: true,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "fries-large",
-    name: "French Fries (Large Bucket)",
-    category: "Fries",
-    price: 450,
-    badge: "Large",
-    calories: "520 kcal",
-    servingSize: "1 Large Bucket",
-    description: "An overflowing sharing bucket of hot, crispy french fries salted to perfection.",
-    itemsIncluded: ["1x Bucket Large Fries"],
-    image: "images/crispy_fries.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "fries-masala",
-    name: "Spicy Masala Fries",
-    category: "Fries",
-    price: 310,
-    badge: "Zesty",
-    calories: "300 kcal",
-    servingSize: "1 Bag",
-    description: "Golden french fries generously dusted with spicy Pakistani chaat masala seasoning.",
-    itemsIncluded: ["1x Masala Seasoned Fries"],
-    image: "images/crispy_fries.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === 12. BISCUITS ===
-  {
-    id: "biscuit-single",
-    name: "Buttermilk Biscuit (1 Pc)",
-    category: "Biscuits",
-    price: 160,
-    badge: "Warm & Flaky",
-    calories: "190 kcal",
+    id: "side-biscuit-single",
+    name: "Warm Buttermilk Biscuit (1 Pc)",
+    category: "Snacks & Sides",
+    price: 1.29,
+    badge: "Flaky & Warm",
+    calories: "180 kcal",
     servingSize: "1 Biscuit",
-    description: "Freshly baked golden biscuit with buttery flaky layers, served hot with butter honey spread.",
-    itemsIncluded: ["1x Buttermilk Biscuit", "1x Honey Butter Dip"],
-    image: "images/buttermilk_biscuits.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "biscuit-3pc",
-    name: "Buttermilk Biscuits (3 Pcs)",
-    category: "Biscuits",
-    price: 420,
-    badge: "Trio Pack",
-    calories: "570 kcal",
-    servingSize: "3 Biscuits",
-    description: "Three warm, golden-crusted southern buttermilk biscuits with rich honey butter spread.",
-    itemsIncluded: ["3x Flaky Biscuits", "2x Honey Butter Dips"],
+    description: "Warm, golden, flaky buttermilk biscuit with butter spread and honey sauce packet.",
+    itemsIncluded: ["1x Buttermilk Biscuit", "1x Honey Sauce / Butter"],
     image: "images/buttermilk_biscuits.jpg",
     isPopular: true,
     isBestValue: true,
     isFamilyMeal: false,
     isDeal: false
   },
-
-  // === 13. BEVERAGES ===
   {
-    id: "bev-pepsi-345",
-    name: "Pepsi (345ml)",
-    category: "Beverages",
-    price: 140,
-    badge: "Chilled",
-    calories: "140 kcal",
-    servingSize: "345 ml",
-    description: "Chilled bottle of original refreshing Pepsi Cola.",
-    itemsIncluded: ["1x 345ml Chilled Pepsi"],
-    image: "images/family_bucket.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "bev-7up-345",
-    name: "7UP (345ml)",
-    category: "Beverages",
-    price: 140,
-    badge: "Lemon-Lime",
-    calories: "135 kcal",
-    servingSize: "345 ml",
-    description: "Crisp, sparkling lemon and lime soft drink served ice-cold.",
-    itemsIncluded: ["1x 345ml 7UP"],
-    image: "images/family_bucket.jpg",
+    id: "side-biscuits-4pc",
+    name: "Buttermilk Biscuits (4 Pcs)",
+    category: "Snacks & Sides",
+    price: 4.49,
+    badge: "Pack of 4",
+    calories: "720 kcal",
+    servingSize: "4 Biscuits",
+    description: "Four freshly baked flaky buttermilk biscuits with honey and butter.",
+    itemsIncluded: ["4x Warm Buttermilk Biscuits"],
+    image: "images/buttermilk_biscuits.jpg",
     isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "bev-mirinda-345",
-    name: "Mirinda (345ml)",
-    category: "Beverages",
-    price: 140,
-    badge: "Orange",
-    calories: "150 kcal",
-    servingSize: "345 ml",
-    description: "Fizzy, fruity orange flavored beverage to quench thirst.",
-    itemsIncluded: ["1x 345ml Mirinda"],
-    image: "images/family_bucket.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "bev-pepsi-15l",
-    name: "Pepsi Bottle (1.5 Liter)",
-    category: "Beverages",
-    price: 280,
-    badge: "Family Sharing",
-    calories: "600 kcal",
-    servingSize: "1.5 Liters",
-    description: "Large 1.5L sharing bottle of chilled Pepsi for family meals.",
-    itemsIncluded: ["1x 1.5L Pepsi"],
-    image: "images/family_bucket.jpg",
-    isPopular: true,
     isBestValue: true,
-    isFamilyMeal: true,
+    isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "bev-water-500",
-    name: "Mineral Water (500ml)",
-    category: "Beverages",
-    price: 90,
-    badge: "Pure",
-    calories: "0 kcal",
-    servingSize: "500 ml",
-    description: "Pure bottled mineral drinking water.",
-    itemsIncluded: ["1x 500ml Water Bottle"],
-    image: "images/family_bucket.jpg",
+    id: "side-mac-cheese",
+    name: "Mac & Cheese",
+    category: "Snacks & Sides",
+    price: 3.69,
+    badge: "Cheesy",
+    calories: "280 kcal",
+    servingSize: "Individual Cup",
+    description: "Elbow macaroni enveloped in a rich, creamy cheddar cheese sauce.",
+    itemsIncluded: ["1x Individual Mac & Cheese Cup"],
+    image: "images/kfc_mac_cheese.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "side-sweet-corn",
+    name: "Sweet Whole Kernel Corn",
+    category: "Snacks & Sides",
+    price: 3.29,
+    badge: "Sweet & Tender",
+    calories: "100 kcal",
+    servingSize: "Individual Cup",
+    description: "Sweet, juicy tender golden corn kernels lightly buttered.",
+    itemsIncluded: ["1x Cup Sweet Kernel Corn"],
+    image: "images/cat_snacks.jpg",
     isPopular: false,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
-
-  // === 14. DESSERTS ===
   {
-    id: "dessert-lava-cake",
-    name: "Choc Lava Cake",
+    id: "side-large-gravy",
+    name: "Colonel's Signature Brown Gravy (Large)",
+    category: "Snacks & Sides",
+    price: 2.99,
+    badge: "Savory Dip",
+    calories: "120 kcal",
+    servingSize: "Large Cup",
+    description: "A large cup of warm, savory roasted chicken brown gravy for dipping tenders, biscuits, and fries.",
+    itemsIncluded: ["1x Large Gravy Cup"],
+    image: "images/kfc_mashed_potatoes.jpg",
+    isPopular: false,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  // === 7. DESSERTS ===
+  {
+    id: "dessert-apple-pie-poppers",
+    name: "Apple Pie Poppers (4 Pcs)",
     category: "Desserts",
-    price: 390,
-    badge: "Decadent",
-    calories: "380 kcal",
-    servingSize: "1 Cake",
-    description: "Warm, rich chocolate sponge cake with an oozing molten chocolate ganache center.",
-    itemsIncluded: ["1x Warm Molten Lava Cake"],
+    price: 2.99,
+    badge: "Warm & Crispy",
+    calories: "340 kcal",
+    servingSize: "4 Poppers",
+    description: "Crispy, flaky puff pastry poppers filled with warm spiced apple pie filling and dusted with cinnamon sugar.",
+    itemsIncluded: ["4x Warm Apple Pie Poppers"],
     image: "images/chocolate_dessert.jpg",
     isPopular: true,
-    isBestValue: false,
+    isBestValue: true,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "dessert-sundae",
-    name: "Chocolate Sundae Cup",
+    id: "dessert-cake-choc-chip",
+    name: "KFC Chocolate Chip Mini Cake",
     category: "Desserts",
-    price: 290,
+    price: 3.49,
     badge: "Sweet Treat",
-    calories: "270 kcal",
-    servingSize: "1 Cup",
-    description: "Creamy vanilla soft serve drizzled with thick, warm Belgian chocolate fudge syrup.",
-    itemsIncluded: ["1x Vanilla Soft Serve Cup", "Chocolate Fudge Drizzle"],
+    calories: "300 kcal",
+    servingSize: "1 Mini Cake",
+    description: "Warm individual chocolate chip cake with melted chocolate drizzle.",
+    itemsIncluded: ["1x Chocolate Chip Cake"],
+    image: "images/chocolate_dessert.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "dessert-cookies-3pc",
+    name: "Chocolate Chip Cookies (3 Pcs)",
+    category: "Desserts",
+    price: 2.49,
+    badge: "Fresh Baked",
+    calories: "420 kcal",
+    servingSize: "3 Cookies",
+    description: "Three soft-baked chocolate chip cookies loaded with rich semi-sweet chocolate morsels.",
+    itemsIncluded: ["3x Chocolate Chip Cookies"],
     image: "images/chocolate_dessert.jpg",
     isPopular: false,
     isBestValue: true,
@@ -1036,182 +845,182 @@ const KFC_MENU_DATA = [
     isDeal: false
   },
 
-  // === 15. DEALS & OFFERS ===
-
+  // === 8. BEVERAGES ===
   {
-    id: "deal-midnight-1",
-    name: "Midnight Deal 1",
-    category: "Deals & Offers",
-    price: 520,
-    badge: "Late Night (12am+)",
-    calories: "780 kcal",
-    servingSize: "1 Person",
-    description: "Late night exclusive: 1x Krunch Burger + 1 Pc Fried Chicken + 1x 345ml Pepsi.",
-    itemsIncluded: ["1x Krunch Burger", "1x Fried Chicken Piece", "1x 345ml Pepsi"],
+    id: "drink-mtn-dew-sweet-lightning",
+    name: "MTN DEW Sweet Lightning (Medium)",
+    category: "Beverages",
+    price: 2.69,
+    badge: "KFC Exclusive",
+    calories: "220 kcal",
+    servingSize: "20 oz Drink",
+    description: "KFC exclusive Mountain Dew flavor with sweet peach and honey notes, formulated to pair with fried chicken.",
+    itemsIncluded: ["1x 20 oz Fountain Drink"],
+    image: "images/kfc_krushers_drinks.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "drink-pepsi-medium",
+    name: "Pepsi Cola Fountain Drink (Medium)",
+    category: "Beverages",
+    price: 2.69,
+    badge: "Classic Refresh",
+    calories: "250 kcal",
+    servingSize: "20 oz Drink",
+    description: "Chilled, ice-cold fountain Pepsi cola.",
+    itemsIncluded: ["1x 20 oz Fountain Drink"],
+    image: "images/kfc_krushers_drinks.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "drink-sweet-tea",
+    name: "Southern Sweet Iced Tea",
+    category: "Beverages",
+    price: 2.69,
+    badge: "Southern Style",
+    calories: "180 kcal",
+    servingSize: "20 oz Cup",
+    description: "Freshly brewed iced black tea sweetened southern style.",
+    itemsIncluded: ["1x 20 oz Sweet Tea"],
+    image: "images/kfc_krushers_drinks.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "drink-lemonade",
+    name: "Colonel's Lemonade",
+    category: "Beverages",
+    price: 2.89,
+    badge: "Tangy & Sweet",
+    calories: "200 kcal",
+    servingSize: "20 oz Cup",
+    description: "Refreshing, crisp lemonade made with real lemon juice.",
+    itemsIncluded: ["1x 20 oz Lemonade"],
+    image: "images/kfc_krushers_drinks.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  // === 9. NEW AUTHENTIC KFC USA ADDITIONS ===
+  // --- KFC Chicken Wraps & Combos ---
+  {
+    id: "wrap-classic",
+    name: "KFC Classic Chicken Wrap",
+    category: "Burgers & Sandwiches",
+    price: 3.49,
+    badge: "Fan Favorite",
+    calories: "370 kcal",
+    servingSize: "1 Wrap",
+    description: "An Extra Crispy hand-breaded chicken tender, crunchy pickles, and Colonel's creamy real mayo wrapped in a warm toasted flour tortilla.",
+    itemsIncluded: ["1x Extra Crispy Chicken Tender", "Thick Crinkle-Cut Pickles", "Colonel's Mayo", "Warm Flour Tortilla"],
+    image: "images/chicken_wrap.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "wrap-spicy-slaw",
+    name: "KFC Spicy Slaw Chicken Wrap",
+    category: "Burgers & Sandwiches",
+    price: 3.49,
+    badge: "Spicy Crunch",
+    calories: "390 kcal",
+    servingSize: "1 Wrap",
+    description: "An Extra Crispy chicken tender topped with KFC's signature creamy coleslaw, spicy sauce, and pickles wrapped in a toasted flour tortilla.",
+    itemsIncluded: ["1x Extra Crispy Tender", "Creamy Coleslaw", "Spicy Signature Sauce", "Pickles", "Toasted Flour Tortilla"],
+    image: "images/chicken_wrap.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "wrap-mac-cheese",
+    name: "KFC Mac & Cheese Chicken Wrap",
+    category: "Burgers & Sandwiches",
+    price: 3.49,
+    badge: "Cheesy Favorite",
+    calories: "400 kcal",
+    servingSize: "1 Wrap",
+    description: "An Extra Crispy chicken tender topped with rich cheddar Mac & Cheese and a shredded three-cheese blend wrapped in a warm tortilla.",
+    itemsIncluded: ["1x Extra Crispy Tender", "Cheddar Mac & Cheese", "Three-Cheese Blend", "Warm Flour Tortilla"],
+    image: "images/chicken_wrap.jpg",
+    isPopular: false,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "wrap-honey-bbq",
+    name: "KFC Honey BBQ Chicken Wrap",
+    category: "Burgers & Sandwiches",
+    price: 3.49,
+    badge: "Sweet & Tangy",
+    calories: "380 kcal",
+    servingSize: "1 Wrap",
+    description: "An Extra Crispy chicken tender smothered in sweet Honey BBQ sauce with crunchy pickles and mayo in a warm toasted tortilla.",
+    itemsIncluded: ["1x Extra Crispy Tender", "Sweet Honey BBQ Sauce", "Pickles", "Mayo", "Toasted Tortilla"],
+    image: "images/chicken_wrap.jpg",
+    isPopular: false,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "combo-2-wraps",
+    name: "KFC 2 Wraps Combo Meal",
+    category: "Combos",
+    price: 8.99,
+    badge: "Value Combo",
+    calories: "980 kcal",
+    servingSize: "1 Combo Meal",
+    description: "Your choice of any 2 KFC Chicken Wraps served with individual Secret Recipe Fries and a refreshing medium fountain drink.",
+    itemsIncluded: ["2x KFC Chicken Wraps of Choice", "1x Secret Recipe Fries", "1x Medium Fountain Drink"],
     image: "images/cat_combos.jpg",
     isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  // --- Fried Chicken Cuts & Tenders Packs ---
+  {
+    id: "chicken-1pc-wing",
+    name: "1 Pc Fried Chicken Whole Wing (A La Carte)",
+    category: "Fried Chicken",
+    price: 2.19,
+    badge: "Crispy Wing",
+    calories: "130 kcal",
+    servingSize: "1 Whole Wing",
+    description: "Golden crispy fried chicken whole wing prepared with Original Recipe 11 herbs & spices or Extra Crispy double breading.",
+    itemsIncluded: ["1x Fried Chicken Whole Wing"],
+    image: "images/hot_wings.jpg",
+    isPopular: false,
     isBestValue: true,
     isFamilyMeal: false,
-    isDeal: true
+    isDeal: false
   },
   {
-    id: "deal-midnight-2",
-    name: "Midnight Deal 2",
-    category: "Deals & Offers",
-    price: 670,
-    badge: "Late Night (12am+)",
+    id: "chicken-2pc-breast-wing",
+    name: "2 Pc Breast & Wing Chicken Combo",
+    category: "Combos",
+    price: 9.49,
+    badge: "White Meat Combo",
     calories: "890 kcal",
     servingSize: "1 Person",
-    description: "Late night craving special: 1x Zinger Burger + 1x Regular Fries + 1x 345ml Drink.",
-    itemsIncluded: ["1x Zinger Burger", "1x Regular Fries", "1x 345ml Pepsi"],
-    image: "images/cat_combos.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: true
-  },
-  {
-    id: "deal-student",
-    name: "Student Value Deal",
-    category: "Deals & Offers",
-    price: 499,
-    badge: "Pocket Friendly",
-    calories: "680 kcal",
-    servingSize: "1 Person",
-    description: "Budget favorite: 1x Krunch Burger, small french fries, and chilled 345ml beverage.",
-    itemsIncluded: ["1x Krunch Burger", "1x Small Fries", "1x 345ml Drink"],
-    image: "images/signature_box.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: true
-  },
-
-  // === ADDITIONAL BURGERS & SANDWICHES ===
-  {
-    id: "burger-hot-crispy-single",
-    name: "Hot & Crispy Burger",
-    category: "Burgers & Sandwiches",
-    price: 580,
-    badge: "Fiery Hot",
-    calories: "560 kcal",
-    servingSize: "1 Burger",
-    description: "A boldly seasoned Hot & Crispy chicken fillet nestled in a lightly toasted bun with spicy chili sauce and fresh iceberg lettuce. This burger is crafted for those who crave an extra punch of heat in every bite — the coating delivers intense crunch while the fiery marinade seeps right through the meat for deep, lingering flavor.",
-    itemsIncluded: ["Hot & Crispy Chicken Fillet", "Spicy Chili Sauce", "Iceberg Lettuce", "Toasted Bun"],
-    image: "images/zinger_burger.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "burger-tower",
-    name: "Zinger Tower Burger",
-    category: "Burgers & Sandwiches",
-    price: 710,
-    badge: "Towering Flavor",
-    calories: "720 kcal",
-    servingSize: "1 Burger",
-    description: "The Zinger Tower stacks a crispy Zinger fillet, a golden hash brown patty, sliced tomatoes, creamy mayonnaise, and crunchy lettuce between a tall toasted sesame bun. The hash brown layer adds a unique crispy potato element that elevates this burger above the classic Zinger, making it a premium choice for those who want more texture and substance in a single sandwich.",
-    itemsIncluded: ["Crispy Zinger Fillet", "Golden Hash Brown Patty", "Tomato Slices", "Creamy Mayo", "Lettuce", "Sesame Bun"],
-    image: "images/zinger_burger.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "burger-double-crunch",
-    name: "Double Crunch Burger",
-    category: "Burgers & Sandwiches",
-    price: 690,
-    badge: "Extra Crunch",
-    calories: "740 kcal",
-    servingSize: "1 Burger",
-    description: "Two extra-crispy battered chicken breast fillets layered with tangy pickles, a generous smear of signature KFC sauce, and soft shredded lettuce inside a pillowy bakery bun. The double-breading technique creates an audibly satisfying crunch with every bite, delivering twice the texture of a standard chicken sandwich without being overly heavy.",
-    itemsIncluded: ["2x Double-Breaded Crispy Fillets", "Tangy Pickles", "KFC Signature Sauce", "Shredded Lettuce", "Soft Bun"],
-    image: "images/mighty_zinger.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "burger-bbq-zinger",
-    name: "BBQ Zinger Burger",
-    category: "Burgers & Sandwiches",
-    price: 640,
-    badge: "Smoky BBQ",
-    calories: "610 kcal",
-    servingSize: "1 Burger",
-    description: "A full-size crispy Zinger chicken fillet glazed with smoky sweet BBQ sauce, topped with crispy fried onion strings, and layered with fresh tomato slices and lettuce inside a toasted brioche-style bun. The combination of the spicy fried chicken and the sweet-smoky BBQ glaze creates a perfectly balanced flavor profile that appeals to both BBQ lovers and Zinger fans alike.",
-    itemsIncluded: ["Crispy Zinger Fillet", "Smoky BBQ Glaze", "Crispy Onion Strings", "Tomato Slices", "Lettuce", "Brioche Bun"],
-    image: "images/zinger_burger.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "burger-original-recipe",
-    name: "Original Recipe Burger",
-    category: "Burgers & Sandwiches",
-    price: 570,
-    badge: "Classic Original",
-    calories: "490 kcal",
-    servingSize: "1 Burger",
-    description: "A true classic — the Original Recipe Burger features KFC's legendary 11 herbs and spices chicken fillet cooked to golden juicy perfection, paired with creamy coleslaw and a lightly buttered toasted bun. Unlike spicy variants, this burger celebrates the original secret recipe flavors that have made KFC famous worldwide since 1952, delivering an unmistakable savory aroma and tender, moist chicken in every bite.",
-    itemsIncluded: ["Original Recipe Chicken Fillet", "Creamy Coleslaw", "Signature Herb Sauce", "Buttered Toasted Bun"],
-    image: "images/zinger_burger.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === ADDITIONAL FRIED CHICKEN ===
-  {
-    id: "chicken-hot-crispy-1pc",
-    name: "Hot & Crispy Chicken (1 Pc)",
-    category: "Fried Chicken",
-    price: 350,
-    badge: "Spicy Crunch",
-    calories: "310 kcal",
-    servingSize: "1 Piece",
-    description: "One premium piece of KFC's Hot & Crispy chicken — marinated for hours in fiery chili spices, hand-breaded in seasoned crumb, and pressure-fried to deliver an explosively crunchy exterior and a supremely juicy interior. Hot & Crispy is specially formulated for customers who prefer bold, spicy heat alongside the iconic KFC 11 herbs and spices coating, making it distinct from the milder Original Recipe.",
-    itemsIncluded: ["1x Hot & Crispy Chicken Piece"],
-    image: "images/fried_chicken.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "chicken-original-3pc",
-    name: "Original Recipe Chicken (3 Pcs)",
-    category: "Fried Chicken",
-    price: 870,
-    badge: "Original Recipe",
-    calories: "750 kcal",
-    servingSize: "3 Pieces",
-    description: "Three golden, herb-encrusted pieces of KFC's legendary Original Recipe chicken — pressure-cooked with 11 secret herbs and spices and served piping hot. The Original Recipe has a milder, more savory profile compared to Hot & Crispy, making it a universally loved choice for customers of all ages, especially for family meals and first-time visitors to KFC Pakistan.",
-    itemsIncluded: ["3x Original Recipe Chicken Pieces"],
-    image: "images/fried_chicken.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "chicken-hot-crispy-3pc",
-    name: "Hot & Crispy Chicken (3 Pcs)",
-    category: "Fried Chicken",
-    price: 920,
-    badge: "Triple Spicy",
-    calories: "820 kcal",
-    servingSize: "3 Pieces",
-    description: "Three blazing pieces of Hot & Crispy fried chicken, each coated in extra-spiced seasoned breading and fried to a sizzling golden crunch. This three-piece serving is a crowd favorite for spice lovers sharing a quick meal or pairing with fries and a drink. The intense pepper and chili notes linger pleasantly, making every piece an experience from first bite to last.",
-    itemsIncluded: ["3x Hot & Crispy Chicken Pieces"],
+    description: "Two pieces of 100% white meat fried chicken (Breast & Wing), paired with 1 individual side, 1 warm buttermilk biscuit, and a medium fountain drink.",
+    itemsIncluded: ["1x Chicken Breast", "1x Chicken Wing", "1x Individual Side", "1x Buttermilk Biscuit", "1x Medium Drink"],
     image: "images/fried_chicken.jpg",
     isPopular: false,
     isBestValue: false,
@@ -1219,447 +1028,215 @@ const KFC_MENU_DATA = [
     isDeal: false
   },
   {
-    id: "chicken-original-5pc",
-    name: "Original Recipe Chicken (5 Pcs)",
+    id: "tenders-8pc-alacarte",
+    name: "8 Pc Hand-Breaded Tenders (A La Carte)",
     category: "Fried Chicken",
-    price: 1420,
-    badge: "Sharing Platter",
-    calories: "1200 kcal",
-    servingSize: "5 Pieces",
-    description: "Five generously portioned pieces of KFC's iconic Original Recipe chicken — ideal for sharing between two or three people or as a hearty personal feast. The signature 11 herbs and spices recipe ensures every piece is full of savory depth, with a golden crispy crust giving way to tender, juicy chicken. Perfect for family lunches when paired with fries and 1.5L Pepsi.",
-    itemsIncluded: ["5x Original Recipe Chicken Pieces"],
-    image: "images/fried_chicken.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "chicken-strip-meal",
-    name: "Chicken Strip Meal (4 Pcs)",
-    category: "Fried Chicken",
-    price: 790,
-    badge: "Strip Feast",
-    calories: "680 kcal",
-    servingSize: "4 Strips",
-    description: "Four long, golden crispy chicken strips made from premium breast fillets — seasoned, hand-breaded, and fried to perfection. Each strip offers a satisfying pull-apart texture with a moist, flavorful interior. The Strip Meal is a fantastic alternative to bone-in chicken for customers who prefer easy-to-eat, convenient portions with maximum chicken flavor and minimum mess.",
-    itemsIncluded: ["4x Crispy Chicken Strips", "1x Dipping Sauce"],
+    price: 14.99,
+    badge: "Tenders Pack",
+    calories: "1080 kcal",
+    servingSize: "2-3 People",
+    description: "Eight hand-breaded extra crispy 100% white meat chicken tenders served with your choice of 3 signature dipping sauces.",
+    itemsIncluded: ["8x Extra Crispy Tenders", "3x Dipping Sauces"],
     image: "images/chicken_tenders.jpg",
-    isPopular: false,
+    isPopular: true,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
-
-  // === ADDITIONAL TENDERS ===
   {
-    id: "tenders-9pc",
-    name: "9 Pcs Crispy Tenders",
-    category: "Chicken Tenders",
-    price: 1250,
-    badge: "Sharing Pack",
-    calories: "1020 kcal",
-    servingSize: "9 Tenders",
-    description: "Nine long, juicy 100% white breast meat tenders coated in KFC's signature seasoned breading and fried to a perfectly satisfying golden crunch. This generous shareable serving comes with three dipping sauce cups — choose from Garlic Mayo, Vietnamese Chili Sauce, or Honey Mustard. A favorite for office lunches, college hangouts, and anyone who prefers boneless chicken in a large format.",
-    itemsIncluded: ["9x Boneless Crispy Tenders", "3x Choice Dipping Sauces"],
-    image: "images/chicken_tenders.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "tenders-tender-dip-combo",
-    name: "Tenders & Dip Combo (3 Pcs)",
-    category: "Chicken Tenders",
-    price: 650,
-    badge: "Dip Lovers",
-    calories: "450 kcal",
-    servingSize: "3 Tenders + 2 Dips",
-    description: "Three crispy chicken breast tenders served alongside two premium dipping sauces of your choice. This combo is specifically designed for diners who love to dip — whether in creamy garlic mayo, tangy sweet chili, smoky BBQ, or zesty Vietnamese sauce. The tenders are double-dipped in seasoned batter for maximum crunch and served hot for the best dipping experience.",
-    itemsIncluded: ["3x Crispy Tenders", "2x Premium Dip Sauces"],
+    id: "tenders-16pc-bucket-only",
+    name: "16 Pc Extra Crispy Tenders Bucket",
+    category: "Family Deals",
+    price: 26.99,
+    badge: "Mega Tenders",
+    calories: "2160 kcal",
+    servingSize: "4-6 People",
+    description: "A full party bucket of 16 extra-crispy hand-breaded chicken tenders served with 6 dipping sauces of your choice.",
+    itemsIncluded: ["16x Extra Crispy Tenders", "6x Dipping Sauces"],
     image: "images/chicken_tenders.jpg",
     isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "tenders-zingy-tenders-6",
-    name: "Zingy Tenders (6 Pcs)",
-    category: "Chicken Tenders",
-    price: 920,
-    badge: "Zingy Flavor",
-    calories: "710 kcal",
-    servingSize: "6 Tenders",
-    description: "Six chicken tenders marinated in KFC's signature Zingy seasoning — a blend of sharp citrus zest, black pepper, and paprika that delivers a bright, tangy heat distinct from the standard Hot & Crispy style. These tenders are double-breaded for a thick, extra-crunchy coating, making them ideal for snacking or pairing with masala fries and a cold beverage.",
-    itemsIncluded: ["6x Zingy Marinated Tenders", "2x Dip Sauces"],
-    image: "images/chicken_tenders.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === ADDITIONAL HOT WINGS ===
-  {
-    id: "wings-24pc-bucket",
-    name: "Hot Wings Bucket (24 Pcs)",
-    category: "Hot Wings",
-    price: 1890,
-    badge: "Party Bucket",
-    calories: "1680 kcal",
-    servingSize: "24 Wings",
-    description: "Twenty-four of KFC Pakistan's signature fiery Hot Wings arranged in a sharing bucket — the ultimate wing feast for large gatherings, cricket match nights, or office parties. Every wing is coated in a blazing chili-seasoned breading and pressure-fried for consistent juiciness inside and crunch outside. Served with two large garlic mayo and chili sauce dips.",
-    itemsIncluded: ["24x Fiery Hot Wings", "2x Large Dip Sauces"],
-    image: "images/hot_wings.jpg",
-    isPopular: true,
     isBestValue: true,
     isFamilyMeal: true,
     isDeal: false
   },
-  {
-    id: "wings-4pc",
-    name: "Hot Wings (4 Pcs)",
-    category: "Hot Wings",
-    price: 340,
-    badge: "Snack Size",
-    calories: "280 kcal",
-    servingSize: "4 Wings",
-    description: "Four crispy, spicy chicken wings — the perfect snack-size order to accompany a burger meal or enjoy as a standalone bite. Each wing is generously coated in KFC's signature hot chili breading, delivering a satisfying crunch and consistent heat that builds pleasantly with each piece. Ideal as an add-on order or for light snacking.",
-    itemsIncluded: ["4x Fiery Hot Wings"],
-    image: "images/hot_wings.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
 
-  // === ADDITIONAL NUGGETS ===
+  // --- Nuggets & Saucy Nuggets ---
   {
-    id: "nuggets-9pc",
-    name: "Crispy Nuggets (9 Pcs)",
-    category: "Nuggets",
-    price: 620,
-    badge: "Family Snack",
-    calories: "465 kcal",
-    servingSize: "9 Pieces",
-    description: "Nine golden, perfectly round chicken nuggets fried to a crispy, satisfying crunch — a universally loved item for both children and adults. Each nugget is made from prime chicken breast meat, seasoned with a mild savory blend, and coated in a light tempura-style breading. Served with two dipping sauces — choose from sweet & sour, BBQ, garlic mayo, or Vietnamese chili.",
-    itemsIncluded: ["9x Golden Chicken Nuggets", "2x Dip Sauces"],
+    id: "nuggets-5pc",
+    name: "5 Pc 100% White Meat Nuggets",
+    category: "Fried Chicken",
+    price: 3.99,
+    badge: "Snack Pack",
+    calories: "180 kcal",
+    servingSize: "5 Nuggets",
+    description: "Five hand-breaded white meat nuggets seasoned with the Colonel's 11 herbs & spices. Includes 1 dipping sauce.",
+    itemsIncluded: ["5x White Meat Nuggets", "1x Dipping Sauce"],
     image: "images/chicken_nuggets.jpg",
     isPopular: false,
-    isBestValue: false,
+    isBestValue: true,
     isFamilyMeal: false,
     isDeal: false
   },
   {
     id: "nuggets-20pc",
-    name: "Crispy Nuggets (20 Pcs)",
-    category: "Nuggets",
-    price: 1290,
-    badge: "Sharing Platter",
-    calories: "1030 kcal",
-    servingSize: "20 Pieces",
-    description: "Twenty bite-sized golden chicken nuggets served in a large sharing box — perfect for family movie nights, birthday parties, or group snacking sessions. This jumbo nugget platter comes with three dip sauce cups, offering maximum variety for sauce lovers. At this serving size, the 20-piece nugget box provides excellent value per piece compared to smaller orders.",
-    itemsIncluded: ["20x Golden Chicken Nuggets", "3x Dip Sauces"],
+    name: "20 Pc 100% White Meat Nuggets",
+    category: "Fried Chicken",
+    price: 12.49,
+    badge: "Party Size",
+    calories: "700 kcal",
+    servingSize: "3-4 People",
+    description: "Twenty crispy hand-breaded nuggets served with 4 dipping sauces. Ideal for sharing.",
+    itemsIncluded: ["20x Hand-Breaded Nuggets", "4x Dipping Sauces"],
+    image: "images/chicken_nuggets.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "saucy-nuggets-5pc-honey-bbq",
+    name: "5 Pc Honey BBQ Saucy Nuggets",
+    category: "Fried Chicken",
+    price: 4.49,
+    badge: "Saucy Snack",
+    calories: "250 kcal",
+    servingSize: "5 Sauced Nuggets",
+    description: "Five crispy white meat nuggets tossed in sweet Honey BBQ sauce with hints of brown sugar and hickory smoke.",
+    itemsIncluded: ["5x Saucy Nuggets in Honey BBQ"],
     image: "images/chicken_nuggets.jpg",
     isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: false
-  },
-
-  // === ADDITIONAL WRAPS ===
-  {
-    id: "wrap-zingeratha-combo",
-    name: "Zingeratha Wrap Combo",
-    category: "Wraps",
-    price: 820,
-    badge: "Desi Combo",
-    calories: "890 kcal",
-    servingSize: "1 Wrap + Sides",
-    description: "KFC's most iconic Pakistani innovation — the Zingeratha Wrap — served as a complete combo with regular crispy fries and a cold 345ml beverage. The Zingeratha wraps a full crispy Zinger fillet inside a hot, flaky layered paratha with tangy mint chutney, pickled onions, and creamy garlic sauce, creating a fusion of Western fast food and beloved desi flavors in a single, satisfying hand-held meal.",
-    itemsIncluded: ["1x Zingeratha Wrap", "1x Regular Fries", "1x 345ml Drink"],
-    image: "images/chicken_wrap.jpg",
-    isPopular: true,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "wrap-twister-combo",
-    name: "Twister Wrap Combo",
-    category: "Wraps",
-    price: 780,
-    badge: "Wrap Meal",
-    calories: "820 kcal",
-    servingSize: "1 Wrap + Sides",
-    description: "The classic Twister Wrap served as a full combo experience — the warm tortilla encases two crispy chicken strips, fresh diced tomatoes, crisp iceberg lettuce, and KFC's signature pepper mayo, all paired with a serving of hot golden regular fries and a refreshing 345ml cold drink. The Twister Combo offers a lighter, more portable alternative to traditional burger combos while remaining fully satisfying.",
-    itemsIncluded: ["1x Twister Wrap", "1x Regular Fries", "1x 345ml Drink"],
-    image: "images/chicken_wrap.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "wrap-grilled-twister",
-    name: "Grilled Twister Wrap",
-    category: "Wraps",
-    price: 520,
-    badge: "Lighter Choice",
-    calories: "440 kcal",
-    servingSize: "1 Wrap",
-    description: "A lighter, health-conscious alternative to the classic Twister — featuring grilled (not fried) chicken strips wrapped in a warm whole-wheat tortilla with cucumber slices, fresh tomatoes, crisp shredded lettuce, and a low-fat yogurt herb dressing. The Grilled Twister delivers all the satisfying flavors of a KFC wrap with significantly fewer calories, making it an excellent choice for health-minded customers who don't want to compromise on taste.",
-    itemsIncluded: ["Grilled Chicken Strips", "Whole Wheat Tortilla", "Cucumber Slices", "Tomato", "Lettuce", "Yogurt Herb Dressing"],
-    image: "images/chicken_wrap.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === ADDITIONAL SIGNATURE BOXES ===
-  {
-    id: "box-mighty-zinger-box",
-    name: "Mighty Zinger Box",
-    category: "Signature Boxes",
-    price: 1390,
-    badge: "Premium Box",
-    calories: "1250 kcal",
-    servingSize: "1 Person Heavy Box",
-    description: "The premium single-person meal box built around KFC's most indulgent burger — the double-fillet Mighty Zinger — paired with one piece of Hot & Crispy fried chicken, a full serving of golden regular fries, a warm freshly baked dinner roll, and a chilled 345ml soft drink. This box is specifically designed for hearty eaters who want both a premium burger experience and the satisfaction of additional fried chicken pieces in a complete, single-box meal.",
-    itemsIncluded: ["1x Mighty Zinger Burger", "1x Hot & Crispy Chicken Piece", "1x Regular Fries", "1x Dinner Roll", "1x 345ml Drink"],
-    image: "images/box_boneless.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "box-stacker-box",
-    name: "Zinger Stacker Box",
-    category: "Signature Boxes",
-    price: 1290,
-    badge: "Stacked Meal",
-    calories: "1180 kcal",
-    servingSize: "1 Person Full Box",
-    description: "The complete Zinger Stacker experience in a convenient box format — featuring the double-fillet Stacker Burger loaded with pickled jalapenos and melted cheddar cheese, one piece of signature fried chicken, hot salted regular fries, a freshly baked warm dinner roll, and a 345ml cold beverage. This box delivers the maximum KFC value for Stacker fans who want a complete and fully satisfying one-box meal.",
-    itemsIncluded: ["1x Zinger Stacker Burger", "1x Fried Chicken Piece", "1x Regular Fries", "1x Dinner Roll", "1x 345ml Drink"],
-    image: "images/signature_box.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "box-tenders-box",
-    name: "Tenders Box Meal",
-    category: "Signature Boxes",
-    price: 1150,
-    badge: "All Boneless",
+    id: "saucy-nuggets-20pc",
+    name: "20 Pc Saucy Nuggets Variety",
+    category: "Fried Chicken",
+    price: 13.99,
+    badge: "Saucy Party",
     calories: "980 kcal",
-    servingSize: "1 Person Full Box",
-    description: "A 100% boneless signature box for tender lovers — featuring a crispy Zinger Burger, five premium crispy chicken tenders, a serving of hot regular fries, and a refreshing 345ml cold drink. This box eliminates all bones from the meal and is perfect for customers who prefer completely boneless chicken with the same full-box value as the classic Crispy Box. Includes a Vietnamese chili dipping sauce for the tenders.",
-    itemsIncluded: ["1x Zinger Burger", "5x Crispy Tenders", "1x Regular Fries", "1x Vietnamese Dip", "1x 345ml Drink"],
-    image: "images/box_boneless.jpg",
-    isPopular: false,
+    servingSize: "3-4 People",
+    description: "Twenty crispy white-meat nuggets tossed in your choice of Honey BBQ, Korean BBQ, or Mango Habanero glaze.",
+    itemsIncluded: ["20x Saucy Nuggets in Selected Glaze"],
+    image: "images/chicken_nuggets.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  // --- Specialty Bowls ---
+  {
+    id: "bowl-smashd-potato",
+    name: "KFC Smash'd Potato Bowl",
+    category: "Combos",
+    price: 3.49,
+    badge: "Value Innovation",
+    calories: "520 kcal",
+    servingSize: "1 Bowl",
+    description: "Creamy mashed potatoes topped with crispy Secret Recipe Fries, warm cheese sauce, savory bacon crumbles, and melted three-cheese blend.",
+    itemsIncluded: ["Mashed Potatoes", "Secret Recipe Fries", "Warm Cheddar Cheese Sauce", "Bacon Crumbles", "Three-Cheese Blend"],
+    image: "images/kfc_famous_bowl.jpg",
+    isPopular: true,
     isBestValue: true,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "box-wings-box",
-    name: "Wings Box Meal",
-    category: "Signature Boxes",
-    price: 1080,
-    badge: "Wing Lover",
-    calories: "1020 kcal",
-    servingSize: "1 Person Full Box",
-    description: "Six fiery Hot Wings paired with a classic Zinger Burger, a regular serving of hot salted fries, and a 345ml chilled drink — all packed in a convenient single-person box. The Wings Box Meal is ideal for customers who want to experience both KFC's famous Hot Wings and the flagship Zinger Burger in a single, well-priced meal package. A garlic mayo dip is included for the wings.",
-    itemsIncluded: ["6x Fiery Hot Wings", "1x Zinger Burger", "1x Regular Fries", "1x Garlic Mayo Dip", "1x 345ml Drink"],
+    id: "bowl-smashd-with-nuggets",
+    name: "KFC Smash'd Potato Bowl with Nuggets",
+    category: "Combos",
+    price: 5.49,
+    badge: "Loaded Meal",
+    calories: "760 kcal",
+    servingSize: "1 Loaded Bowl",
+    description: "The Smash'd Potato Bowl topped with hand-breaded crispy chicken nuggets, warm cheese sauce, bacon crumbles, and melted cheese.",
+    itemsIncluded: ["Crispy Nuggets", "Mashed Potatoes", "Secret Recipe Fries", "Cheese Sauce", "Bacon Crumbles", "3-Cheese Blend"],
+    image: "images/kfc_famous_bowl.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "bowl-mac-cheese",
+    name: "KFC Mac & Cheese Bowl",
+    category: "Combos",
+    price: 6.49,
+    badge: "Cheesy Comfort",
+    calories: "710 kcal",
+    servingSize: "1 Bowl",
+    description: "Rich cheddar Mac & Cheese layered with crispy hand-breaded nuggets and topped with a savory three-cheese blend.",
+    itemsIncluded: ["Cheddar Mac & Cheese", "Crispy Chicken Nuggets", "Three-Cheese Blend"],
+    image: "images/kfc_mac_cheese.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  // --- Taste of KFC Deals & Mega Buckets ---
+  {
+    id: "deal-taste-of-kfc-2pc",
+    name: "$4.99 Taste of KFC 2 Pc Meal Deal",
+    category: "Deals & Offers",
+    price: 4.99,
+    badge: "$4.99 Deal",
+    calories: "690 kcal",
+    servingSize: "1 Person",
+    description: "Two pieces of fried chicken (1 Drumstick & 1 Thigh), 1 individual side of creamy mashed potatoes with gravy, and 1 warm buttermilk biscuit.",
+    itemsIncluded: ["2x Fried Chicken Pieces (Drum & Thigh)", "1x Mashed Potatoes with Gravy", "1x Buttermilk Biscuit"],
     image: "images/box_wow.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "box-krunch-box",
-    name: "Krunch Box Meal",
-    category: "Signature Boxes",
-    price: 850,
-    badge: "Budget Box",
-    calories: "870 kcal",
-    servingSize: "1 Person Full Box",
-    description: "An affordable complete meal box centered around the popular Krunch Burger — paired with one piece of Hot & Crispy fried chicken, regular golden fries, a freshly baked dinner roll, and a 345ml chilled soft drink. The Krunch Box offers the same full box-meal experience as premium options but at a more accessible price point, making it the go-to choice for value-conscious diners and students.",
-    itemsIncluded: ["1x Krunch Burger", "1x Hot & Crispy Chicken Piece", "1x Regular Fries", "1x Dinner Roll", "1x 345ml Drink"],
-    image: "images/signature_box.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === ADDITIONAL COMBOS ===
-  {
-    id: "combo-kentucky",
-    name: "Kentucky Burger Combo",
-    category: "Combos",
-    price: 1010,
-    badge: "Gourmet Combo",
-    calories: "960 kcal",
-    servingSize: "1 Combo Meal",
-    description: "The premium Kentucky Burger — featuring Original Recipe fillet with smoky BBQ glaze, crispy fried onions, and melted cheddar cheese — served alongside a generous regular portion of hot salted French fries and a refreshing 345ml chilled soft drink. The Kentucky Burger Combo is KFC Pakistan's most sophisticated burger combo, ideal for customers who appreciate richer, more complex burger flavor profiles.",
-    itemsIncluded: ["1x Kentucky Burger", "1x Regular Fries", "1x 345ml Soft Drink"],
-    image: "images/cat_combos.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "combo-hot-crispy",
-    name: "Hot & Crispy Combo",
-    category: "Combos",
-    price: 870,
-    badge: "Spicy Meal",
-    calories: "900 kcal",
-    servingSize: "1 Combo Meal",
-    description: "Two pieces of KFC's signature Hot & Crispy fried chicken served as a complete combo with a full portion of hot golden French fries and a cold 345ml beverage of your choice. This combo is the preferred ordering choice for traditional bone-in chicken fans who want a satisfying, old-school KFC meal experience without a burger — pure, original-style fried chicken at its finest.",
-    itemsIncluded: ["2x Hot & Crispy Chicken Pieces", "1x Regular Fries", "1x 345ml Drink"],
-    image: "images/cat_combos.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "combo-wings-fries",
-    name: "Wings & Fries Combo",
-    category: "Combos",
-    price: 750,
-    badge: "Wing Snack",
-    calories: "840 kcal",
-    servingSize: "1 Combo Meal",
-    description: "Six fiery, crispy Hot Wings paired with a full serving of hot salted French fries and a cold 345ml drink — a simple but deeply satisfying combo for wing enthusiasts. The Wings & Fries Combo is a classic pairing that lets the bold, spicy flavors of KFC's Hot Wings shine alongside golden potato fries, making it an ideal quick lunch or late-afternoon snack combo.",
-    itemsIncluded: ["6x Hot Wings", "1x Regular Fries", "1x 345ml Drink"],
-    image: "images/cat_combos.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "combo-nuggets-fries",
-    name: "Nuggets & Fries Combo",
-    category: "Combos",
-    price: 670,
-    badge: "Snack Combo",
-    calories: "740 kcal",
-    servingSize: "1 Combo Meal",
-    description: "Nine crispy golden chicken nuggets paired with a portion of hot salted French fries and a cold 345ml drink. The Nuggets & Fries Combo is a crowd favorite for light eaters, children, and anyone who prefers bite-sized boneless chicken without the commitment of a full burger meal. Two dipping sauces are included — choose from sweet & sour, garlic mayo, or Vietnamese chili sauce.",
-    itemsIncluded: ["9x Crispy Nuggets", "1x Regular Fries", "2x Dip Sauces", "1x 345ml Drink"],
-    image: "images/cat_combos.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "combo-tenders-fries",
-    name: "Tenders & Fries Combo",
-    category: "Combos",
-    price: 820,
-    badge: "Boneless Combo",
-    calories: "880 kcal",
-    servingSize: "1 Combo Meal",
-    description: "Six crispy 100% breast meat chicken tenders paired with a generous serving of hot golden French fries, two dipping sauces, and a chilled 345ml cold drink. The Tenders & Fries Combo is the go-to order for boneless chicken fans who want maximum crunch and tender meat without any bone, making it a consistently popular choice for both dine-in and delivery orders.",
-    itemsIncluded: ["6x Crispy Tenders", "1x Regular Fries", "2x Dipping Sauces", "1x 345ml Drink"],
-    image: "images/cat_combos.jpg",
     isPopular: true,
-    isBestValue: false,
+    isBestValue: true,
     isFamilyMeal: false,
-    isDeal: false
+    isDeal: true
   },
-
-  // === ADDITIONAL FAMILY BUCKETS & DEALS ===
   {
-    id: "deal-family-festival-supreme",
-    name: "Family Festival Supreme",
-    category: "Family Buckets",
-    price: 3490,
-    badge: "Ultimate Feast",
+    id: "deal-taste-of-kfc-4pc",
+    name: "$10.00 Taste of KFC 4 Pc Meal for Two",
+    category: "Deals & Offers",
+    price: 10.00,
+    badge: "$10 Meal for Two",
+    calories: "1380 kcal",
+    servingSize: "2 People",
+    description: "Four pieces of fried chicken (1 Breast, 1 Thigh, 1 Drum, 1 Wing), 2 individual sides of mashed potatoes with gravy, and 2 warm buttermilk biscuits.",
+    itemsIncluded: ["4x Fried Chicken Pieces", "2x Mashed Potatoes with Gravy", "2x Buttermilk Biscuits"],
+    image: "images/box_boneless.jpg",
+    isPopular: true,
+    isBestValue: true,
+    isFamilyMeal: false,
+    isDeal: true
+  },
+  {
+    id: "family-16pc-bucket-only",
+    name: "16 Pc Chicken Bucket (Chicken Only)",
+    category: "Family Deals",
+    price: 32.99,
+    badge: "Mega Bucket",
     calories: "4200 kcal",
-    servingSize: "Serves 5-6",
-    description: "KFC Pakistan's grandest family gathering deal — 6 signature Zinger Burgers, 6 pieces of Hot & Crispy fried chicken, 3 portions of golden French fries, 2 freshly baked dinner rolls, and 2x 1.5L chilled Pepsi bottles. The Family Festival Supreme is designed for large family dinners, Eid gatherings, or weekend celebrations where every person around the table deserves a full individual serving of KFC's best items.",
-    itemsIncluded: ["6x Zinger Burgers", "6x Hot & Crispy Chicken Pieces", "3x Regular Fries", "2x Dinner Rolls", "2x 1.5L Pepsi"],
-    image: "images/family_festival.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: true
-  },
-  {
-    id: "bucket-hot-wings-12",
-    name: "Hot Wings Bucket (12 Pcs)",
-    category: "Family Buckets",
-    price: 990,
-    badge: "Wings Party",
-    calories: "840 kcal",
-    servingSize: "Serves 2-3",
-    description: "Twelve of KFC's signature fiery Hot Wings in a sharing-size bucket — perfect for two to three people snacking together or as a group add-on to a family meal. Each wing delivers the same intense chili-seasoned crunch that has made KFC Hot Wings a staple across Pakistan. The 12-piece bucket comes with two garlic mayo dipping sauces for the ultimate wing-dipping experience.",
-    itemsIncluded: ["12x Fiery Hot Wings", "2x Garlic Mayo Dip Sauces"],
-    image: "images/hot_wings.jpg",
+    servingSize: "7-8 People",
+    description: "Sixteen pieces of fresh, hand-breaded fried chicken in Original Recipe or Extra Crispy in a classic party bucket.",
+    itemsIncluded: ["16x Fried Chicken Pieces"],
+    image: "images/bucket_pieces.jpg",
     isPopular: false,
     isBestValue: true,
     isFamilyMeal: true,
     isDeal: false
   },
-  {
-    id: "deal-trio-box",
-    name: "Trio Box Deal",
-    category: "Family Buckets",
-    price: 2190,
-    badge: "Perfect for 3",
-    calories: "2850 kcal",
-    servingSize: "Serves 3",
-    description: "Three complete individual box meals at a special group price — each person gets a Zinger Burger, one piece of Hot & Crispy fried chicken, regular fries, a dinner roll, and a 345ml cold drink. The Trio Box Deal eliminates the need to order separately and is perfect for small group outings, office lunches, or family dinners for three, offering each person a complete, satisfying KFC meal in their own personal box.",
-    itemsIncluded: ["3x Zinger Burgers", "3x Fried Chicken Pieces", "3x Regular Fries", "3x Dinner Rolls", "3x 345ml Drinks"],
-    image: "images/family_festival.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: true
-  },
-  {
-    id: "deal-couple-deal",
-    name: "Couple Deal",
-    category: "Family Buckets",
-    price: 1590,
-    badge: "For Two",
-    calories: "1920 kcal",
-    servingSize: "Serves 2",
-    description: "A romantic or friendly date meal designed perfectly for two — 2 Zinger Burgers, 2 pieces of signature fried chicken, 1 large sharing fries bucket, 2 regular 345ml cold drinks, and 1 warm dinner roll to share. The Couple Deal is the most popular sharing meal among young couples and college-going friends at KFC Pakistan, offering generous portions at an attractive combined price.",
-    itemsIncluded: ["2x Zinger Burgers", "2x Fried Chicken Pieces", "1x Large Fries", "2x 345ml Drinks", "1x Dinner Roll"],
-    image: "images/box_duo.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: true
-  },
 
-  // === ADDITIONAL SNACKS & SIDES ===
+  // --- Large Homestyle Sides & Green Beans ---
   {
-    id: "snack-spicy-masala-fries",
-    name: "Spicy Masala Fries (Large)",
+    id: "side-secret-fries-large",
+    name: "Secret Recipe Fries (Large)",
     category: "Snacks & Sides",
-    price: 390,
-    badge: "Desi Spice",
-    calories: "420 kcal",
-    servingSize: "1 Large Bag",
-    description: "A large bucket of KFC's golden French fries generously dusted with an authentic Pakistani chaat masala blend — a tangy, spicy, and aromatic seasoning that transforms classic fries into a bold desi-style snack. The large Spicy Masala Fries are a uniquely Pakistani KFC innovation, catering to the local preference for bold, complex spice flavors in even simple side dishes. Best enjoyed alongside a cold Pepsi or Mirinda.",
-    itemsIncluded: ["1x Large Bucket Masala-Seasoned Fries"],
+    price: 5.49,
+    badge: "Shareable Side",
+    calories: "840 kcal",
+    servingSize: "3-4 People",
+    description: "A large shareable portion of crispy cut potatoes seasoned with the Colonel's special blend of signature herbs and spices.",
+    itemsIncluded: ["Large Portion Secret Recipe Fries"],
     image: "images/crispy_fries.jpg",
     isPopular: true,
     isBestValue: false,
@@ -1667,947 +1244,462 @@ const KFC_MENU_DATA = [
     isDeal: false
   },
   {
-    id: "snack-corn-cup",
-    name: "Corn on the Cob",
+    id: "side-mashed-potatoes-large",
+    name: "Mashed Potatoes with Gravy (Large / Family Size)",
     category: "Snacks & Sides",
-    price: 140,
-    badge: "Sweet Side",
-    calories: "130 kcal",
-    servingSize: "1 Cob",
-    description: "A classic American-style side dish served at KFC — a whole sweet corn cob steamed to tender perfection and lightly seasoned with butter and a pinch of salt. The Corn on the Cob provides a natural, wholesome sweetness that balances the bold spice of KFC's fried chicken items. It is a simple, universally loved side dish that brings a healthy and satisfying element to any KFC meal.",
-    itemsIncluded: ["1x Buttered Corn Cob"],
-    image: "images/cat_snacks.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "snack-mashed-potato",
-    name: "Mashed Potato & Gravy",
-    category: "Snacks & Sides",
-    price: 200,
-    badge: "Comfort Side",
-    calories: "220 kcal",
-    servingSize: "1 Cup",
-    description: "Creamy, smooth mashed potato topped with KFC's signature rich, savory chicken gravy — the ultimate comfort food side dish. The mashed potato is prepared fresh with real butter and milk for a velvety texture, while the warm gravy adds depth of savory chicken flavor that pairs perfectly with fried chicken pieces. A beloved classic side dish at KFC worldwide, now available at KFC Pakistan branches.",
-    itemsIncluded: ["1x Cup Creamy Mashed Potato", "KFC Chicken Gravy Topping"],
-    image: "images/cat_snacks.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "snack-bbq-dip",
-    name: "Smoky BBQ Dip",
-    category: "Snacks & Sides",
-    price: 80,
-    badge: "BBQ Sauce",
-    calories: "60 kcal",
-    servingSize: "1 Dip Cup",
-    description: "A rich, smoky BBQ dipping sauce with a deep caramelized sweetness and subtle tanginess — perfect for dipping nuggets, tenders, or hot wings. Made with a blend of tomato, molasses, brown sugar, and smoky hickory flavoring, this sauce adds a bold, American BBQ character to any KFC item. Order extra to enhance your meal with a premium dipping option.",
-    itemsIncluded: ["1x Smoky BBQ Dip Cup"],
-    image: "images/cat_snacks.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "snack-honey-mustard-dip",
-    name: "Honey Mustard Dip",
-    category: "Snacks & Sides",
-    price: 80,
-    badge: "Sweet Tangy",
-    calories: "75 kcal",
-    servingSize: "1 Dip Cup",
-    description: "A perfectly balanced dipping sauce combining the natural sweetness of golden honey with the sharp, tangy bite of Dijon mustard. KFC's Honey Mustard Dip is the most popular sauce for crispy chicken tenders and nuggets, offering a sweet-and-savory flavor that complements the seasoned chicken coating without overpowering it. A classic accompaniment for both boneless chicken items and dinner rolls.",
-    itemsIncluded: ["1x Honey Mustard Dip Cup"],
-    image: "images/cat_snacks.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "snack-sweet-chili-dip",
-    name: "Sweet Chili Dip",
-    category: "Snacks & Sides",
-    price: 80,
-    badge: "Sweet Heat",
-    calories: "55 kcal",
-    servingSize: "1 Dip Cup",
-    description: "A vibrant red sweet chili sauce that combines mild fruity heat with a pleasant sweetness — a favorite dipping accompaniment for KFC nuggets and crispy tenders. Inspired by South-East Asian sweet chili sauces, this dip offers a gentler heat profile compared to Vietnamese chili sauce, making it an excellent choice for customers who want a flavored dip that isn't too spicy.",
-    itemsIncluded: ["1x Sweet Chili Dip Cup"],
-    image: "images/cat_snacks.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "snack-biscuit-gravy",
-    name: "Biscuit & Gravy",
-    category: "Snacks & Sides",
-    price: 230,
-    badge: "Southern Classic",
-    calories: "340 kcal",
-    servingSize: "1 Biscuit + Gravy",
-    description: "A warm, freshly baked buttermilk biscuit served with a generous cup of KFC's savory chicken gravy for dipping or pouring. This American Southern-style combination is a comforting, hearty side that pairs beautifully with fried chicken meals. The flaky, buttery biscuit absorbs the rich gravy perfectly, creating a fulfilling accompaniment that is both simple and deeply satisfying.",
-    itemsIncluded: ["1x Warm Buttermilk Biscuit", "1x Cup KFC Chicken Gravy"],
-    image: "images/buttermilk_biscuits.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === ADDITIONAL BEVERAGES ===
-  {
-    id: "bev-mountain-dew",
-    name: "Mountain Dew (345ml)",
-    category: "Beverages",
-    price: 140,
-    badge: "Citrus Blast",
-    calories: "155 kcal",
-    servingSize: "345 ml",
-    description: "The electrifying citrus-flavored Mountain Dew served ice-cold — a beloved choice among Pakistan's youth and the preferred beverage pairing for spicy KFC items. The bold citrus flavor and high carbonation of Mountain Dew provide a refreshing contrast to the heat of Zinger burgers and Hot Wings, making it a natural complement to KFC's spiciest offerings on the menu.",
-    itemsIncluded: ["1x 345ml Chilled Mountain Dew"],
-    image: "images/family_bucket.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "bev-7up-15l",
-    name: "7UP Bottle (1.5 Liter)",
-    category: "Beverages",
-    price: 280,
-    badge: "Family Sharing",
-    calories: "580 kcal",
-    servingSize: "1.5 Liters",
-    description: "A large 1.5L bottle of crisp, refreshing 7UP lemon-lime soda — ideal for sharing across a family meal or group gathering at KFC. The light, citrus-clean flavor of 7UP makes it a versatile pairing option that cuts through the richness of fried chicken and works equally well with burgers, wings, and box meals. Best served chilled over ice.",
-    itemsIncluded: ["1x 1.5L 7UP Bottle"],
-    image: "images/family_bucket.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: false
-  },
-  {
-    id: "bev-mirinda-15l",
-    name: "Mirinda Bottle (1.5 Liter)",
-    category: "Beverages",
-    price: 280,
-    badge: "Orange Burst",
-    calories: "620 kcal",
-    servingSize: "1.5 Liters",
-    description: "A large 1.5L family-size bottle of Mirinda orange-flavored soda — vibrant, fruity, and fizzy, served chilled to complement KFC's family bucket meals and festival deals. Mirinda's sweet, bright orange flavor is a favorite among younger family members and provides a colorful, fun alternative to cola drinks for family gatherings and group KFC orders.",
-    itemsIncluded: ["1x 1.5L Mirinda Orange Bottle"],
-    image: "images/family_bucket.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: false
-  },
-  {
-    id: "bev-mountain-dew-15l",
-    name: "Mountain Dew (1.5 Liter)",
-    category: "Beverages",
-    price: 280,
-    badge: "Citrus Sharing",
-    calories: "640 kcal",
-    servingSize: "1.5 Liters",
-    description: "A large 1.5L sharing bottle of Mountain Dew — the citrus-charged choice for groups who prefer bold, energetic flavors with their KFC family meals. Perfect for pairing with family buckets, Family Festival deals, or as an alternative to Pepsi at large gatherings. The intense citrus carbonation of Mountain Dew refreshes the palate between bites of spicy fried chicken.",
-    itemsIncluded: ["1x 1.5L Mountain Dew Bottle"],
-    image: "images/family_bucket.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: false
-  },
-  {
-    id: "bev-fanta-345",
-    name: "Fanta Orange (345ml)",
-    category: "Beverages",
-    price: 140,
-    badge: "Fruity Fizz",
-    calories: "145 kcal",
-    servingSize: "345 ml",
-    description: "A chilled, fizzy Fanta Orange — a bright, fruity carbonated drink that offers a sweet, orange-flavored refreshment alongside any KFC meal. Fanta's vibrant citrus taste pairs particularly well with KFC's milder menu items like the Krunch Burger and chicken tenders, providing a pleasant sweetness that balances savory flavors without overwhelming the palate.",
-    itemsIncluded: ["1x 345ml Chilled Fanta Orange"],
-    image: "images/family_bucket.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "bev-sting-250",
-    name: "Sting Energy Drink (250ml)",
-    category: "Beverages",
-    price: 120,
-    badge: "Energy Boost",
-    calories: "110 kcal",
-    servingSize: "250 ml",
-    description: "A chilled 250ml can of Sting, Pakistan's most popular energy drink — a bold, sweet-sour energy beverage with a distinctive raspberry or gold flavor profile, available at select KFC Pakistan branches. Sting is a preferred late-night beverage choice for young customers ordering Midnight Deals or late-evening KFC deliveries, providing an energy boost alongside the meal.",
-    itemsIncluded: ["1x 250ml Sting Energy Drink Can"],
-    image: "images/family_bucket.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === ADDITIONAL DESSERTS ===
-  {
-    id: "dessert-strawberry-sundae",
-    name: "Strawberry Sundae Cup",
-    category: "Desserts",
-    price: 290,
-    badge: "Fruity Sweet",
-    calories: "260 kcal",
-    servingSize: "1 Cup",
-    description: "Smooth, creamy vanilla soft serve ice cream generously topped with vibrant, sweet strawberry fruit sauce — a classic dessert that brings a cool, fruity finish to any KFC meal. The natural strawberry topping provides a light, refreshing sweetness that contrasts beautifully with the rich savory flavors of fried chicken and burgers, making it an ideal palate-cleanser and dessert choice.",
-    itemsIncluded: ["1x Vanilla Soft Serve Cup", "Strawberry Fruit Sauce Topping"],
-    image: "images/chocolate_dessert.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "dessert-soft-serve-cone",
-    name: "Soft Serve Ice Cream Cone",
-    category: "Desserts",
-    price: 150,
-    badge: "Classic Cone",
-    calories: "150 kcal",
-    servingSize: "1 Cone",
-    description: "A freshly swirled vanilla soft serve ice cream served in a classic crispy wafer cone — light, cool, and refreshing. The Soft Serve Cone is KFC's most affordable dessert option, offering a simple, universally loved treat that provides a pleasant sweet ending to any meal. Perfect for children and adults who want something light and sweet without the richness of a full dessert cup.",
-    itemsIncluded: ["1x Swirled Vanilla Soft Serve Cone"],
-    image: "images/chocolate_dessert.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "dessert-oreo-sundae",
-    name: "Oreo Crunch Sundae",
-    category: "Desserts",
-    price: 330,
-    badge: "Cookie Crunch",
-    calories: "320 kcal",
-    servingSize: "1 Cup",
-    description: "Creamy vanilla soft serve ice cream layered with crushed Oreo cookie crumbs and drizzled with a dark chocolate fudge sauce — an indulgent, dessert-lover's treat. The combination of crunchy Oreo crumbs, smooth ice cream, and warm chocolate fudge creates a multi-textured dessert experience that is both satisfying and visually impressive. A premium dessert option for those who want something beyond a standard sundae.",
-    itemsIncluded: ["1x Vanilla Soft Serve Cup", "Crushed Oreo Cookie Topping", "Chocolate Fudge Drizzle"],
-    image: "images/chocolate_dessert.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "dessert-brownie-cake",
-    name: "Chocolate Fudge Brownie",
-    category: "Desserts",
-    price: 320,
-    badge: "Fudge Rich",
-    calories: "350 kcal",
-    servingSize: "1 Brownie",
-    description: "A dense, fudgy chocolate brownie served warm — packed with real chocolate chips and finished with a drizzle of premium dark chocolate ganache. The Chocolate Fudge Brownie delivers an intensely rich chocolate flavor with a moist, gooey texture that makes it one of KFC's most decadent dessert options. Best enjoyed as a shareable dessert or as a standalone sweet treat after a full KFC meal.",
-    itemsIncluded: ["1x Warm Chocolate Fudge Brownie", "Dark Chocolate Ganache Drizzle"],
-    image: "images/chocolate_dessert.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === ADDITIONAL DEALS & OFFERS ===
-  {
-    id: "deal-midnight-3",
-    name: "Midnight Deal 3",
-    category: "Deals & Offers",
-    price: 790,
-    badge: "Late Night (12am+)",
-    calories: "1050 kcal",
-    servingSize: "1 Person",
-    description: "The most generous of KFC Pakistan's late-night Midnight Deals — featuring a full Zinger Burger, one piece of Hot & Crispy fried chicken, a regular serving of golden fries, and a chilled 345ml beverage, all available exclusively after midnight for night-owl customers and late-shift workers. Available at drive-thru and delivery-enabled branches throughout major Pakistan cities.",
-    itemsIncluded: ["1x Zinger Burger", "1x Hot & Crispy Chicken Piece", "1x Regular Fries", "1x 345ml Drink"],
-    image: "images/cat_combos.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: true
-  },
-  {
-    id: "deal-ramadan-iftar",
-    name: "Ramadan Iftar Deal",
-    category: "Deals & Offers",
-    price: 1290,
-    badge: "Ramadan Special",
-    calories: "1650 kcal",
-    servingSize: "Serves 1-2",
-    description: "A specially curated Iftar meal offered exclusively during the holy month of Ramadan at KFC Pakistan — featuring 2 Zinger Burgers, 2 pieces of Hot & Crispy fried chicken, a serving of regular fries, and a 1.5L chilled beverage to break the fast with. The Ramadan Iftar Deal is one of KFC's most beloved seasonal promotions, offered at a significant discount compared to ordering the same items individually.",
-    itemsIncluded: ["2x Zinger Burgers", "2x Fried Chicken Pieces", "1x Regular Fries", "1x 1.5L Drink"],
-    image: "images/cat_family.jpg",
+    price: 5.49,
+    badge: "Family Size",
+    calories: "390 kcal",
+    servingSize: "3-4 People",
+    description: "Large family-size bowl of smooth, creamy mashed potatoes smothered in savory brown gravy.",
+    itemsIncluded: ["Large Bowl Mashed Potatoes with Gravy"],
+    image: "images/kfc_mashed_potatoes.jpg",
     isPopular: true,
     isBestValue: true,
     isFamilyMeal: false,
-    isDeal: true
-  },
-  {
-    id: "deal-office-box",
-    name: "Office Lunch Box (5 Persons)",
-    category: "Deals & Offers",
-    price: 3990,
-    badge: "Office Pack",
-    calories: "5200 kcal",
-    servingSize: "Serves 5",
-    description: "A bulk corporate lunch deal designed for small office teams — 5 individual Crispy Box meals, each containing a Zinger Burger, one piece of fried chicken, regular fries, a dinner roll, and a 345ml cold drink. The Office Lunch Box eliminates individual ordering hassle for corporate clients and provides a complete, balanced KFC meal to every person in the group at a discounted bulk price.",
-    itemsIncluded: ["5x Zinger Burgers", "5x Fried Chicken Pieces", "5x Regular Fries", "5x Dinner Rolls", "5x 345ml Drinks"],
-    image: "images/cat_family.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: true
-  },
-  {
-    id: "deal-happy-meal",
-    name: "Kids Happy Meal",
-    category: "Deals & Offers",
-    price: 590,
-    badge: "Kids Delight",
-    calories: "520 kcal",
-    servingSize: "1 Child Serving",
-    description: "A lovingly assembled meal created specifically for younger KFC fans — featuring a smaller Krunch Burger or 4 crispy chicken nuggets, a small serving of golden French fries, and a chilled 250ml soft drink. The Kids Happy Meal ensures children get a complete, satisfying KFC meal sized appropriately for smaller appetites, with familiar, mild flavors that children love and parents trust.",
-    itemsIncluded: ["1x Krunch Burger OR 4x Nuggets", "1x Small Fries", "1x 250ml Soft Drink"],
-    image: "images/signature_box.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: true
-  },
-  {
-    id: "deal-weekend-feast",
-    name: "Weekend Feast Deal",
-    category: "Deals & Offers",
-    price: 2990,
-    badge: "Weekend Special",
-    calories: "3600 kcal",
-    servingSize: "Serves 4",
-    description: "Exclusively available on Fridays, Saturdays, and Sundays, the Weekend Feast Deal offers premium family value — 4 Mighty Zinger Burgers, 4 pieces of Hot & Crispy fried chicken, 2 large fries buckets, and 2x 1.5L chilled Pepsi bottles. The Weekend Feast replaces the standard Family Festival with a premium burger upgrade, offering the Mighty Zinger double-fillet experience for every family member at a specially reduced weekend price.",
-    itemsIncluded: ["4x Mighty Zinger Burgers", "4x Hot & Crispy Chicken Pieces", "2x Large Fries", "2x 1.5L Pepsi"],
-    image: "images/family_festival.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: true
-  },
-  {
-    id: "deal-zinger-tenders-deal",
-    name: "Zinger & Tenders Deal",
-    category: "Deals & Offers",
-    price: 1190,
-    badge: "Mix & Match",
-    calories: "1350 kcal",
-    servingSize: "Serves 1-2",
-    description: "A specially priced mix-and-match deal combining KFC's two most popular items — 1 Zinger Burger and 6 Crispy Chicken Tenders — alongside a large sharing fries bucket and 2 individual 345ml cold drinks. The Zinger & Tenders Deal allows customers to enjoy both the full burger experience and the boneless tender experience in a single, well-priced deal that is perfect for two people who want to share different items.",
-    itemsIncluded: ["1x Zinger Burger", "6x Crispy Tenders", "1x Large Fries", "2x Dip Sauces", "2x 345ml Drinks"],
-    image: "images/cat_combos.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: true
-  },
-  {
-    id: "deal-bucket-boneless",
-    name: "Boneless Bucket Deal",
-    category: "Deals & Offers",
-    price: 2490,
-    badge: "100% Boneless",
-    calories: "2800 kcal",
-    servingSize: "Serves 3-4",
-    description: "A complete 100% boneless family-style deal for those who prefer all their KFC entirely boneless — 12 crispy chicken tenders, 12 golden nuggets, a large fries bucket, 3 dipping sauce cups, and a 1.5L chilled Pepsi bottle. The Boneless Bucket Deal is the ultimate order for families or groups where everyone prefers boneless chicken, eliminating bones entirely from the meal while maintaining full KFC flavors and generous portions.",
-    itemsIncluded: ["12x Crispy Tenders", "12x Golden Nuggets", "1x Large Fries", "3x Dip Sauces", "1x 1.5L Pepsi"],
-    image: "images/box_boneless.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: true,
-    isDeal: true
-  },
-
-  // === SEASONAL & REGIONAL SPECIALTIES ===
-  {
-    id: "special-bbq-chicken-piece",
-    name: "BBQ Glazed Chicken Piece",
-    category: "Fried Chicken",
-    price: 420,
-    badge: "BBQ Special",
-    calories: "360 kcal",
-    servingSize: "1 Piece",
-    description: "A premium single piece of KFC's bone-in fried chicken given a generous post-fry glaze of rich, smoky BBQ sauce — available at select branches during BBQ promotional seasons. The BBQ Glazed Chicken Piece combines the iconic crunch and juiciness of KFC's Original Recipe chicken with a sweet, smoky BBQ coating that caramelizes over the crispy exterior, creating a distinctively different flavor experience from the standard hot and crispy variants.",
-    itemsIncluded: ["1x BBQ-Glazed Bone-In Chicken Piece"],
-    image: "images/fried_chicken.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "special-cheese-zinger",
-    name: "Cheese Zinger Burger",
-    category: "Burgers & Sandwiches",
-    price: 650,
-    badge: "Cheese Loaded",
-    calories: "620 kcal",
-    servingSize: "1 Burger",
-    description: "The classic Zinger Burger elevated with a double layer of melted cheddar cheese — the cheese melts across the crispy Zinger fillet, adding a rich, creamy dairy richness to the bold spicy chicken and signature pepper mayo. The Cheese Zinger is the perfect middle ground between the plain Zinger Burger and the more elaborate Zinger Stacker, offering extra indulgence without the full double-fillet commitment.",
-    itemsIncluded: ["Crispy Zinger Fillet", "2x Cheddar Cheese Slices", "Pepper Mayo", "Iceberg Lettuce", "Sesame Bun"],
-    image: "images/zinger_burger.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "special-spicy-mayo-wrap",
-    name: "Spicy Mayo Wrap",
-    category: "Wraps",
-    price: 510,
-    badge: "Spicy Wrap",
-    calories: "560 kcal",
-    servingSize: "1 Wrap",
-    description: "A fiery, flavor-packed wrap featuring crispy spicy chicken strips, sliced jalapenos, diced tomatoes, shredded lettuce, and a generous drizzle of KFC's special spicy mayo — all rolled tight in a warm, toasted tortilla. The Spicy Mayo Wrap brings together the heat of jalapenos and spicy chicken with the cooling, creamy contrast of mayo, creating a complex, layered flavor experience in a convenient hand-held format.",
-    itemsIncluded: ["Spicy Chicken Strips", "Sliced Jalapenos", "Diced Tomatoes", "Lettuce", "Spicy Mayo", "Toasted Tortilla"],
-    image: "images/chicken_wrap.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "special-popcorn-chicken",
-    name: "Popcorn Chicken (Regular)",
+    id: "side-coleslaw-large",
+    name: "Creamy Coleslaw (Large / Family Size)",
     category: "Snacks & Sides",
-    price: 380,
-    badge: "Bite-Sized",
-    calories: "310 kcal",
-    servingSize: "1 Regular Box",
-    description: "A generous box of tiny, bite-sized crispy popcorn chicken pieces — perfectly seasoned miniature chunks of tender chicken breast coated in a light, crunchy breading. Popcorn Chicken is KFC's most snackable item, ideal for munching on the go, sharing as a group starter, or simply enjoying as a casual chicken snack between meals. Best served with garlic mayo or sweet chili dip.",
-    itemsIncluded: ["1x Regular Box Popcorn Chicken", "1x Choice Dip Sauce"],
-    image: "images/chicken_nuggets.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "special-popcorn-chicken-large",
-    name: "Popcorn Chicken (Large)",
-    category: "Snacks & Sides",
-    price: 580,
-    badge: "Large Share Box",
-    calories: "490 kcal",
-    servingSize: "1 Large Box",
-    description: "A large sharing box of KFC's addictive popcorn chicken — dozens of bite-sized crispy chicken morsels perfect for groups, movie nights, or anyone with a serious chicken snacking craving. The large Popcorn Chicken box comes with two dipping sauces for maximum variety. Every piece is consistently seasoned and fried to maintain the same flavor-packed crunch from the first bite to the very last piece.",
-    itemsIncluded: ["1x Large Box Popcorn Chicken", "2x Choice Dip Sauces"],
-    image: "images/chicken_nuggets.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === 16. CHIZZA & PIZZA SPECIALS ===
-  {
-    id: "chizza-classic",
-    name: "KFC Chizza Classic",
-    category: "Chizza & Pizza Specials",
-    price: 650,
-    badge: "All-Chicken Crust",
-    calories: "590 kcal",
-    servingSize: "1 Chizza Portion",
-    description: "No crust, all chicken! 100% crispy all-chicken fillet base smothered with rich herb pizza sauce, melted mozzarella cheese, crunchy green bell peppers, sliced black olives, and Italian herbs with chili flakes.",
-    itemsIncluded: ["1x Crispy All-Chicken Fillet Crust", "Rich Mozzarella Cheese", "Marinara Pizza Sauce", "Olives & Bell Peppers", "Italian Herbs & Chili Flakes"],
-    image: "images/kfc_chizza.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "chizza-pepperoni-jalapeno",
-    name: "KFC Chizza Pepperoni & Jalapeno",
-    category: "Chizza & Pizza Specials",
-    price: 720,
-    badge: "Spicy Gourmet",
-    calories: "640 kcal",
-    servingSize: "1 Chizza Portion",
-    description: "Extra crispy double chicken fillet base loaded with savory chicken pepperoni slices, fiery pickled jalapenos, double mozzarella cheese blend, and spicy pizza herb seasoning.",
-    itemsIncluded: ["Crispy Chicken Base", "Chicken Pepperoni Slices", "Pickled Jalapenos", "Double Mozzarella Blend", "Pizza Herb Seasoning"],
-    image: "images/kfc_chizza.jpg",
-    isPopular: false,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === 17. RICE & BOWLS ===
-  {
-    id: "rice-arabian-crispy",
-    name: "KFC Arabian Rice with Crispy Fillet",
-    category: "Rice & Bowls",
-    price: 430,
-    badge: "Flavorful Bowl",
+    price: 5.49,
+    badge: "Family Size",
     calories: "510 kcal",
-    servingSize: "1 Meal Bowl",
-    description: "Steaming aromatic golden spiced basmati rice topped with hand-sliced crispy fried chicken fillet pieces and rich Vietnamese spiced sauce, garnished with fresh parsley.",
-    itemsIncluded: ["Spiced Basmati Rice Bowl", "Crispy Fried Chicken Fillet Strips", "Vietnamese Spiced Gravy", "Parsley Garnish"],
-    image: "images/kfc_arabian_rice.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "rice-colonel-bowl",
-    name: "KFC Colonel Rice Bowl (Vietnamese Gravy)",
-    category: "Rice & Bowls",
-    price: 480,
-    badge: "Chef Special",
-    calories: "540 kcal",
-    servingSize: "1 Large Bowl",
-    description: "Fragrant yellow spiced rice served with crispy boneless chicken chunks, signature Colonel pepper gravy, and sliced bell peppers for a warm, satisfying hearty meal.",
-    itemsIncluded: ["Fragrant Spiced Rice", "Crispy Chicken Chunks", "Colonel Gravy Drizzle", "Bell Pepper Garnish"],
-    image: "images/kfc_arabian_rice.jpg",
-    isPopular: false,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "rice-popcorn-bowl",
-    name: "KFC Popcorn Chicken Rice Bowl",
-    category: "Rice & Bowls",
-    price: 460,
-    badge: "Bite-Sized Crunch",
-    calories: "490 kcal",
-    servingSize: "1 Bowl",
-    description: "Golden bite-sized popcorn chicken pieces layered over seasoned spicy yellow basmati rice with savory herb drizzle.",
-    itemsIncluded: ["Popcorn Chicken Bites", "Spiced Basmati Rice", "Savory Herb Drizzle"],
-    image: "images/kfc_arabian_rice.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === 18. PASTA & LOADED BOWLS ===
-  {
-    id: "pasta-mac-cheese-chicken",
-    name: "KFC Cheesy Chicken Mac & Cheese",
-    category: "Pasta & Loaded Bowls",
-    price: 520,
-    badge: "Creamy & Cheesy",
-    calories: "580 kcal",
-    servingSize: "1 Pasta Bowl",
-    description: "Elbow macaroni pasta baked in a luscious cheddar and mozzarella cheese sauce, topped with golden crispy fried chicken bites, Italian oregano, and cracked black pepper.",
-    itemsIncluded: ["Elbow Macaroni Pasta", "Cheddar & Mozzarella Cheese Sauce", "Crispy Chicken Bites", "Italian Herb Seasoning"],
-    image: "images/kfc_creamy_pasta.jpg",
-    isPopular: true,
-    isBestValue: false,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-  {
-    id: "pasta-spicy-loaded-bowl",
-    name: "KFC Spicy Loaded Pasta Bowl",
-    category: "Pasta & Loaded Bowls",
-    price: 560,
-    badge: "Spicy Tangy",
-    calories: "620 kcal",
-    servingSize: "1 Large Pasta Bowl",
-    description: "Tender penne pasta tossed in a fiery marinara herb sauce, loaded with crispy chicken fillet chunks, melted mozzarella cheese, and chili flakes.",
-    itemsIncluded: ["Penne Pasta in Spicy Sauce", "Crispy Chicken Fillet Chunks", "Melted Mozzarella", "Crushed Chili Flakes"],
-    image: "images/kfc_creamy_pasta.jpg",
+    servingSize: "3-4 People",
+    description: "Family-size bowl of freshly shredded crisp cabbage and carrots in sweet creamy dressing.",
+    itemsIncluded: ["Large Bowl Creamy Coleslaw"],
+    image: "images/kfc_coleslaw.jpg",
     isPopular: false,
     isBestValue: true,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "loaded-cheesy-fries",
-    name: "KFC Cheesy Loaded Fries",
-    category: "Pasta & Loaded Bowls",
-    price: 490,
-    badge: "Loaded Crunch",
-    calories: "610 kcal",
-    servingSize: "1 Loaded Sharing Basket",
-    description: "Crispy golden french fries smothered with warm melted cheddar cheese sauce, fiery chicken hot shots, fresh scallions, and tangy jalapeno slices.",
-    itemsIncluded: ["Crispy French Fries Basket", "Warm Cheddar Cheese Sauce", "Crispy Chicken Hot Shots", "Sliced Pickled Jalapenos"],
-    image: "images/kfc_loaded_fries.jpg",
-    isPopular: true,
-    isBestValue: true,
-    isFamilyMeal: false,
-    isDeal: false
-  },
-
-  // === 19. SPECIALTY DRINKS & KRUSHERS ===
-  {
-    id: "bev-mint-margarita",
-    name: "KFC Mint Margarita Crusher",
-    category: "Beverages",
-    price: 290,
-    badge: "Cooling Refreshment",
-    calories: "140 kcal",
-    servingSize: "1 Regular Cup",
-    description: "Ice-blended sparkling cooler made with freshly crushed mint leaves, lemon juice, sparkling soda, and a touch of black salt for an ultra-refreshing burst.",
-    itemsIncluded: ["1x Ice-Cold Mint Margarita Crusher"],
-    image: "images/kfc_krushers_drinks.jpg",
+    id: "side-mac-cheese-large",
+    name: "Mac & Cheese (Large / Family Size)",
+    category: "Snacks & Sides",
+    price: 5.99,
+    badge: "Family Size",
+    calories: "840 kcal",
+    servingSize: "3-4 People",
+    description: "Large family portion of tender elbow macaroni in a velvety, rich cheddar cheese sauce.",
+    itemsIncluded: ["Large Bowl Mac & Cheese"],
+    image: "images/kfc_mac_cheese.jpg",
     isPopular: true,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "bev-chocolate-oreo-krusher",
-    name: "KFC Chocolate Oreo Krusher",
-    category: "Beverages",
-    price: 380,
-    badge: "Thick Shake",
-    calories: "360 kcal",
-    servingSize: "1 Large Cup",
-    description: "Rich and thick creamy chocolate milkshake blended with crunchy crushed Oreo cookies, topped with whipped cream and chocolate fudge drizzle.",
-    itemsIncluded: ["1x Chocolate Oreo Milkshake", "Whipped Cream", "Oreo Cookie Crumbs"],
-    image: "images/kfc_krushers_drinks.jpg",
-    isPopular: true,
-    isBestValue: true,
+    id: "side-sweet-corn-large",
+    name: "Sweet Whole Kernel Corn (Large)",
+    category: "Snacks & Sides",
+    price: 5.49,
+    badge: "Family Size",
+    calories: "300 kcal",
+    servingSize: "3-4 People",
+    description: "Large bowl of juicy golden sweet corn kernels lightly buttered.",
+    itemsIncluded: ["Large Bowl Sweet Whole Kernel Corn"],
+    image: "images/cat_snacks.jpg",
+    isPopular: false,
+    isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
   {
-    id: "bev-strawberry-sparkler",
-    name: "KFC Strawberry Sparkler",
-    category: "Beverages",
-    price: 280,
-    badge: "Fruity Fizz",
-    calories: "150 kcal",
-    servingSize: "1 Regular Cup",
-    description: "Sparkling fizzy beverage infused with sweet strawberry syrup, crushed berries, lemon slices, and crushed ice.",
-    itemsIncluded: ["1x Strawberry Sparkler Drink"],
-    image: "images/kfc_krushers_drinks.jpg",
+    id: "side-green-beans",
+    name: "Seasoned Green Beans",
+    category: "Snacks & Sides",
+    price: 3.29,
+    badge: "Homestyle Classic",
+    calories: "50 kcal",
+    servingSize: "Individual Cup",
+    description: "Tender green beans simmered with onions, garlic, and savory spices for classic southern homestyle flavor.",
+    itemsIncluded: ["1x Cup Seasoned Green Beans"],
+    image: "images/cat_snacks.jpg",
     isPopular: false,
     isBestValue: false,
     isFamilyMeal: false,
     isDeal: false
   },
 
+  // --- Official KFC Dipping Sauces ---
   {
-    id: "bev-7up-zero-345",
-    name: "7UP Zero (345ml)",
+    id: "sauce-sampler-pack",
+    name: "KFC Signature Dipping Sauce 4-Pack",
+    category: "Snacks & Sides",
+    price: 1.49,
+    badge: "Sauce Sampler",
+    calories: "450 kcal",
+    servingSize: "4 Dipping Cups (1 oz each)",
+    description: "Assorted pack of 4 iconic KFC dipping sauces: Colonel's Signature Sauce, Honey Mustard, Classic Buttermilk Ranch, and Buffalo Ranch.",
+    itemsIncluded: ["1x KFC Signature Sauce", "1x Honey Mustard", "1x Classic Ranch", "1x Buffalo Ranch"],
+    image: "images/cat_snacks.jpg",
+    isPopular: true,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+
+  // --- Beverages & Desserts ---
+  {
+    id: "drink-diet-pepsi",
+    name: "Diet Pepsi Fountain Drink (Medium)",
     category: "Beverages",
-    price: 140,
-    badge: "Zero Sugar",
+    price: 2.69,
+    badge: "Zero Calorie",
     calories: "0 kcal",
-    servingSize: "345 ml",
-    description: "Refreshing lemon-lime sparkle with zero calories and zero sugar.",
-    itemsIncluded: ["1x 345ml 7UP Zero Sugar"],
-    image: "images/family_bucket.jpg",
+    servingSize: "20 oz Fountain Drink",
+    description: "Crisp, cold, zero-calorie Diet Pepsi served fresh over ice.",
+    itemsIncluded: ["1x 20 oz Fountain Drink"],
+    image: "images/cat_combos.jpg",
     isPopular: false,
     isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "drink-starry",
+    name: "Starry Lemon-Lime Fountain Drink (Medium)",
+    category: "Beverages",
+    price: 2.69,
+    badge: "Caffeine Free",
+    calories: "210 kcal",
+    servingSize: "20 oz Fountain Drink",
+    description: "Crisp, clear, caffeine-free lemon-lime soda with bright citrus flavor.",
+    itemsIncluded: ["1x 20 oz Fountain Drink"],
+    image: "images/cat_combos.jpg",
+    isPopular: false,
+    isBestValue: false,
+    isFamilyMeal: false,
+    isDeal: false
+  },
+  {
+    id: "dessert-apple-pie-8pc",
+    name: "Apple Pie Poppers (8 Pcs Family Pack)",
+    category: "Desserts",
+    price: 5.49,
+    badge: "Shareable Pack",
+    calories: "680 kcal",
+    servingSize: "8 Poppers",
+    description: "Eight warm, crispy, flaky puff pastry poppers filled with spiced apple pie filling and dusted with cinnamon sugar.",
+    itemsIncluded: ["8x Warm Apple Pie Poppers"],
+    image: "images/chocolate_dessert.jpg",
+    isPopular: true,
+    isBestValue: true,
     isFamilyMeal: false,
     isDeal: false
   }
 ];
 
-// 3. Centralized 20 Pakistan Cities Directory Dataset
+// 3. Top 22 US Metropolitan City Directories with Highlights & FAQs
 const KFC_CITIES_DATA = [
   {
-    slug: "lahore",
-    name: "Lahore",
-    province: "Punjab",
+    slug: "new-york",
+    name: "New York City, NY",
+    state: "New York",
+    outlets: "65+ Outlets",
+    highlights: "Times Square Manhattan, Harlem, Brooklyn Flatbush, Queens Flushing, Bronx Grand Concourse, Staten Island Mall",
+    deliveryHours: "10:30 AM – 02:00 AM (Late Night Select)",
+    popularCombo: "KFC Spicy Chicken Sandwich Combo & 8 Pc Bucket",
+    description: "From midtown Manhattan skyscrapers to Brooklyn and Queens neighborhoods, KFC New York serves millions of commuters and locals with fast drive-thrus, walk-up counters, and 24/7 delivery options via DoorDash and Uber Eats.",
+    faqs: [
+      { q: "What is the average KFC Chicken Sandwich price in New York City?", a: "In NYC metro branches, the standalone KFC Chicken Sandwich is typically priced around $5.99 to $6.49, while the full combo with Secret Recipe Fries and a medium drink averages $9.49 to $9.99." },
+      { q: "Is late night KFC delivery available in Manhattan and Brooklyn?", a: "Yes, numerous KFC locations in Manhattan (such as 125th St Harlem and 14th St) and Brooklyn offer late-night delivery until 2:00 AM through the official KFC App and third-party delivery partners." },
+      { q: "How much does an 8 Piece Family Meal cost in New York?", a: "The 8-piece Family Meal with 2 large homestyle sides and 4 warm biscuits is standard at approximately $24.99 across New York locations." }
+    ]
+  },
+  {
+    slug: "los-angeles",
+    name: "Los Angeles, CA",
+    state: "California",
+    outlets: "55+ Outlets",
+    highlights: "Hollywood Blvd, Downtown LA (DTLA), Koreatown, Santa Monica, Long Beach, Pasadena, Glendale",
+    deliveryHours: "10:00 AM – 01:00 AM",
+    popularCombo: "10 Pc Saucy Nuggets & 12 Pc Family Feast",
+    description: "Across Los Angeles County, KFC restaurants offer quick drive-thru lanes and mobile order pick-up. Popular with families and late-night diners craving extra crispy chicken and saucy nuggets.",
+    faqs: [
+      { q: "Are KFC prices in Los Angeles subject to local California taxes?", a: "Yes, listed menu prices in Los Angeles are before local state and county sales taxes. Most meal combos range from $8.99 to $11.49." },
+      { q: "Where are the busiest KFC drive-thrus in LA?", a: "High-volume drive-thru branches include Western Ave in Koreatown, Sunset Blvd in Hollywood, and Long Beach Blvd." },
+      { q: "How much is the KFC Famous Bowl in Los Angeles?", a: "The KFC Famous Bowl is typically priced around $6.99 in the Greater Los Angeles area." }
+    ]
+  },
+  {
+    slug: "chicago",
+    name: "Chicago, IL",
+    state: "Illinois",
+    outlets: "40+ Outlets",
+    highlights: "The Loop, Lincoln Park, Logan Square, South Side, Cicero, Evanston, Schaumburg",
+    deliveryHours: "10:30 AM – 12:30 AM",
+    popularCombo: "3 Pc Hand-Breaded Tenders & Famous Bowl",
+    description: "Chicagoans count on KFC for hot, crispy comfort food during cold winters and summer block parties. Easily accessible in the Loop and across suburban Cook County.",
+    faqs: [
+      { q: "Can I order KFC catering buckets in Chicago?", a: "Yes, Chicago branches offer 16-piece and 20-piece tenders catering boxes ideal for tailgates and family gatherings." },
+      { q: "What is the 3 Pc Tenders Combo price in Chicago?", a: "The 3 Pc Tenders Combo with fries, biscuit, and beverage costs approximately $8.99." }
+    ]
+  },
+  {
+    slug: "houston",
+    name: "Houston, TX",
+    state: "Texas",
+    outlets: "48+ Outlets",
+    highlights: "Midtown, Galleria, Katy Freeway, Westheimer Rd, Sugar Land, Spring, Pearland",
+    deliveryHours: "10:30 AM – 01:00 AM",
+    popularCombo: "8 Pc Chicken Meal & MTN DEW Sweet Lightning",
+    description: "Houston features expansive KFC branches with dual drive-thru lanes, serving classic southern fried chicken, sweet iced tea, and buttermilk biscuits across Harris County.",
+    faqs: [
+      { q: "Does KFC Houston carry MTN DEW Sweet Lightning on tap?", a: "Yes, all official KFC fountain dispensers in Houston carry the exclusive Sweet Lightning peach-honey flavor." },
+      { q: "What is the price of the $20 Taste of KFC deal in Houston?", a: "The $20 Taste of KFC Meal Deal (6 pcs chicken, 4 individual sides, 4 biscuits) is available for $20.00 at participating Houston locations." }
+    ]
+  },
+  {
+    slug: "miami",
+    name: "Miami, FL",
+    state: "Florida",
+    outlets: "32+ Outlets",
+    highlights: "South Beach, Little Havana (Calle Ocho), Brickell, Coral Gables, Hialeah, Doral, Miami Gardens",
+    deliveryHours: "10:30 AM – 02:00 AM",
+    popularCombo: "KFC Spicy Chicken Sandwich & 12 Pc Nuggets",
+    description: "Miami's vibrant food scene embraces KFC for beachside lunches, late-night dinners, and family buckets. Bilingual staff and drive-thrus operate across Miami-Dade.",
+    faqs: [
+      { q: "Is there a bilingual Spanish KFC menu in Miami?", a: "Yes, KFC locations across Miami and Hialeah provide bilingual service and Spanish menu assistance (Menú y Precios de KFC en Estados Unidos / KFC Precios USA)." },
+      { q: "How much are 12 Pc Nuggets in Miami?", a: "12 pieces of 100% white-meat hand-breaded nuggets cost approximately $7.99." }
+    ]
+  },
+  {
+    slug: "dallas",
+    name: "Dallas, TX",
+    state: "Texas",
     outlets: "38+ Outlets",
-    highlights: "Gulberg, DHA Phase 5 & 6, MM Alam Road, Johar Town, Mall Road, Bahria Town, Model Town, Shadman, Wapda Town",
-    deliveryHours: "11:00 AM – 04:00 AM",
-    popularCombo: "Zinger Combo & Family Festival 1",
-    description: "Lahore is home to over 38 KFC outlets spread across major commercial hubs and residential sectors. Known for lively food culture, late-night midnight deals and family buckets are wildly popular.",
+    highlights: "Downtown Dallas, Uptown, Plano, Arlington, Irving, Fort Worth, Frisco",
+    deliveryHours: "10:30 AM – 12:00 AM",
+    popularCombo: "12 Pc Family Feast & Extra Crispy Tenders",
+    description: "Serving the bustling Dallas-Fort Worth metroplex with high-capacity drive-thrus and mobile app order ahead pick-up points.",
     faqs: [
-      { q: "What is the price of a KFC Zinger Burger in Lahore?", a: "The standalone Zinger Burger in Lahore is priced at approximately Rs. 600 (≈ $2.14 USD), while the full Zinger Combo with fries and drink is Rs. 910 (≈ $3.25 USD)." },
-      { q: "What are the most popular KFC locations in Lahore?", a: "Flagship outlets include MM Alam Road Gulberg, DHA Phase 5 Commercial, Johar Town G-1 Market, Mall Road, and Bahria Town Lahore." },
-      { q: "Are KFC midnight deals available in Lahore?", a: "Yes! Most drive-thru and delivery outlets in Lahore operate until 4:00 AM with Midnight Deals starting from Rs. 520." }
+      { q: "What is the cost of a 12 Pc Family Feast in Dallas?", a: "The 12 Pc Family Feast (12 pcs chicken, 3 large sides, 6 biscuits) is priced at $33.99." }
     ]
   },
   {
-    slug: "karachi",
-    name: "Karachi",
-    province: "Sindh",
-    outlets: "45+ Outlets",
-    highlights: "Clifton Block 2 & 5, DHA Phase 4, Bahadurabad, North Nazimabad, Gulshan-e-Iqbal, Tariq Road, Shahrah-e-Faisal, Malir Cantt",
-    deliveryHours: "11:00 AM – 05:00 AM",
-    popularCombo: "Mighty Zinger & 9 Pcs Family Bucket",
-    description: "Karachi has the largest network of KFC branches in Pakistan with over 45 outlets. From seaside Clifton locations to vibrant Gulshan, KFC operates around the clock serving crispy chicken and zinger meals.",
+    slug: "phoenix",
+    name: "Phoenix, AZ",
+    state: "Arizona",
+    outlets: "30+ Outlets",
+    highlights: "Camelback Rd, Scottsdale, Tempe (ASU Campus), Mesa, Glendale, Chandler",
+    deliveryHours: "10:00 AM – 11:30 PM",
+    popularCombo: "4 Pc Tenders Big Box & Secret Recipe Fries",
+    description: "Phoenix and Valley of the Sun residents enjoy fast drive-thru service and air-conditioned dining rooms across Maricopa County.",
     faqs: [
-      { q: "Are KFC prices in Karachi different from other cities?", a: "Base menu prices in Karachi match nationwide rates (e.g., Zinger Rs. 600, Krunch Rs. 330), although airport branches may include specific concession surcharges." },
-      { q: "Does KFC deliver late night in Karachi?", a: "Yes, major Karachi branches in Clifton, DHA, and Gulshan offer delivery and drive-thru services until 5:00 AM." },
-      { q: "What is the price of the KFC Family Bucket in Karachi?", a: "The 9-piece Family Bucket with a 1.5L Pepsi is priced at Rs. 2,290 (≈ $8.18 USD)." }
+      { q: "Where is the closest KFC near ASU Tempe campus?", a: "A popular student KFC location operates on Rural Rd near Apache Blvd in Tempe." }
     ]
   },
   {
-    slug: "islamabad",
-    name: "Islamabad",
-    province: "Federal Capital",
+    slug: "philadelphia",
+    name: "Philadelphia, PA",
+    state: "Pennsylvania",
+    outlets: "28+ Outlets",
+    highlights: "Center City, South Philly (Broad St), North Philly, University City, Northeast Philly",
+    deliveryHours: "10:30 AM – 01:00 AM",
+    popularCombo: "Famous Bowl & Classic Chicken Sandwich Combo",
+    description: "Philadelphia outlets serve students, sports fans, and local neighborhoods with quick counter service and delivery.",
+    faqs: [
+      { q: "Can I get KFC delivery near South Philly sports stadiums?", a: "Yes, delivery is active across South Philadelphia via the KFC app, DoorDash, and Uber Eats." }
+    ]
+  },
+  {
+    slug: "san-antonio",
+    name: "San Antonio, TX",
+    state: "Texas",
+    outlets: "26+ Outlets",
+    highlights: "River Walk area, Alamo Heights, San Pedro Ave, Westover Hills, Medical Center",
+    deliveryHours: "10:30 AM – 11:30 PM",
+    popularCombo: "8 Pc Bucket & Buttermilk Biscuits",
+    description: "San Antonio families trust KFC for authentic Original Recipe chicken and southern sides across Bexar County.",
+    faqs: [
+      { q: "How much are buttermilk biscuits at San Antonio KFCs?", a: "An individual biscuit is $1.29, while a 4-pack of warm biscuits costs $4.49." }
+    ]
+  },
+  {
+    slug: "san-diego",
+    name: "San Diego, CA",
+    state: "California",
+    outlets: "24+ Outlets",
+    highlights: "Mission Valley, Pacific Beach, Chula Vista, El Cajon, Clairemont, Escondido",
+    deliveryHours: "10:30 AM – 11:00 PM",
+    popularCombo: "3 Pc Chicken Combo & Southern Sweet Tea",
+    description: "San Diego's sunny coast features modern KFC locations equipped with drive-thrus and mobile pick-up cubbies.",
+    faqs: [
+      { q: "What is the price of the 3 Pc Combo in San Diego?", a: "The 3 Pc Chicken Combo is around $10.99 with side, biscuit, and beverage." }
+    ]
+  },
+  {
+    slug: "atlanta",
+    name: "Atlanta, GA",
+    state: "Georgia",
+    outlets: "35+ Outlets",
+    highlights: "Midtown, Downtown Atlanta, Buckhead, Decatur, Marietta, College Park, Alpharetta",
+    deliveryHours: "10:30 AM – 01:00 AM",
+    popularCombo: "Chunky Pot Pie & Extra Crispy Tenders Combo",
+    description: "In the heart of the South, Atlanta KFC locations serve hot, golden fried chicken, sweet tea, and warm biscuits to millions of residents and travelers passing through Hartsfield-Jackson.",
+    faqs: [
+      { q: "Is there a KFC near Atlanta Hartsfield Airport?", a: "Yes, several outlets operate along Virginia Ave and Camp Creek Pkwy within minutes of the airport." }
+    ]
+  },
+  {
+    slug: "orlando",
+    name: "Orlando, FL",
+    state: "Florida",
+    outlets: "25+ Outlets",
+    highlights: "International Drive, Kissimmee, Universal Blvd, Downtown Orlando, Winter Park",
+    deliveryHours: "10:30 AM – 01:30 AM",
+    popularCombo: "16 Pc Mega Feast & Apple Pie Poppers",
+    description: "A favorite for tourists and theme park visitors looking for high-value family meals on International Drive and US-192.",
+    faqs: [
+      { q: "Can I order family buckets near Disney and Universal in Orlando?", a: "Yes, high-volume branches along I-Drive and Kissimmee specialize in family buckets and fast mobile orders." }
+    ]
+  },
+  {
+    slug: "las-vegas",
+    name: "Las Vegas, NV",
+    state: "Nevada",
+    outlets: "22+ Outlets",
+    highlights: "Las Vegas Strip vicinity, Henderson, North Las Vegas, Spring Valley, Summerlin",
+    deliveryHours: "10:00 AM – 03:00 AM (Late Night)",
+    popularCombo: "Spicy Chicken Sandwich Combo & Saucy Nuggets",
+    description: "Late-night dining capital featuring extended hours, 24/7 delivery options, and convenient drive-thrus off the Las Vegas Strip.",
+    faqs: [
+      { q: "How late is KFC open in Las Vegas?", a: "Multiple Las Vegas branches operate drive-thru lanes until 2:00 AM or 3:00 AM on weekends." }
+    ]
+  },
+  {
+    slug: "seattle",
+    name: "Seattle, WA",
+    state: "Washington",
     outlets: "18+ Outlets",
-    highlights: "F-6 Super Market, F-7 Jinnah Super, F-10 Markaz, Blue Area, F-11 Markaz, I-8 Markaz, DHA Phase 2, Centaurus Mall",
-    deliveryHours: "11:00 AM – 03:00 AM",
-    popularCombo: "Crispy Duo Box & Zinger Stacker",
-    description: "Serving the capital city across prestigious sectors including F-6, F-7, Blue Area, and Centaurus Mall. Islamabad residents enjoy swift drive-thru access and delivery.",
+    highlights: "Downtown Seattle, Rainier Ave, Ballard, Bellevue, Renton, Tacoma",
+    deliveryHours: "10:30 AM – 11:00 PM",
+    popularCombo: "KFC Classic Chicken Sandwich & Famous Bowl",
+    description: "Pacific Northwest locations serving hot, hearty comfort meals and crispy chicken tenders.",
     faqs: [
-      { q: "Where can I find KFC in Islamabad?", a: "Key branches include F-7 Jinnah Super, F-10 Markaz, Centaurus Mall food court, Blue Area, F-6 Super Market, and F-11 Markaz." },
-      { q: "Is there a KFC branch in Sector F-1 Islamabad?", a: "Islamabad does not have a Sector F-1 branch; users searching for F-1 are usually looking for nearby F-10 or F-11 Markaz branches, or the verified Sector F-1 Mirpur (AJK) location on Main Kotli Road." },
-      { q: "How much does a KFC Crispy Box cost in Islamabad?", a: "The Crispy Box (Zinger, chicken pc, fries, dinner roll, and drink) costs Rs. 1,020 (≈ $3.64 USD)." }
+      { q: "How much does a Classic Chicken Sandwich cost in Seattle?", a: "In the Seattle metropolitan area, the sandwich is priced at $5.99." }
     ]
   },
   {
-    slug: "rawalpindi",
-    name: "Rawalpindi",
-    province: "Punjab",
+    slug: "denver",
+    name: "Denver, CO",
+    state: "Colorado",
+    outlets: "20+ Outlets",
+    highlights: "Colfax Ave, Downtown Denver, Aurora, Lakewood, Thornton, Highlands Ranch",
+    deliveryHours: "10:30 AM – 11:00 PM",
+    popularCombo: "Chunky Chicken Pot Pie & 8 Pc Meal",
+    description: "Mile High City residents enjoy hearty warm pot pies, mashed potatoes, and crispy chicken buckets after a day in the mountains.",
+    faqs: [
+      { q: "What is the price of the Chunky Pot Pie in Denver?", a: "The Chicken Pot Pie is priced at $6.99." }
+    ]
+  },
+  {
+    slug: "san-francisco",
+    name: "San Francisco, CA",
+    state: "California",
+    outlets: "16+ Outlets",
+    highlights: "Mission District, Geary Blvd, South San Francisco, Oakland, Daly City, Berkeley",
+    deliveryHours: "10:30 AM – 11:00 PM",
+    popularCombo: "5 Pc Tenders Combo & Secret Recipe Fries",
+    description: "Serving the Bay Area with digital pick-up kiosks and swift delivery options across SF, Oakland, and Peninsula cities.",
+    faqs: [
+      { q: "Are mobile orders available at SF Bay Area KFC locations?", a: "Yes, express mobile order pick-up is enabled at all Bay Area locations." }
+    ]
+  },
+  {
+    slug: "boston",
+    name: "Boston, MA",
+    state: "Massachusetts",
     outlets: "15+ Outlets",
-    highlights: "Saddar Cantt, Bahria Town Phase 4 & 7, Commercial Market Satellite Town, Peshawar Road, Chaklala Scheme 3",
-    deliveryHours: "11:00 AM – 03:00 AM",
-    popularCombo: "Zinger Combo & Hot Wings 10 Pcs",
-    description: "With lively outlets in Saddar, Satellite Town, and Bahria Town, KFC Rawalpindi serves twin-city commuters and families with quick service and drive-thrus.",
+    highlights: "Dorchester, Roxbury, East Boston, Cambridge, Quincy, Medford",
+    deliveryHours: "10:30 AM – 11:30 PM",
+    popularCombo: "Classic Chicken Sandwich Combo & Mac & Cheese",
+    description: "Serving Greater Boston colleges and neighborhoods with hot chicken combos, crispy fries, and rich Mac & Cheese.",
     faqs: [
-      { q: "What is the KFC 10-piece Hot Wings price in Rawalpindi?", a: "10 pieces of crispy spicy Hot Wings cost Rs. 750 (≈ $2.68 USD)." },
-      { q: "Are KFC branches in Rawalpindi open for dine-in?", a: "Yes, major Rawalpindi branches feature spacious family dine-in areas and dedicated parking." }
+      { q: "What is the price of Mac & Cheese in Boston KFCs?", a: "Individual Mac & Cheese is priced at $3.49." }
     ]
   },
   {
-    slug: "multan",
-    name: "Multan",
-    province: "Punjab",
-    outlets: "9+ Outlets",
-    highlights: "Gulgasht Colony, Cantt Mall Road, Bosan Road, DHA Multan, Abdali Road",
-    deliveryHours: "11:30 AM – 02:00 AM",
-    popularCombo: "Family Festival 1 & Krunch Combo",
-    description: "Multan's foodies enjoy KFC at premier hubs on Bosan Road and Gulgasht Colony. Excellent student and family deals make it a top weekend dining destination.",
+    slug: "austin",
+    name: "Austin, TX",
+    state: "Texas",
+    outlets: "18+ Outlets",
+    highlights: "South Congress, North Lamar, Riverside Dr, Round Rock, Cedar Park",
+    deliveryHours: "10:30 AM – 12:00 AM",
+    popularCombo: "Spicy Famous Bowl & 8 Pc Chicken Bucket",
+    description: "Capital of Texas favorite for quick lunches, student meals near UT Austin, and weekend family buckets.",
     faqs: [
-      { q: "What is the cost of KFC Family Festival 1 in Multan?", a: "Family Festival 1 (4 Zingers, 4 Chicken Pcs, 2 Fries, 1.5L Pepsi) costs Rs. 2,450 (≈ $8.75 USD)." },
-      { q: "What is the Zinger Stacker price in Multan?", a: "Current Multan listings show the standalone Zinger Stacker Burger around Rs. 660 (≈ $2.36 USD) and the Zinger Stacker Combo around Rs. 950 (≈ $3.39 USD)." },
-      { q: "Where are the main KFC branches in Multan?", a: "Major KFC outlets in Multan operate on Bosan Road (near BZU), Gulgasht Colony Main Commercial, Multan Cantt Mall Road, Abdali Road, and DHA Multan." }
+      { q: "How much is an 8 Pc Bucket (chicken only) in Austin?", a: "The 8 Pc chicken-only bucket is $18.99." }
     ]
   },
   {
-    slug: "faisalabad",
-    name: "Faisalabad",
-    province: "Punjab",
-    outlets: "12+ Outlets",
-    highlights: "D-Ground Peoples Colony, Canal Road, Jaranwala Road, Kohinoor City, Susan Road",
-    deliveryHours: "11:00 AM – 03:00 AM",
-    popularCombo: "Mighty Zinger & Crispy Box",
-    description: "Faisalabad's bustling industrial and textile city is served by prominent KFC outlets in D-Ground, Susan Road, and Canal Road.",
+    slug: "columbus",
+    name: "Columbus, OH",
+    state: "Ohio",
+    outlets: "22+ Outlets",
+    highlights: "High St (Ohio State campus), Dublin, Westerville, Reynoldsburg, Grove City",
+    deliveryHours: "10:30 AM – 11:30 PM",
+    popularCombo: "4 Pc Tenders Box & Apple Pie Poppers",
+    description: "Serving Central Ohio and Buckeye fans with hot tenders, big boxes, and delicious dessert poppers.",
     faqs: [
-      { q: "Where is the main KFC branch in Faisalabad?", a: "The flagship branch is located at D-Ground Peoples Colony with drive-thru on Canal Road." }
+      { q: "How much are Apple Pie Poppers in Columbus?", a: "A 4-pack of warm Apple Pie Poppers is $2.99." }
     ]
   },
   {
-    slug: "peshawar",
-    name: "Peshawar",
-    province: "KPK",
-    outlets: "8+ Outlets",
-    highlights: "University Road, Peshawar Cantt Mall, Hayatabad Phase 3, Ring Road",
-    deliveryHours: "11:30 AM – 02:00 AM",
-    popularCombo: "Family Bucket & Zingeratha",
-    description: "Peshawar features modern KFC branches on University Road and Hayatabad, providing delicious fried chicken to students and families across Khyber Pakhtunkhwa.",
+    slug: "charlotte",
+    name: "Charlotte, NC",
+    state: "North Carolina",
+    outlets: "24+ Outlets",
+    highlights: "South Blvd, University City, Independence Blvd, Concord, Gastonia, Huntersville",
+    deliveryHours: "10:30 AM – 11:00 PM",
+    popularCombo: "8 Pc Family Meal & Buttermilk Biscuits",
+    description: "Queen City favorite for authentic southern comfort chicken, crispy tenders, and sweet tea.",
     faqs: [
-      { q: "What is the price of 3 Pcs Fried Chicken in Peshawar?", a: "3 Pieces of Fried Chicken cost Rs. 890 (≈ $3.18 USD)." }
+      { q: "What sides come with the 8 Pc Family Meal in Charlotte?", a: "You get 2 large sides (such as Mashed Potatoes & Coleslaw) and 4 biscuits." }
     ]
   },
   {
-    slug: "sialkot",
-    name: "Sialkot",
-    province: "Punjab",
-    outlets: "6+ Outlets",
-    highlights: "Paris Road, Sialkot Cantt, Aziz Shaheed Road",
-    deliveryHours: "11:30 AM – 02:00 AM",
-    popularCombo: "Zinger Combo & Boneless Box",
-    description: "Sialkot's vibrant export hub boasts popular KFC outlets along Paris Road and Sialkot Cantt, serving crispy meals to business executives and families.",
+    slug: "indianapolis",
+    name: "Indianapolis, IN",
+    state: "Indiana",
+    outlets: "20+ Outlets",
+    highlights: "Speedway, Broad Ripple, Greenwood, Carmel, Castleton, Fishers",
+    deliveryHours: "10:30 AM – 11:00 PM",
+    popularCombo: "KFC Chicken Sandwich & 3 Pc Tenders Combo",
+    description: "Hoosier state favorite offering fast drive-thrus near the Indianapolis Motor Speedway and suburban hubs.",
     faqs: [
-      { q: "Where is KFC located in Sialkot?", a: "Key branches are on Paris Road and in Sialkot Cantt." }
+      { q: "What is the price of the KFC Chicken Sandwich in Indianapolis?", a: "The standalone sandwich is $5.99." }
     ]
   },
   {
-    slug: "gujranwala",
-    name: "Gujranwala",
-    province: "Punjab",
-    outlets: "7+ Outlets",
-    highlights: "GT Road Model Town, Gujranwala Cantt, DC Road, Master City",
-    deliveryHours: "11:30 AM – 02:30 AM",
-    popularCombo: "Value Bucket 15 Pcs & Mighty Zinger",
-    description: "Famous for food lovers, Gujranwala's KFC branches on GT Road and Cantt cater to large gatherings with sharing buckets and festival deals.",
+    slug: "jacksonville",
+    name: "Jacksonville, FL",
+    state: "Florida",
+    outlets: "22+ Outlets",
+    highlights: "Beach Blvd, Southside, Arlington, Orange Park, Mandarin, Northside",
+    deliveryHours: "10:30 AM – 11:30 PM",
+    popularCombo: "12 Pc Family Feast & MTN DEW Sweet Lightning",
+    description: "Extensive network across Duval County with convenient drive-thrus and family-friendly dining.",
     faqs: [
-      { q: "How much is the 15-piece Value Bucket in Gujranwala?", a: "The 15 Pcs Value Bucket costs Rs. 3,450 (≈ $12.32 USD) with a 1.5L drink." }
-    ]
-  },
-  {
-    slug: "hyderabad",
-    name: "Hyderabad",
-    province: "Sindh",
-    outlets: "6+ Outlets",
-    highlights: "Auto Bhan Road, Saddar Hyderabad, Latifabad Unit 7, Qasimabad",
-    deliveryHours: "11:30 AM – 02:30 AM",
-    popularCombo: "Krunch Combo & Twister Wrap",
-    description: "Hyderabad's bustling food strip on Auto Bhan Road and Latifabad offers complete KFC menu ranges with dine-in and home delivery.",
-    faqs: [
-      { q: "Does KFC in Hyderabad offer home delivery?", a: "Yes, KFC delivers across Latifabad, Qasimabad, Saddar, and surrounding areas." }
-    ]
-  },
-  {
-    slug: "quetta",
-    name: "Quetta",
-    province: "Balochistan",
-    outlets: "4+ Outlets",
-    highlights: "Quetta Cantt, Shahrah-e-Zarghoon, Jinnah Road, Serena Hotel vicinity",
-    deliveryHours: "12:00 PM – 01:30 AM",
-    popularCombo: "Family Bucket 9 Pcs & Zinger Burger",
-    description: "KFC in Quetta provides high-quality fast food to the capital of Balochistan with prime locations in Quetta Cantt and Shahrah-e-Zarghoon.",
-    faqs: [
-      { q: "Where can I find KFC in Quetta?", a: "The most popular branch is located inside Quetta Cantt on Shahrah-e-Zarghoon." }
-    ]
-  },
-  {
-    slug: "bahawalpur",
-    name: "Bahawalpur",
-    province: "Punjab",
-    outlets: "4+ Outlets",
-    highlights: "Circular Road, Model Town A, Noor Mahal Road",
-    deliveryHours: "12:00 PM – 01:30 AM",
-    popularCombo: "Crispy Box & Hot Wings 10 Pcs",
-    description: "Serving the historic city of Bahawalpur with favorite Zinger burgers and crispy chicken meals near Model Town and Circular Road.",
-    faqs: [
-      { q: "What are the timings for KFC Bahawalpur?", a: "Outlets typically open from 12:00 PM until 1:30 AM daily." }
-    ]
-  },
-  {
-    slug: "sargodha",
-    name: "Sargodha",
-    province: "Punjab",
-    outlets: "4+ Outlets",
-    highlights: "Club Road, Sargodha Cantt, University Road",
-    deliveryHours: "12:00 PM – 02:00 AM",
-    popularCombo: "Zinger Stacker & Krunch Combo",
-    description: "Sargodha's central outlets on Club Road and Cantt serve students of University of Sargodha and residents with fast drive-thru convenience.",
-    faqs: [
-      { q: "Is KFC drive-thru available in Sargodha?", a: "Yes, the Club Road branch offers a convenient drive-thru lane." }
-    ]
-  },
-  {
-    slug: "abbottabad",
-    name: "Abbottabad",
-    province: "KPK",
-    outlets: "3+ Outlets",
-    highlights: "Mansehra Road, Supply Bazaar, Mandian",
-    deliveryHours: "11:30 AM – 01:00 AM",
-    popularCombo: "Family Festival & Hot Wings",
-    description: "Nestled in the scenic hills, KFC Abbottabad on Mansehra Road is a beloved stop for tourists heading to northern Pakistan and local university students.",
-    faqs: [
-      { q: "Is there a KFC on Mansehra Road in Abbottabad?", a: "Yes, the primary Abbottabad branch is conveniently situated on the main Mansehra Road." }
-    ]
-  },
-  {
-    slug: "sukkur",
-    name: "Sukkur",
-    province: "Sindh",
-    outlets: "3+ Outlets",
-    highlights: "Military Road, Sukkur Cantt, Minara Road",
-    deliveryHours: "12:00 PM – 02:00 AM",
-    popularCombo: "Zinger Combo & 3 Pcs Chicken",
-    description: "Serving Northern Sindh from prime locations on Military Road, KFC Sukkur is a landmark dining choice for travelers and local families.",
-    faqs: [
-      { q: "What is the price of a Zinger Combo in Sukkur?", a: "The Zinger Combo is standard at Rs. 910 (≈ $3.25 USD)." }
-    ]
-  },
-  {
-    slug: "rahim-yar-khan",
-    name: "Rahim Yar Khan",
-    province: "Punjab",
-    outlets: "3+ Outlets",
-    highlights: "Abu Dhabi Road, Model Town, City Center",
-    deliveryHours: "12:00 PM – 01:30 AM",
-    popularCombo: "Crispy Box & Family Festival 1",
-    description: "KFC Rahim Yar Khan serves the southern Punjab hub on Abu Dhabi Road with high quality fried chicken and prompt home delivery.",
-    faqs: [
-      { q: "Does KFC Rahim Yar Khan deliver to residential sectors?", a: "Yes, delivery is active across Model Town, Gulshan-e-Usman, and Abu Dhabi Road." }
-    ]
-  },
-  {
-    slug: "gujrat",
-    name: "Gujrat",
-    province: "Punjab",
-    outlets: "4+ Outlets",
-    highlights: "Bhimber Road, GT Road bypass, Court Road",
-    deliveryHours: "11:30 AM – 02:00 AM",
-    popularCombo: "Mighty Zinger & Nuggets 12 Pcs",
-    description: "Strategically located on Bhimber Road, KFC Gujrat is popular among overseas Pakistanis visiting home and local families.",
-    faqs: [
-      { q: "Where is KFC situated in Gujrat?", a: "The main branch is on Bhimber Road with ample parking and family dine-in." }
-    ]
-  },
-  {
-    slug: "sheikhupura",
-    name: "Sheikhupura",
-    province: "Punjab",
-    outlets: "3+ Outlets",
-    highlights: "Lahore-Sargodha Road, Housing Colony, Stadium Road",
-    deliveryHours: "12:00 PM – 01:30 AM",
-    popularCombo: "Krunch Combo & Hot Shots",
-    description: "Conveniently located on main Lahore-Sargodha Road, serving Sheikhupura commuters and local residents with fresh, crunchy meals.",
-    faqs: [
-      { q: "Is KFC open late in Sheikhupura?", a: "Yes, service operates until 1:30 AM on weekdays and 2:00 AM on weekends." }
-    ]
-  },
-  {
-    slug: "jhelum",
-    name: "Jhelum",
-    province: "Punjab",
-    outlets: "3+ Outlets",
-    highlights: "GT Road Jhelum, Cantt area, River View Road",
-    deliveryHours: "11:30 AM – 01:30 AM",
-    popularCombo: "Family Bucket 9 Pcs & Zinger Burger",
-    description: "KFC Jhelum on the historic GT Road offers river-view dining, drive-thru service, and fresh meals for highway travelers and locals.",
-    faqs: [
-      { q: "Can I stop at KFC Jhelum on the GT Road?", a: "Yes, the branch is directly accessible on the main GT Road with drive-thru." }
-    ]
-  },
-  {
-    slug: "mardan",
-    name: "Mardan",
-    province: "KPK",
-    outlets: "3+ Outlets",
-    highlights: "Mall Road Mardan, Nowshera Road, Cantt",
-    deliveryHours: "12:00 PM – 01:30 AM",
-    popularCombo: "Crispy Duo Box & Hot Wings",
-    description: "Serving Mardan and surrounding districts with authentic KFC taste, located conveniently near Mall Road and Cantt.",
-    faqs: [
-      { q: "What is the price of Hot Wings in Mardan?", a: "10 pieces of Hot Wings cost Rs. 750 (≈ $2.68 USD)." }
+      { q: "Can I order 12 Pc Family Meals in Jacksonville?", a: "Yes, the 12 Pc Family Feast is available for $33.99." }
     ]
   }
 ];
 
-// 4. Render Menu Card HTML (Dual Currency + Badges + Serving/Calories)
+// 4. Render Menu Card HTML (USD + Badges + Serving/Calories)
 function createCardHTML(item) {
-  const isGoldBadge = item.badge === 'Bestseller' || item.badge === 'Top Seller' || item.badge === 'Mega Saver';
+  const isGoldBadge = item.badge === 'Bestseller' || item.badge === 'Top Seller' || item.badge === 'Value Saver' || item.badge === 'Big Box';
   const priceHTML = formatPriceHTML(item.price);
 
   return `
     <article class="food-card" data-id="${item.id}" data-category="${item.category}" data-price="${item.price}">
       <div class="card-img-wrapper">
         ${item.badge ? `<span class="card-badge ${isGoldBadge ? 'gold' : ''}">${item.badge}</span>` : ''}
-        <img src="${item.image}" alt="${item.name} - KFC Pakistan Menu" loading="lazy" width="300" height="200">
+        <img src="${item.image}" alt="${item.name} - KFC USA Menu" loading="lazy" width="300" height="200">
         <span class="card-calorie-pill">${item.calories}</span>
       </div>
       <div class="card-body">
@@ -2655,32 +1747,91 @@ function renderMenuGrid(containerId, items) {
   container.innerHTML = items.map(createCardHTML).join('');
 }
 
-// 6. Curated Spotlight Sections Renderer (Popular, Best Value, Family Deals, Latest Offers)
+// 6. Curated Spotlight Sections Renderer (Popular, Best Value, Family Deals, Latest Offers, Bowls, Tenders, Sides)
 function renderSpotlightSections() {
   const popularContainer = document.getElementById('spotlight-popular-container');
   const bestValueContainer = document.getElementById('spotlight-value-container');
   const familyContainer = document.getElementById('spotlight-family-container');
   const dealsContainer = document.getElementById('spotlight-deals-container');
+  const bowlsContainer = document.getElementById('spotlight-bowls-container');
+  const tendersContainer = document.getElementById('spotlight-tenders-container');
+  const sidesContainer = document.getElementById('spotlight-sides-container');
 
   if (popularContainer) {
-    const popularItems = KFC_MENU_DATA.filter(i => i.isPopular).slice(0, 4);
+    const popularIds = [
+      'sandwich-classic',
+      'chicken-2pc-drum-thigh',
+      'tenders-3pc-combo',
+      'bowl-famous'
+    ];
+    const popularItems = popularIds.map(id => KFC_MENU_DATA.find(i => i.id === id)).filter(Boolean);
     popularContainer.innerHTML = popularItems.map(createCardHTML).join('');
   }
   if (bestValueContainer) {
-    const valueItems = KFC_MENU_DATA.filter(i => i.isBestValue).slice(0, 4);
+    const valueIds = [
+      'sandwich-chicken-littles',
+      'wrap-classic',
+      'chicken-1pc-drum',
+      'side-biscuits-4pc'
+    ];
+    const valueItems = valueIds.map(id => KFC_MENU_DATA.find(i => i.id === id)).filter(Boolean);
     bestValueContainer.innerHTML = valueItems.map(createCardHTML).join('');
   }
   if (familyContainer) {
-    const familyItems = KFC_MENU_DATA.filter(i => i.isFamilyMeal).slice(0, 4);
+    const familyIds = [
+      'family-8pc-meal',
+      'family-12pc-meal',
+      'family-12pc-tenders-meal',
+      'family-16pc-meal'
+    ];
+    const familyItems = familyIds.map(id => KFC_MENU_DATA.find(i => i.id === id)).filter(Boolean);
     familyContainer.innerHTML = familyItems.map(createCardHTML).join('');
   }
   if (dealsContainer) {
-    const dealsItems = KFC_MENU_DATA.filter(i => i.isDeal).slice(0, 4);
+    const dealIds = [
+      'deal-taste-of-kfc-20',
+      'deal-taste-of-kfc-2pc',
+      'deal-taste-of-kfc-4pc',
+      'deal-2-chicken-littles'
+    ];
+    const dealsItems = dealIds.map(id => KFC_MENU_DATA.find(i => i.id === id)).filter(Boolean);
     dealsContainer.innerHTML = dealsItems.map(createCardHTML).join('');
+  }
+  if (bowlsContainer) {
+    const bowlIds = [
+      'bowl-famous',
+      'pot-pie-classic',
+      'bowl-mac-cheese',
+      'bowl-smashd-potato'
+    ];
+    const bowlItems = bowlIds.map(id => KFC_MENU_DATA.find(i => i.id === id)).filter(Boolean);
+    bowlsContainer.innerHTML = bowlItems.map(createCardHTML).join('');
+  }
+  if (tendersContainer) {
+    const tenderIds = [
+      'tenders-3pc-combo',
+      'nuggets-8pc',
+      'saucy-nuggets-honey-bbq',
+      'tenders-4pc-box'
+    ];
+    const tenderItems = tenderIds.map(id => KFC_MENU_DATA.find(i => i.id === id)).filter(Boolean);
+    tendersContainer.innerHTML = tenderItems.map(createCardHTML).join('');
+  }
+  if (sidesContainer) {
+    const sideIds = [
+      'side-secret-fries',
+      'side-mashed-potatoes-gravy',
+      'side-coleslaw',
+      'side-mac-cheese',
+      'side-biscuit-single',
+      'drink-mtn-dew-sweet-lightning'
+    ];
+    const sideItems = sideIds.map(id => KFC_MENU_DATA.find(i => i.id === id)).filter(Boolean);
+    sidesContainer.innerHTML = sideItems.map(createCardHTML).join('');
   }
 }
 
-// 7. Price Comparison Table Renderer
+// 7. Price Comparison Table Renderer (USD)
 function renderPriceTable(tableId, items) {
   const tableContainer = document.getElementById(tableId);
   if (!tableContainer) return;
@@ -2699,8 +1850,8 @@ function renderPriceTable(tableId, items) {
             <th>Category</th>
             <th>Serving Size</th>
             <th>Est. Calories</th>
-            <th>PKR Price</th>
-            <th>USD Approx.</th>
+            <th>Price (USD $)</th>
+            <th>Type</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -2708,7 +1859,6 @@ function renderPriceTable(tableId, items) {
   `;
 
   items.forEach(item => {
-    const usd = convertPKRtoUSD(item.price);
     tableHTML += `
       <tr>
         <td class="table-item-name">
@@ -2718,8 +1868,8 @@ function renderPriceTable(tableId, items) {
         <td><span class="table-category-badge">${item.category}</span></td>
         <td class="table-muted">${item.servingSize}</td>
         <td class="table-muted">${item.calories}</td>
-        <td class="table-price-pk">Rs. ${item.price.toLocaleString()}</td>
-        <td class="table-price-usd">≈ $${usd}</td>
+        <td class="table-price-pk" style="color:#d62300; font-weight:700;">$${item.price.toFixed(2)}</td>
+        <td class="table-price-usd">${item.isDeal ? 'Deal' : (item.isFamilyMeal ? 'Family Meal' : 'A La Carte / Combo')}</td>
         <td>
           <button class="btn-table-action" onclick="openItemModal('${item.id}')">Details</button>
         </td>
@@ -2753,7 +1903,7 @@ function openItemModal(itemId) {
     
     <div class="modal-split-layout">
       <div class="modal-img-wrapper">
-        <img src="${item.image}" alt="${item.name} - KFC Pakistan" style="width:100%; height:100%; object-fit:cover;">
+        <img src="${item.image}" alt="${item.name} - KFC USA Menu" style="width:100%; height:100%; object-fit:cover;">
         ${item.badge ? `<span class="modal-badge-tag">${item.badge}</span>` : ''}
       </div>
       
@@ -2785,8 +1935,8 @@ function openItemModal(itemId) {
             <div class="modal-nutri-tags">
               <span class="nutri-pill">Calories: <strong>${item.calories}</strong></span>
               <span class="nutri-pill">Serving: <strong>${item.servingSize}</strong></span>
-              <span class="nutri-pill">Halal 100% Verified</span>
-              <span class="nutri-pill">May contain wheat, dairy, soy</span>
+              <span class="nutri-pill">100% Real Chicken</span>
+              <span class="nutri-pill">Contains wheat, milk, soy</span>
             </div>
           </div>
         </div>
@@ -2794,7 +1944,7 @@ function openItemModal(itemId) {
         <div class="modal-disclaimer-card">
           <span class="icon">🛡️</span>
           <div>
-            <strong>Consumer Notice:</strong> ${CURRENCY_CONFIG.disclaimer} This is an independent price guide not affiliated with KFC or Yum! Brands. Prices and item availability may vary across individual branches.
+            <strong>Consumer Notice:</strong> ${CURRENCY_CONFIG.disclaimer} This is an independent consumer price guide not affiliated with KFC or Yum! Brands. Prices and item availability may vary by US location.
           </div>
         </div>
       </div>
@@ -2828,7 +1978,7 @@ function initMenuPage(initialCategory = 'All') {
 
   function getFilteredItems() {
     return KFC_MENU_DATA.filter(item => {
-      // Category match (flexible match for short names like 'Burgers', 'Chicken', 'Snacks', 'Deals')
+      // Category match
       const targetCat = activeCategory.toLowerCase();
       const itemCat = item.category.toLowerCase();
       const matchCat = (
@@ -2836,8 +1986,17 @@ function initMenuPage(initialCategory = 'All') {
         itemCat === targetCat ||
         itemCat.includes(targetCat) ||
         targetCat.includes(itemCat) ||
+        (targetCat.includes('sandwich') && (itemCat.includes('sandwich') || itemCat.includes('burger'))) ||
+        (targetCat.includes('burger') && (itemCat.includes('sandwich') || itemCat.includes('burger'))) ||
+        (targetCat.includes('chicken') && (itemCat.includes('chicken') || itemCat.includes('tender') || itemCat.includes('nugget'))) ||
+        (targetCat.includes('combo') && (itemCat.includes('combo') || itemCat.includes('bowl') || itemCat.includes('pie'))) ||
+        (targetCat.includes('box') && (itemCat.includes('box') || itemCat.includes('fill up'))) ||
         (targetCat.includes('family') && (itemCat.includes('family') || itemCat.includes('bucket') || item.isFamilyMeal)) ||
         (targetCat.includes('bucket') && (itemCat.includes('family') || itemCat.includes('bucket') || item.isFamilyMeal)) ||
+        (targetCat.includes('snack') && (itemCat.includes('snack') || itemCat.includes('side'))) ||
+        (targetCat.includes('side') && (itemCat.includes('snack') || itemCat.includes('side'))) ||
+        (targetCat.includes('beverage') && (itemCat.includes('beverage') || itemCat.includes('drink') || itemCat.includes('dessert'))) ||
+        (targetCat.includes('drink') && (itemCat.includes('beverage') || itemCat.includes('drink') || itemCat.includes('dessert'))) ||
         (targetCat.includes('deal') && (itemCat.includes('deal') || item.isDeal))
       );
 
@@ -2850,16 +2009,16 @@ function initMenuPage(initialCategory = 'All') {
         item.itemsIncluded.some(inc => inc.toLowerCase().includes(q))
       );
 
-      // Price filter match
+      // Price filter match (USD)
       let matchPrice = true;
-      if (activePriceRange === 'under-500') {
-        matchPrice = item.price < 500;
-      } else if (activePriceRange === '500-1000') {
-        matchPrice = item.price >= 500 && item.price <= 1000;
-      } else if (activePriceRange === '1000-2000') {
-        matchPrice = item.price > 1000 && item.price <= 2000;
-      } else if (activePriceRange === 'over-2000') {
-        matchPrice = item.price > 2000;
+      if (activePriceRange === 'under-5') {
+        matchPrice = item.price < 5.00;
+      } else if (activePriceRange === '5-10') {
+        matchPrice = item.price >= 5.00 && item.price <= 10.00;
+      } else if (activePriceRange === '10-20') {
+        matchPrice = item.price > 10.00 && item.price <= 20.00;
+      } else if (activePriceRange === 'over-20') {
+        matchPrice = item.price > 20.00;
       }
 
       return matchCat && matchQuery && matchPrice;
@@ -2966,24 +2125,25 @@ function initMenuPage(initialCategory = 'All') {
 // 10. Dynamic City Page Controller (for city.html?city=[slug] or direct execution)
 function initCityPage() {
   const urlParams = new URLSearchParams(window.location.search);
-  const citySlug = urlParams.get('city') || window.location.hash.replace('#', '') || 'lahore';
+  const citySlug = urlParams.get('city') || window.location.hash.replace('#', '') || 'new-york';
 
   const city = KFC_CITIES_DATA.find(c => c.slug.toLowerCase() === citySlug.toLowerCase()) || KFC_CITIES_DATA[0];
 
   // Update Page Title and Meta Tags
-  document.title = `KFC Menu & Prices in ${city.name} (PKR & USD) – 2026 Price Directory`;
+  document.title = `KFC Menu with Prices in ${city.name} (2026) – USA Price Directory`;
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) {
-    metaDesc.content = `Check KFC ${city.name} menu items, prices in PKR & USD, Zinger burger price, fried chicken deals, outlet locations, and FAQs across ${city.name}.`;
+    metaDesc.content = `Check KFC ${city.name} menu items, prices in USD ($), Chicken Sandwich prices, fried chicken bucket deals, outlet locations, and local FAQs across ${city.name}.`;
   }
 
   // Sync Canonical & OpenGraph tags for current city
   const dedicatedCityRoutes = {
-    'lahore': '/city-lahore',
-    'karachi': '/city-karachi',
-    'islamabad': '/city-islamabad',
-    'faisalabad': '/city-faisalabad',
-    'multan': '/city-multan'
+    'new-york': '/city-new-york',
+    'los-angeles': '/city-los-angeles',
+    'chicago': '/city-chicago',
+    'houston': '/city-houston',
+    'miami': '/city-miami',
+    'dallas': '/city-dallas'
   };
   const cityPath = dedicatedCityRoutes[city.slug.toLowerCase()] 
     ? dedicatedCityRoutes[city.slug.toLowerCase()] 
@@ -3002,12 +2162,12 @@ function initCityPage() {
 
   const ogTitle = document.querySelector('meta[property="og:title"]');
   if (ogTitle) {
-    ogTitle.setAttribute('content', `KFC Menu & Prices in ${city.name} (PKR & USD)`);
+    ogTitle.setAttribute('content', `KFC Menu & Prices in ${city.name} – KFC USA Menu Guide`);
   }
 
   const ogDesc = document.querySelector('meta[property="og:description"]');
   if (ogDesc) {
-    ogDesc.setAttribute('content', `KFC ${city.name} menu prices, deals, and branch directory in PKR & USD.`);
+    ogDesc.setAttribute('content', `KFC ${city.name} menu prices, deals, and branch directory in USD ($).`);
   }
 
   // Update City Hero Content
@@ -3095,28 +2255,24 @@ function setupCityMenuControls(city) {
       // Category match
       let matchCat = true;
       if (activeCategory !== 'All') {
-        if (activeCategory === 'Burgers & Sandwiches') {
+        if (activeCategory === 'Burgers & Sandwiches' || activeCategory === 'Sandwiches') {
           matchCat = item.category === 'Burgers & Sandwiches';
         } else if (activeCategory === 'Fried Chicken') {
-          matchCat = item.category === 'Fried Chicken' || item.category === 'Chicken Tenders' || item.category === 'Hot Wings' || item.category === 'Nuggets';
-        } else if (activeCategory === 'Rice & Bowls') {
-          matchCat = item.category === 'Rice & Bowls';
-        } else if (activeCategory === 'Chizza & Pizza Specials') {
-          matchCat = item.category === 'Chizza & Pizza Specials';
-        } else if (activeCategory === 'Pasta & Loaded Bowls') {
-          matchCat = item.category === 'Pasta & Loaded Bowls';
+          matchCat = item.category === 'Fried Chicken' || item.category === 'Chicken Tenders' || item.category === 'Nuggets';
         } else if (activeCategory === 'Combos') {
           matchCat = item.category === 'Combos';
         } else if (activeCategory === 'Signature Boxes') {
           matchCat = item.category === 'Signature Boxes';
-        } else if (activeCategory === 'Family Buckets') {
-          matchCat = item.category === 'Family Buckets' || item.isFamilyMeal || item.category === 'Deals & Offers';
+        } else if (activeCategory === 'Family Deals' || activeCategory === 'Family Buckets') {
+          matchCat = item.category === 'Family Deals' || item.isFamilyMeal;
         } else if (activeCategory === 'Snacks & Sides') {
-          matchCat = item.category === 'Snacks & Sides' || item.category === 'Fries' || item.category === 'Biscuits' || item.category === 'Wraps';
+          matchCat = item.category === 'Snacks & Sides';
         } else if (activeCategory === 'Beverages') {
           matchCat = item.category === 'Beverages';
         } else if (activeCategory === 'Desserts') {
           matchCat = item.category === 'Desserts';
+        } else if (activeCategory === 'Deals & Offers') {
+          matchCat = item.category === 'Deals & Offers' || item.isDeal;
         } else {
           matchCat = item.category.toLowerCase().includes(activeCategory.toLowerCase());
         }
@@ -3171,7 +2327,7 @@ function setupCityMenuControls(city) {
   // Initial render
   renderCityGrid();
 
-  // Attach currency rerender
+  // Attach rerender
   const currentReRender = window.reRenderActiveViews;
   window.reRenderActiveViews = function() {
     if (typeof currentReRender === 'function') currentReRender();
@@ -3179,7 +2335,7 @@ function setupCityMenuControls(city) {
   };
 }
 
-// 10c. Controller for Dedicated City Pages (e.g. city-lahore.html, city-multan.html)
+// 10c. Controller for Dedicated City Pages
 function initDedicatedCityMenu(citySlug) {
   const city = KFC_CITIES_DATA.find(c => c.slug.toLowerCase() === citySlug.toLowerCase()) || KFC_CITIES_DATA[0];
   setupCityMenuControls(city);
@@ -3249,17 +2405,13 @@ function initBackToTop() {
   });
 }
 
-// 14. Currency Toggle Buttons in DOM
+// 14. Currency Switcher Handler
 function initCurrencySwitcher() {
   document.querySelectorAll('.currency-toggle-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      const curr = e.currentTarget.dataset.currency;
-      if (curr) {
-        setGlobalCurrency(curr);
-      }
+      setGlobalCurrency('USD');
     });
   });
-  // Apply saved currency on page load
   setGlobalCurrency(CURRENCY_CONFIG.activeCurrency);
 }
 
