@@ -1699,7 +1699,7 @@ function createCardHTML(item) {
     <article class="food-card" data-id="${item.id}" data-category="${item.category}" data-price="${item.price}">
       <div class="card-img-wrapper">
         ${item.badge ? `<span class="card-badge ${isGoldBadge ? 'gold' : ''}">${item.badge}</span>` : ''}
-        <img src="${item.image}" alt="${item.name} - KFC USA Menu" loading="lazy" width="300" height="200">
+        <img src="${item.image}" srcset="${item.image} 600w" sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 360px" alt="${item.name} - KFC USA Menu" loading="lazy" decoding="async" width="600" height="448">
         <span class="card-calorie-pill">${item.calories}</span>
       </div>
       <div class="card-body">
@@ -1903,7 +1903,7 @@ function openItemModal(itemId) {
     
     <div class="modal-split-layout">
       <div class="modal-img-wrapper">
-        <img src="${item.image}" alt="${item.name} - KFC USA Menu" style="width:100%; height:100%; object-fit:cover;">
+        <img src="${item.image}" srcset="${item.image} 600w" sizes="(max-width: 768px) 100vw, 600px" alt="${item.name} - KFC USA Menu" loading="lazy" decoding="async" width="600" height="448" style="width:100%; height:100%; object-fit:cover;">
         ${item.badge ? `<span class="modal-badge-tag">${item.badge}</span>` : ''}
       </div>
       
