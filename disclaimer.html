@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <!-- Preconnect & DNS-Prefetch for Analytics and Fonts -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B2TG62G8MW"></script>
   <script>
@@ -26,6 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
+    <link rel="preload" as="image" href="images/kfc_logo.svg" type="image/svg+xml" fetchpriority="high">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -58,7 +62,7 @@
     <div class="container">
       <div class="header-inner">
         <a href="index.html" class="brand-logo">
-          <img src="images/kfc_logo.svg" srcset="images/kfc_logo.svg 75w, images/kfc_logo.png 75w" sizes="75px" alt="KFC USA Menu Logo" class="brand-official-logo" width="75" height="40" decoding="async">
+          <img src="images/kfc_logo.svg" srcset="images/kfc_logo.svg 75w, images/kfc_logo.png 75w" sizes="75px" alt="KFC USA Menu Logo" class="brand-official-logo" width="75" height="40" fetchpriority="high" decoding="async">
           <div>
             KFC USA Menu
             <span class="brand-tag">2026 Prices & Deals Directory</span>
