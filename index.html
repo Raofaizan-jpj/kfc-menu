@@ -46,23 +46,50 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- JSON-LD Structured Data: FastFoodRestaurant & WebSite -->
+  <!-- JSON-LD Structured Data: WebSite -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "FastFoodRestaurant",
+    "@type": "WebSite",
     "name": "KFC USA Menu & Prices Directory",
     "url": "https://kfc-menu-orpin.vercel.app/",
-    "logo": "https://kfc-menu-orpin.vercel.app/images/kfc_logo.png",
-    "image": "https://kfc-menu-orpin.vercel.app/images/zinger_burger.jpg",
     "description": "Comprehensive independent consumer guide to KFC menu prices in the United States, including chicken sandwiches, burgers, buckets, wings, tenders, family deals, and city directories.",
-    "servesCuisine": "American Fast Food, Fried Chicken",
-    "priceRange": "$$",
-    "hasMenu": "https://kfc-menu-orpin.vercel.app/menu.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "KFC USA Menu Editorial Team",
+      "url": "https://kfc-menu-orpin.vercel.app/about.html",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://kfc-menu-orpin.vercel.app/images/kfc_logo.png"
+      }
+    },
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://kfc-menu-orpin.vercel.app/menu.html?q={search_term_string}",
       "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: WebPage with Author & Date Signals -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "KFC Menu with Prices 2026 USA - Full Food Menu & Deals",
+    "url": "https://kfc-menu-orpin.vercel.app/",
+    "datePublished": "2026-01-15T08:00:00+00:00",
+    "dateModified": "2026-09-25T08:00:00+00:00",
+    "inLanguage": "en-US",
+    "author": {
+      "@type": "Organization",
+      "name": "KFC USA Menu Editorial Team",
+      "url": "https://kfc-menu-orpin.vercel.app/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "KFC USA Menu Editorial Team",
+      "url": "https://kfc-menu-orpin.vercel.app/about.html"
     }
   }
   </script>
@@ -301,7 +328,10 @@
       <li><a href="deals.html">Taste of KFC & Deals</a></li>
       <li><a href="cities.html">US Cities Directory</a></li>
       <li><a href="about.html">About Us</a></li>
+      <li><a href="editorial-policy.html">Editorial Policy</a></li>
       <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="terms-of-service.html">Terms of Service</a></li>
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
       <li><a href="disclaimer.html">Legal Disclaimer</a></li>
     </ul>
   </aside>
@@ -452,6 +482,15 @@
 
     <!-- 1. Helpful Homepage Introduction Section -->
     <section class="seo-intro-card" aria-label="About KFC USA Menu Guide" style="margin-top: 2rem;">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:0.5rem 1rem; font-size:0.85rem; color:#64748B; margin-bottom:1.25rem; padding-bottom:0.75rem; border-bottom:1px solid var(--border-color);">
+        <span>✍️ <strong>Researched & Reviewed by:</strong> <a href="about.html" style="color:var(--primary-red); font-weight:600;">KFC USA Menu Editorial Team</a></span>
+        <span>•</span>
+        <span>📅 <strong>Last Updated:</strong> September 25, 2026</span>
+        <span>•</span>
+        <span>🛡️ <a href="editorial-policy.html" style="color:#64748B; text-decoration:underline;">Editorial Policy</a></span>
+        <span>•</span>
+        <span>✉️ <a href="contact.html" style="color:#64748B; text-decoration:underline;">Report Price Correction</a></span>
+      </div>
       <h2>Complete KFC USA Menu, Prices & Deals Guide (2026)</h2>
       <p>
         Welcome to your independent consumer guide to the <strong>KFC menu with prices</strong> in the United States. Whether you want to know how much KFC costs for dinner, check the price of popular KFC burgers and chicken sandwiches, or find the latest fried chicken bucket price for your family, our guide delivers updated pricing in US Dollars ($), calorie estimates, portion details, and local US city dining information.
@@ -960,13 +999,14 @@
         </div>
 
         <div class="footer-col">
-          <h4>Information</h4>
+          <h4>Trust & Information</h4>
           <ul class="footer-links">
             <li><a href="about.html">About Us</a></li>
+            <li><a href="editorial-policy.html">Editorial Policy</a></li>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="disclaimer.html">Legal Disclaimer</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li>
             <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="deals.html">Taste of KFC Deals</a></li>
+            <li><a href="disclaimer.html">Legal Disclaimer</a></li>
           </ul>
         </div>
       </div>
