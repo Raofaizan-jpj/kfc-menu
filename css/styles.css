@@ -1542,7 +1542,9 @@ button, input, select, textarea {
   max-width: 340px;
 }
 
-.footer-col h4 {
+.footer-col h4,
+.footer-col h3,
+.footer-col .footer-col-title {
   color: #FFFFFF;
   font-size: 1.05rem;
   font-weight: 700;
